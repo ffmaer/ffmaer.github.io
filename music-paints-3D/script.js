@@ -65,7 +65,7 @@ function draw(){
 
   var max_scale = 30;
   var scale = map(level,0,0.3,0.1,max_scale);
-  var alpha = 0.5;
+  var alpha = 0.7;
   // var color = '#ea4844';
   var color="rgba(236,81,81,"+alpha+")";
 
