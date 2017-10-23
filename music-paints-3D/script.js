@@ -24,7 +24,16 @@ function preload(){
 
 
 function setup(){
-  createCanvas(windowWidth, windowHeight, WEBGL);
+  var cnv = createCanvas(windowWidth, windowHeight, WEBGL);
+
+  cnv.mouseClicked(function() {
+    if (sound.isPlaying() ){
+      sound.stop();
+    } else {
+      sound.play();
+    }
+  });
+  
   camera(200, -800, 1200, 0, 0, 0, 0, 1, 0);
 
   xpos=0;
@@ -44,7 +53,7 @@ function setup(){
 
   noFill();
   strokeWeight(10);
-  stroke("#cccccc");
+  stroke("#e1e1e1");
   box(boxX,boxY,boxZ);
 }
 
@@ -56,7 +65,7 @@ function draw(){
 
   var max_scale = 30;
   var scale = map(level,0,0.3,0.1,max_scale);
-  var alpha = 0.8;
+  var alpha = 0.5;
   // var color = '#ea4844';
   var color="rgba(236,81,81,"+alpha+")";
 
@@ -84,7 +93,7 @@ function draw(){
   fill(color);
   noStroke();
 
-  var step_len = 10;
+  var step_len = 10+scale/2;
 
   xpos += xdir*step_len;
   ypos += ydir*step_len;
@@ -94,14 +103,14 @@ function draw(){
   sphere(scale);
 
 
-
-  if(xpos > boxX/2 || xpos < -boxX/2){
+  var margin = 30;
+  if(xpos > boxX/2-margin || xpos < -boxX/2+margin){
     xdir *= -1;
   }
-  if(ypos > boxY/2 || ypos < -boxY/2){
+  if(ypos > boxY/2-margin || ypos < -boxY/2+margin){
     ydir *= -1;
   }
-  if(zpos > boxZ/2 || zpos < -boxZ/2){
+  if(zpos > boxZ/2-margin || zpos < -boxZ/2+margin){
     zdir *= -1;
   } 
 }
