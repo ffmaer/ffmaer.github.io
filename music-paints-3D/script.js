@@ -2,15 +2,21 @@ var bg;
 
 var xpos;
 var ypos;
+var zpos;
+
 var xdir;
 var ydir;
+var zdir;
 
-var scale;
 
 var sound;
 var amplitude;
 
 var max;
+
+var boxX = 1000;
+var boxY = 618;
+var boxZ = 500;
 
 function preload(){
   sound = loadSound('assets/Fur-Elise.mp3');
@@ -18,66 +24,84 @@ function preload(){
 
 
 function setup(){
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  camera(200, -800, 1200, 0, 0, 0, 0, 1, 0);
+
   xpos=0;
   ypos=0;
+  zpos=0;
+
+
   xdir = 1;
   ydir = 1;
+  zdir = 1;
   background('#f1f1f1');
   
   sound.play();
   amplitude = new p5.Amplitude();
   
   max = 0;
+
+  noFill();
+  strokeWeight(10);
+  stroke("#cccccc");
+  box(boxX,boxY,boxZ);
 }
 
 
 
 function draw(){
-  var level = amplitude.getLevel();
-  if(level > max){
-    max = level;
-    console.log(max);
-  }
-  var max_scale = 50;
-  scale = map(level,0,0.3,0,max_scale);
-  var color = '#f1f1f1';
   
-  if(scale > max_scale/7*1){
-    color = '#ea4844';
-  }
-  if(scale > max_scale/7*2){
-    color = '#f46e28';
-  }
-  if(scale > max_scale/7*3 ){
-    color = '#f6b82b';
+  var level = amplitude.getLevel();
 
+  var max_scale = 30;
+  var scale = map(level,0,0.3,0.1,max_scale);
+  var alpha = 0.8;
+  // var color = '#ea4844';
+  var color="rgba(236,81,81,"+alpha+")";
+
+  if(scale > max_scale/6*1 ){
+    // color = '#f46e28';
+    color="rgba(244,111,41,"+alpha+")";
   }
-  if(scale > max_scale/7*4 ){
-    color = '#c55ba8';
+  if(scale > max_scale/6*2 ){
+    // color = '#f6b82b';
+    color="rgba(247,184,43,"+alpha+")";
   }
-  if(scale > max_scale/7*5 ){
-    color = '#4dc7f6';
+  if(scale > max_scale/6*3 ){
+    // color = '#c55ba8';
+    color="rgba(79,201,246,"+alpha+")";
   }
-  if(scale > max_scale/7*6 ){
-    color = '#3ac471';
+  if(scale > max_scale/6*4 ){
+    // color = '#4dc7f6';
+    color="rgba(196,91,168,"+alpha+")";
+  }
+  if(scale > max_scale/6*5 ){
+    // color = '#3ac471';
+    color="rgba(58,196,113,"+alpha+")";
   }
 
   fill(color);
-  stroke(color);
-  ellipse(xpos,ypos,scale,scale);
-  xpos += xdir*10;
-  ypos += ydir*10;
-  
-  if(ypos > height || ypos < 0){
+  noStroke();
+
+  var step_len = 10;
+
+  xpos += xdir*step_len;
+  ypos += ydir*step_len;
+  zpos += zdir*step_len;
+
+  translate(xpos,ypos,zpos);  
+  sphere(scale);
+
+
+
+  if(xpos > boxX/2 || xpos < -boxX/2){
+    xdir *= -1;
+  }
+  if(ypos > boxY/2 || ypos < -boxY/2){
     ydir *= -1;
   }
-  if(xpos > width || xpos < 0){
-    xdir *= -1;
+  if(zpos > boxZ/2 || zpos < -boxZ/2){
+    zdir *= -1;
   } 
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  background('#f1f1f1');
 }
