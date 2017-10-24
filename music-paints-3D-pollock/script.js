@@ -19,7 +19,7 @@ var boxY = 618;
 var boxZ = 500;
 
 function preload(){
-  sound = loadSound('assets/Fur-Elise.mp3');
+  sound = loadSound('assets/jazz.mp3');
 }
 
 
@@ -33,7 +33,8 @@ function setup(){
       sound.play();
     }
   });
-  
+
+  fft = new p5.FFT();
   camera(200, -800, 1200, 0, 0, 0, 0, 1, 0);
 
   xpos=0;
@@ -44,7 +45,7 @@ function setup(){
   xdir = 1;
   ydir = 1;
   zdir = 1;
-  background("rgba(206,179,150,1)";);
+  background("rgba(206,179,150,1)");
   
   sound.play();
   amplitude = new p5.Amplitude();
@@ -53,7 +54,7 @@ function setup(){
 
   noFill();
   strokeWeight(10);
-  stroke("#e1e1e1");
+  stroke("rgba(40,40,40,1)");
   box(boxX,boxY,boxZ);
 }
 
@@ -63,32 +64,24 @@ function draw(){
   
   var level = amplitude.getLevel();
 
-  var max_scale = 30;
+  var max_scale = 40;
   var scale = map(level,0,0.3,0.1,max_scale);
   var alpha = 0.7;
-  // var color = '#ea4844';
-  var color="rgba(236,81,81,"+alpha+")";
+  var color="rgba(80,114,160,"+alpha+")";//blue
 
-  if(scale > max_scale/6*1 ){
-    // color = '#f46e28';
-    color="rgba(244,111,41,"+alpha+")";
+  if(scale > max_scale/5*1 ){
+    color="rgba(18,19,14,"+alpha+")";//black
   }
-  if(scale > max_scale/6*2 ){
-    // color = '#f6b82b';
-    color="rgba(247,184,43,"+alpha+")";
+  if(scale > max_scale/5*2 ){
+    color="rgba(186,170,85,"+alpha+")";
   }
-  if(scale > max_scale/6*3 ){
-    // color = '#c55ba8';
-    color="rgba(79,201,246,"+alpha+")";
+  if(scale > max_scale/5*3 ){
+    color="rgba(191,85,63,"+alpha+")";//red
   }
-  if(scale > max_scale/6*4 ){
-    // color = '#4dc7f6';
-    color="rgba(196,91,168,"+alpha+")";
+  if(scale > max_scale/5*4 ){
+    color="rgba(221,212,197,"+alpha+")";
   }
-  if(scale > max_scale/6*5 ){
-    // color = '#3ac471';
-    color="rgba(58,196,113,"+alpha+")";
-  }
+
 
   fill(color);
   noStroke();
@@ -100,7 +93,7 @@ function draw(){
   zpos += zdir*step_len;
 
   translate(xpos,ypos,zpos);  
-  sphere(scale);
+  sphere(10+scale);
 
 
   var margin = 30;
