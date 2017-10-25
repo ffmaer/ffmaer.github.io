@@ -14,9 +14,9 @@ var amplitude;
 
 var max;
 
-var boxX = 1000;
-var boxY = 618;
-var boxZ = 500;
+var boxX = 100;
+var boxY = 62;
+var boxZ = 50;
 
 function preload(){
   sound = loadSound('assets/jazz.mp3');
@@ -35,12 +35,11 @@ function setup(){
   });
 
   fft = new p5.FFT();
-  camera(200, -800, 1200, 0, 0, 0, 0, 1, 0);
+  camera(23, -80, 120, 0, 0, 0, 0, 1, 0);
 
   xpos=0;
   ypos=0;
   zpos=0;
-
 
   xdir = 1;
   ydir = 1;
@@ -53,7 +52,7 @@ function setup(){
   max = 0;
 
   noFill();
-  strokeWeight(10);
+  strokeWeight(1);
   stroke("rgba(40,40,40,1)");
   box(boxX,boxY,boxZ);
 }
@@ -64,7 +63,7 @@ function draw(){
   
   var level = amplitude.getLevel();
 
-  var max_scale = 40;
+  var max_scale = 4;
   var scale = map(level,0,0.3,0.1,max_scale);
   var alpha = 0.7;
   var color="rgba(80,114,160,"+alpha+")";//blue
@@ -86,17 +85,17 @@ function draw(){
   fill(color);
   noStroke();
 
-  var step_len = 10+scale/2;
+  var step_len = 1+scale/2;
 
   xpos += xdir*step_len;
   ypos += ydir*step_len;
   zpos += zdir*step_len;
 
   translate(xpos,ypos,zpos);  
-  sphere(10+scale);
+  sphere(1+scale);
 
 
-  var margin = 30;
+  var margin = 3;
   if(xpos > boxX/2-margin || xpos < -boxX/2+margin){
     xdir *= -1;
   }
