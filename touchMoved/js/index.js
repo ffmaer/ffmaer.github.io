@@ -8,7 +8,7 @@ function setup() {
 
 function touchMoved() {
   stroke(random(["white","cyan","magenta","yellow"]))
-  strokeWeight(3)
+  strokeWeight(5)
 	line(mouseX, mouseY, pmouseX, pmouseY);
 	return false;
 }
