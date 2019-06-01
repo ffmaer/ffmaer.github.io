@@ -1,0 +1,131 @@
+@font-face {
+  font-family: 'Kaushan Script';
+  src: url('fonts/Kaushan_Script/KaushanScript-Regular.ttf');
+}
+@font-face {
+  font-family: 'Luckiest Guy';
+  src: url('fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('fonts/Ubuntu/Ubuntu-Regular.ttf');
+}
+body{
+  background: blueviolet;
+  color: aliceblue;
+  font-size: 36px;
+}
+#defaultCanvas0{
+  position: fixed;
+  z-index: -2;
+  left: 50%;
+  top:0;
+}
+#instruction{
+  font-size: 60px;
+  text-align: center;
+  font-family: 'Luckiest Guy', cursive;
+  margin: 50 0 40 0px;
+}
+#instruction .firstline{
+  font-size: 100px;
+}
+#winning-condition{
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 30px;
+}
+table{
+  color: aliceblue;
+  font-size: 36px;
+  display: block;
+}
+table#bottom{
+  margin-top: 40px;
+}
+td{
+  vertical-align: top;
+}
+.titlediv{
+  font-family: 'Kaushan Script', cursive;
+  font-size: 56px;
+}
+
+#cashchart div, #timechart div{
+  font-size: 24px;
+  font-family: 'Ubuntu', sans-serif;
+  display: inline-flex;
+  opacity: 0.9;
+}
+
+td#timetext p, td#cashtext p, button{
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.adjust{
+  display: inline-block;
+}
+
+button.number, button.decrease, button.increase{
+  background-color:fuchsia ;
+  display: inline-block;
+  font-size: 36px;
+  color:white;
+}
+
+.dependent{
+  background-color:deeppink ;
+  display: inline-block;
+  font-size: 36px;
+  color:white;
+}
+
+button.toggle, button.music{
+  background-color:darkorange ;
+  display: inline-block;
+  font-size: 36px;
+  color:white; 
+  text-align: left;
+}
+#footer{
+  font-size: 16px;
+  text-align: center;
+  margin: 20 0 10 0px;
+  font-family: 'Ubuntu', sans-serif;
+}
+.hidden{
+  opacity: 100;
+}
+
+.hidden_pattern{
+  display: none;
+}
+
+.quote{
+  font-size: 16px;
+}
+
+.winning_text, .winning_message_button{
+ font-size: 36px;
+ font-family: 'Ubuntu', sans-serif;
+ color: blueviolet;
+  text-shadow:
+    3px 3px 0 #fff,
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+.winning_message_button{
+  background-color: white;
+}
+
+.seal{
+  font-size: 1500px;
+  position: fixed;
+  left:-500px;
+  top:-500px;
+  opacity: 0.04;
+  z-index: -1;
+}
