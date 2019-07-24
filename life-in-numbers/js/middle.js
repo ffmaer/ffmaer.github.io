@@ -213,7 +213,7 @@ let total_income = () => { return lifetime_work_income() + total_retirement_inco
 let cash_left = () => {
   let balance = total_income();
   for (let key in lifelong_cost) {
-    if (key != "CA$H left") {
+    if (key != "Cash left") {
       // console.log(`${key}:${lifelong_cost[key]()}`);  
       balance -= lifelong_cost[key]();
     }
