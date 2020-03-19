@@ -114,16 +114,16 @@ function updateChart(chartname) {
         let itemdiv = document.createElement("div");
         itemdiv.style["margin-left"] = `${div_margin_left}px`;
         itemdiv.style["padding-left"] = `${div_padding_left}px`;
-        if (dict[item]() < 0 && item == "CA$H left") {
+        if (dict[item]() < 0 && item == "Money left") {
           itemdiv.style["background-color"] = "red";
           if (Math.floor(width / longest_div_width) == 1) {
-            itemdiv.innerHTML = `<span>CA$H deficit</span><span class='quote'>I know at last what distinguishes man from animals; financial worries. - Romain Rolland</span>`;
+            itemdiv.innerHTML = `<span>Deficit</span><span class='quote'>I know at last what distinguishes man from animals; financial worries. - Romain Rolland</span>`;
           } else {
-            itemdiv.textContent = `CA$H deficit`;
+            itemdiv.textContent = `Deficit`;
           }
-        } else if (dict[item]() < 0 && item == "Where did this time go?") {
+        } else if (dict[item]() < 0 && item == "Free time") {
           itemdiv.style["background-color"] = "red";
-          itemdiv.textContent = `Time deficit`;
+          itemdiv.textContent = `Deficit`;
         } else if(dict[item]() >0){
           itemdiv.style["background-color"] = item_count % 2 == 0 ? "violet" : "hotpink";
           itemdiv.textContent = `${item}`;

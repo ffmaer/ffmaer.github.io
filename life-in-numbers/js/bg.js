@@ -1,5 +1,5 @@
 let bubbles;
-let s=["฿","☀","☁","☾"];
+let s=["☀","☁","☾"];
 
 function ftext(fountain, particle) {
   stroke(fountain.colors[Math.floor(particle.life*fountain.colors.length)]);

@@ -38,14 +38,14 @@ let work_end_age = 60;
 let work_years = () => { return toggles["toggle_startup"]==1?age_quit_job-work_start_age:work_end_age - work_start_age };
 let max_work_years = () =>{ return work_end_age - work_start_age};
 let retirement_years = () => { return max_age - work_end_age };
-let work_hours_per_day = 12;
+let work_hours_per_day = 8;
 let paid_holidays = 10;
 let national_holidays = 10;
-let work_days_per_week = 6;
+let work_days_per_week = 5;
 let total_work_hours = () => { return work_years() * (WEEKS_PER_YEAR * work_days_per_week - paid_holidays - national_holidays) * work_hours_per_day };
 let total_paid_work_hours = () => { return work_years() * (WEEKS_PER_YEAR * work_days_per_week - national_holidays) * work_hours_per_day };
 let work_percent = () => { return fix(total_work_hours() / total_hours() * 100, 1) };
-let sleep_hours = 20;
+let sleep_hours = 10;
 let sleep_percent = () => { return fix(sleep_hours / HOURS_PER_DAY * 100) };
 let commute_hours = 5;
 let four_things_combined_percentage = () => { return fix((work_hours_per_day + food_hours + commute_hours + sleep_hours) / HOURS_PER_DAY * 100, 0) }
@@ -94,7 +94,7 @@ let total_sports_hours = ()=>{return toggles["toggle_sports"] == 1?WEEKS_PER_YEA
 let hours_left = () => {
   let balance = total_hours();
   for (let key in hours_used) {
-    if (key != "Where did this time go?") balance -= hours_used[key]();
+    if (key != "Free time") balance -= hours_used[key]();
   }
   return balance;
 }
@@ -213,7 +213,7 @@ let total_income = () => { return lifetime_work_income() + total_retirement_inco
 let cash_left = () => {
   let balance = total_income();
   for (let key in lifelong_cost) {
-    if (key != "Cash left") {
+    if (key != "Money left") {
       // console.log(`${key}:${lifelong_cost[key]()}`);  
       balance -= lifelong_cost[key]();
     }
@@ -239,7 +239,7 @@ let hours_used = {
   "Vacations": total_vacation_hours,
   "Start a company":startup_total_hours,
   "Raise a child":total_child_care_hours,
-  "Where did this time go?": hours_left
+  "Free time": hours_left
 }
 
 let lifelong_cost = {
@@ -259,7 +259,7 @@ let lifelong_cost = {
   "A child": total_child_cost,
   "Vacations":total_vacation_cost,
   "Start a company": startup_total_cost,
-  "CA$H left": cash_left
+  "Money left": cash_left
 }
 
 
@@ -267,11 +267,11 @@ let lifelong_cost = {
 //  lines
 // ************
 let lines = [
-  `Your life lasted ${clickable( "max_age")} years. You had ${dependent( "total_hours")} hours in your life.`,
+  `How will you spend your life, if you know that your life will only have ${dependent( "total_hours")} hours?`,
 
-  `You started working since you were ${clickable( "work_start_age")} and you retired at the age of ${clickable( "work_end_age")}; that's ${dependent( "work_years")} working years. By the way, your retirement lasted ${dependent( "retirement_years")} years.`,
+  `You started working since you were ${clickable( "work_start_age")}, retired at the age of ${clickable( "work_end_age")}; that's ${dependent( "work_years")} working years. Your retirement lasted ${dependent( "retirement_years")} years.`,
 
-  `You worked ${clickable( "work_hours_per_day")} hours per day ${clickable( "work_days_per_week")} days a week. You had ${clickable( "paid_holidays")} days of paid holidays per year. Besides, you did not need to work on the ${clickable( "national_holidays")} national holidays. You spent ${dependent( "work_percent")} percent of your life working.`,
+  `You worked ${clickable( "work_hours_per_day")} hours per day ${clickable( "work_days_per_week")} days a week. You had ${clickable( "paid_holidays")} days of paid holidays per year. Besides, you did not need to work on the ${clickable( "national_holidays")} national holidays. In total, you spent ${dependent( "work_percent")} percent of your life working.`,
 
   `You slept on average ${clickable( "sleep_hours")} hours per day. That took ${dependent( "sleep_percent")} percent of your life.`,
 
@@ -279,7 +279,7 @@ let lines = [
 
   `Commuting took ${clickable( "commute_hours")} hours per day.`,
 
-  `So on a typical work day, food, commute, work and sleep occupied ${dependent( "four_things_combined_percentage")} percent of your day. That means you had ${dependent( "work_day_hours_left")} hours left to do your laundry, hike in a park, watch a movie, play with your phone, walk your dogs, play with your cats, look at your plants, work out in a gym, read, or listen to music.`,
+  `So on a typical workday, food, commute, work, and sleep occupied ${dependent( "four_things_combined_percentage")} percent of your day. That means you had ${dependent( "work_day_hours_left")} hours left to do your laundry, hike in a park, watch a movie, play with your phone, walk your dogs, play with your cats, look at your plants, work out in a gym, read, or listen to music.`,
 
   `When you were a student, you studied ${clickable( "morning_study_hour")} hours in the morning, ${clickable( "afternoon_study_hour")} hours in the afternoon and ${clickable( "evening_study_hour")} hours in the evening. That's ${dependent( "total_study_hour_per_day")} hours per day. That's roughly the schedule from 1st grade to 12th grade and in college (4 years).`,
 
@@ -287,13 +287,13 @@ let lines = [
 
   `${toggle("Video Games", "toggle_video_games")}: <span class='toggle_content'>You started to play video games since you were ${clickable( "video_game_start_age")}. When you were young, your parents allowed you to play 1 hour per day. But you managed to play ${clickable( "actual_play_time")} hours per day.<br><br></span>
 
-<span class='toggle_content'>Strangely enough, you did not play much video games while you were in college. However, after you graduated from college, since you needed to entertain yourself while not working, you played video games for about ${clickable( "play_time_after_working")} hour on daily basis. That's a total of ${dependent( "total_video_game_hours")} hours in your life time.</span>`,
+<span class='toggle_content'>Strangely enough, you did not play video games much while you were in college. However, after you graduated from college because you needed to entertain yourself while not working, you played video games for about ${clickable( "play_time_after_working")} hour on a daily basis. That's a total of ${dependent( "total_video_game_hours")} hours in your lifetime.</span>`,
 
-  `${toggle("Dating Apps", "toggle_dating_apps")}: <span class='toggle_content'>When you were between the age of ${clickable( "dating_apps_start_age")} and ${clickable( "dating_apps_end_age")}, because you were single, and due to the digial culture of the time, and a lack of opportunity to meet new people in real life, you spent on average ${clickable( "dating_apps_daily_time")} hours per day on dating apps.</span>`,
+  `${toggle("Dating Apps", "toggle_dating_apps")}: <span class='toggle_content'>When you were between the age of ${clickable( "dating_apps_start_age")} and ${clickable( "dating_apps_end_age")}, because you were single, and due to the digital culture of the time, and a lack of opportunity to meet new people in real life, you spent on average ${clickable( "dating_apps_daily_time")} hours per day on dating apps.</span>`,
 
-  `${toggle("A Long-lasting Relationship", "toggle_love")}:<span class='toggle_content'> You found the love of your life when you were ${clickable( "fall_in_love_age")}, and since then you spent ${clickable( "long_last_relationship_hours_per_day")} hour with the person daily. Major activities include: eating, sleeping, talking, making plans, helping each other out and etc.</span>`,
+  `${toggle("A Long-lasting Relationship", "toggle_love")}:<span class='toggle_content'> You found the love of your life when you were ${clickable( "fall_in_love_age")}, and since then you spent ${clickable( "long_last_relationship_hours_per_day")} hours with the person daily. Major activities include: eating, sleeping, talking, making plans, helping each other out and etc.</span>`,
 
-  `${toggle("Social Media", "toggle_social_media")}: <span class='toggle_content'>Qbook, Qgram, Qter and Qchat were the most popular social media sites. You spent ${dependent( "total_social_media_hours")} hours on those sites since they appeared since you were ${clickable( "age_social_media_appeared")}. That's an average of ${clickable( "social_media_hours_per_day")} hours per day. You gave up social media at the age of ${clickable( "social_media_give_up_age")}, that gave you a lot of time to do other things.</span>`,
+  `${toggle("Social Media", "toggle_social_media")}: <span class='toggle_content'>Qbook, Qgram, Qter, and Qchat were the most popular social media sites. You spent ${dependent( "total_social_media_hours")} hours on those sites since they appeared since you were ${clickable( "age_social_media_appeared")}. That's an average of ${clickable( "social_media_hours_per_day")} hours per day. You gave up social media at the age of ${clickable( "social_media_give_up_age")}, that gave you a lot of time to do other things.</span>`,
 
   `${toggle("Lifelong Learning", "toggle_lifelong_learning")}: <span class='toggle_content'>Life became repetitive and boring soon after you graduated from college. However, one day when you were ${clickable( "age_rediscovered_learning")}, you rediscovered the glamor of learning. When you study, you always meet new and exciting things! That's exactly what you needed in life: motion and liveliness.<br><br></span>
 
@@ -301,7 +301,7 @@ let lines = [
 
   `${toggle('First relationship', "toggle_first_relationship")}: <span class='toggle_content'>Your first lovely relationship lasted for about ${clickable( "first_relationship_months")} months. You spent ${clickable( "first_relationship_hours_per_day")} hours per day together. Though it's like a small droplet in the ocean of life, you remembered it.</span>`,
 
-  `${toggle("Sports","toggle_sports")}: <span class='toggle_content'>City life can be quite sedentary. You were gaining weight. Playing sports lifts your mood, helps you sleep better, releases stress and makes you more energetic. You had ${clickable("sports_session_per_week")} sports sessions per week. Each session lasted for about ${clickable("sports_hours_per_session")} hour. Your first session began when you were ${clickable("first_sports_age")}, and you became too old to play sports at the age of ${dependent("too_old_to_play_sports_age")}.</span>`
+  `${toggle("Sports","toggle_sports")}: <span class='toggle_content'>City life can be quite sedentary. You were gaining weight. Playing sports lifts your mood, helps you sleep better, releases stress and makes you more energetic. You had ${clickable("sports_session_per_week")} sports sessions per week. Each session lasted for about ${clickable("sports_hours_per_session")} hours. Your first session began when you were ${clickable("first_sports_age")}, and you became too old to play sports at the age of ${dependent("too_old_to_play_sports_age")}.</span>`
 
 ];
 //           @@@@@    @@@@@               
@@ -331,7 +331,7 @@ let lines = [
 //           @@@@@    @@@@@               
 //           @@@@@    @@@@@               
 //           @@@@@    @@@@@               
-let lines2 = [`Your hourly rate was ${clickable( "hourly_rate")} dollars. You monthly income was ${dependent( "monthly_income")} dollars. During the working years, you earned ${dependent( "lifetime_work_income")} dollars.`,
+let lines2 = [`Your hourly rate was ${clickable( "hourly_rate")} dollars. Your monthly income was ${dependent( "monthly_income")} dollars. During the working years, you earned ${dependent( "lifetime_work_income")} dollars.`,
 
 `While working, you contributed ${clickable( "retirement_saving_percentage")} percent of your monthly income (${dependent( "retirement_monthly_cost")} dollars) to your retirement account.`,
 
@@ -343,36 +343,34 @@ let lines2 = [`Your hourly rate was ${clickable( "hourly_rate")} dollars. You mo
 
 `The rent per month was ${clickable( "rent_monthly_in_hundreds")} hundred dollars.`,
 
-`Your health insurance was ${clickable( "insurance_monthly")} hundred dollars per month. That accumulated to ${dependent( "insurance_lifetime")} dollars for your life time.`,
+`Your health insurance was ${clickable( "insurance_monthly")} hundred dollars per month. That accumulated to ${dependent( "insurance_lifetime")} dollars for your lifetime.`,
 
-`Public transportation cost ${clickable( "public_transportation_monthly")} dollars per month.`,
+`Public transportation costs ${clickable( "public_transportation_monthly")} dollars per month.`,
 
 `Wireless and Internet cost ${clickable( "wireless_internet_monthly")} dollars per month.`,
 
-`Clothing cost ${clickable( "clothing_monthly")} dollars per month.`,
+`The clothing cost ${clickable( "clothing_monthly")} dollars per month.`,
 
 `${toggle("Alcohol", "toggle_alcoholic")}: <span class='toggle_content'>To cure sadness and celebrate happiness, you drank ${clickable( "drinks_per_day")} alcohol per day, and each alcohol cost ${clickable( "cost_per_drink")} dollars. So the total cost of drinks was ${dependent( "drink_monthly")} dollars per month.</span>`,
 
-`${toggle("QPhones", "toggle_qphone")}: <span class='toggle_content'>QPhone was the phone to have during your life time. You switched to the newest QPhone every ${clickable( "old_qphone_last_years")} years. Each QPhone cost ${clickable( "qphone_cost")} dollars. You got your first QPhone when you were ${clickable( "first_qphone_age")}. You had ${dependent("total_number_of_qphones")} QPhones in total. And they cost ${dependent( "total_qphone_cost")} dollars.</span>`,
+`${toggle("QPhones", "toggle_qphone")}: <span class='toggle_content'>QPhone was the phone to have during your lifetime. You switched to the newest QPhone every ${clickable( "old_qphone_last_years")} years. Each QPhone cost ${clickable( "qphone_cost")} dollars. You got your first QPhone when you were ${clickable( "first_qphone_age")}. You had ${dependent("total_number_of_qphones")} QPhones in total. And they cost ${dependent( "total_qphone_cost")} dollars.</span>`,
 
-`${toggle("A House in a Lesser Known City", "toggle_lesser_known_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_less_known_city_house")}, you bought a house in a lesser known city. The cost per square foot was ${clickable( "cost_lesser_known")} hundred dollars. The size of your apartment was ${clickable( "size_lesser_known")} hundred square foot. The total cost of the apartment was ${dependent( "total_cost_lesser_known")} dollars.</span>`,
+`${toggle("A House in a Lesser-known City", "toggle_lesser_known_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_less_known_city_house")}, you bought a house in a lesser-known city. The cost per square foot was ${clickable( "cost_lesser_known")} hundred dollars. The size of your apartment was ${clickable( "size_lesser_known")} hundred square feet. The total cost of the apartment was ${dependent( "total_cost_lesser_known")} dollars.</span>`,
 
-`${toggle("An Apartment in a Famous City", "toggle_famous_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_famous_city_apartment")}, you bought an expensive apartment in Q City. The cost per square foot was ${clickable( "cost_famous_city")} hundred dollars. The size of your apartment was ${clickable( "size_famous_city")} hundred square foot. The total cost of the apartment was ${dependent( "total_cost_famous_city")} dollars.</span>`,
+`${toggle("An Apartment in a Famous City", "toggle_famous_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_famous_city_apartment")}, you bought an expensive apartment in Q City. The cost per square foot was ${clickable( "cost_famous_city")} hundred dollars. The size of your apartment was ${clickable( "size_famous_city")} hundred square feet. The total cost of the apartment was ${dependent( "total_cost_famous_city")} dollars.</span>`,
 
-`${toggle("Cars", "toggle_cars")}: <span class="toggle_content">Unlike New York City where you mainly rely on taking subways to move around, you lived in a place where buying a car was necessary. Each car cost ${clickable( "each_car_cost")} thousand dollars. The monthly cost of gasoline was ${clickable( "gas_monthly")} hundred dollars. Having a garage cost another ${clickable( "garage_monthly")} hundred dollars per month. The car lasted ${clickable( "car_longevity")} years. So in your life time, since you got your first car when you were ${clickable( "first_car_age")}, you bought ${dependent( "total_car_number")} cars in total and they cost ${dependent( "total_car_cost")} dollars.</span>`,
-
-`${toggle("Bitcoin", "toggle_bitcoin")}: <span class="toggle_content"> The cost of a bitcoin was ${clickable( "bitcoin_buy")} thousand dollars. You bought ${clickable( "number_of_bitcoin_bought")}. Ten years later, the price of a bitcoin increased ${clickable( "bitcoin_fold")}-fold. You sold it at a price of ${dependent( "bitcoin_sell")} thousand dollars and made a profit of ${dependent( "bitcoin_profit")} dollars.</span>`,
+`${toggle("Cars", "toggle_cars")}: <span class="toggle_content">Unlike New York City where you mainly rely on taking subways to move around, you lived in a place where buying a car was necessary. Each car cost ${clickable( "each_car_cost")} thousand dollars. The monthly cost of gasoline was ${clickable( "gas_monthly")} hundred dollars. Having a garage cost another ${clickable( "garage_monthly")} hundred dollars per month. The car lasted ${clickable( "car_longevity")} years. So in your lifetime, since you got your first car when you were ${clickable( "first_car_age")}, you bought ${dependent( "total_car_number")} cars in total and they cost ${dependent( "total_car_cost")} dollars.</span>`,
 
 `${toggle("Raising a child","toggle_child")}: 
-<span class='toggle_content'>Raising a child was an expensive business. Before the child turned 18, each month, you spent another ${dependent("food_monthly")} dollars on food, another ${dependent("insurance_monthly_dependent" )} hundred dollars on health insurance, another ${dependent("clothing_monthly_dependent")} dollars on clothing, extra ${clickable( "education_monthly")} hundred dollars on education. However, you got a subsidy of ${clickable("child_subsidy_monthly")} hundred dollars per month because you had a child. So raising a child to the age of ${CHILDHOOD_YEARS} cost ${dependent("total_child_cost")} dollars.<br><br></span>
+<span class='toggle_content'>Raising a child was an expensive business. Before the child turned 18, each month, you spent another ${dependent("food_monthly")} dollars on food, another ${dependent("insurance_monthly_dependent" )} hundred dollars on health insurance, another ${dependent("clothing_monthly_dependent")} dollars on clothing, extra ${clickable( "education_monthly")} hundred dollars on education. However, you got a subsidy of ${clickable("child_subsidy_monthly")} hundred dollars per month because you had a child. So raising a child to the age of ${CHILDHOOD_YEARS} costs ${dependent("total_child_cost")} dollars.<br><br></span>
 
 <span class='toggle_content'>Before the child turned ${CHILDHOOD_YEARS}, you spent on average ${clickable("child_care_hours_per_day")} hours per day on taking care of the child. That's a total of ${dependent("total_child_care_hours")} hours.</span>
 `,
 
 `${toggle("Vacations","toggle_vacations")}: 
-<span class='toggle_content'>As the saying goes, grass is greener on the other side. After living in the same city for years, you wanted to leave your home and seek adventures elsewhere.<br><br></span>
+<span class='toggle_content'>As the saying goes, the grass is greener on the other side. After living in the same city for years, you wanted to leave your home and seek adventures elsewhere.<br><br></span>
 
-<span class='toggle_content'>You visited a new country every ${clickable("vacation_every_x_year")} years. Each vacation lasted for about ${clickable("vacation_days")} days. Every day you spent ${clickable("vacation_hotel_cost")} hundred dollars on hotel, ${clickable("vacation_food_cost")} hundred dollars on food, ${clickable("vacation_entertainment_cost")} hundred dollars on entertainment, ${clickable("vacation_transportation_cost")} hundred dollars on transportation. And a round-trip ticket to that country cost ${clickable("vacation_airplane_cost")} hundred dollars. You had first one of these trips when you were ${clickable("first_vacation_age")}. And you became too old to travel at the age of ${dependent("too_old_to_travel_age")}. So you had ${dependent("number_of_vacation_trips")} these trips during your life time.</span>`,
+<span class='toggle_content'>You visited a new country every ${clickable("vacation_every_x_year")} years. Each vacation lasted for about ${clickable("vacation_days")} days. Every day you spent ${clickable("vacation_hotel_cost")} hundred dollars on hotel, ${clickable("vacation_food_cost")} hundred dollars on food, ${clickable("vacation_entertainment_cost")} hundred dollars on entertainment, ${clickable("vacation_transportation_cost")} hundred dollars on transportation. And a round-trip ticket to that country cost ${clickable("vacation_airplane_cost")} hundred dollars. You had the first one of these trips when you were ${clickable("first_vacation_age")}. And you became too old to travel at the age of ${dependent("too_old_to_travel_age")}. So you had ${dependent("number_of_vacation_trips")} these trips during your lifetime.</span>`,
 
 `${toggle("Start a company","toggle_startup")}: 
 <span class='toggle_content'>People say that starting a company is like riding a roller coaster. You quitted your job at the age of ${clickable("age_quit_job")} and became a full-time entrepreneur. Since founding your company, you worked ${clickable("startup_hours_per_day")} hours a day, ${clickable("startup_work_days_per_week")} days a week.<br><br></span>

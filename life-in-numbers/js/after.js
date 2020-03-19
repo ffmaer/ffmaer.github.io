@@ -7,22 +7,21 @@ for (let td of document.querySelectorAll("td")) {
 for(let table of document.querySelectorAll("table")){
   table.style.width = page_width;
 }
-document.querySelector("#instruction").style.width = page_width;
 
 let timetext = document.querySelector("#timetext")
 let cashtext = document.querySelector("#cashtext")
 
-let titlediv = document.createElement("div");
-titlediv.setAttribute("class", "titlediv");
-titlediv.textContent = "A Transcript of Your Life"
-timetext.append(titlediv)
+// let titlediv = document.createElement("div");
+// titlediv.setAttribute("class", "titlediv");
+// titlediv.textContent = "Chapter I";
+// timetext.append(titlediv)
 
 writelines(lines, timetext)
 
-let titlediv2 = document.createElement("div");
-titlediv2.setAttribute("class", "titlediv");
-titlediv2.textContent = "The second part is about cash."
-cashtext.append(titlediv2)
+// let titlediv2 = document.createElement("div");
+// titlediv2.setAttribute("class", "titlediv");
+// titlediv2.textContent = "Chapter II";
+// cashtext.append(titlediv2)
 
 writelines(lines2, cashtext);
 
