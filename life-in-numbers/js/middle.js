@@ -167,7 +167,7 @@ let age_bought_big_city_apartment = 40;
 let cost_big_city = 90;
 let size_big_city = 20;
 let total_cost_big_city = () => { return toggles["toggle_big_city"] == 1 ? cost_big_city * 100 * size_big_city * 100 : 0 }
-let age_bought_less_known_city_house = 35;
+let age_bought_small_city_house = 35;
 let cost_small = 0.5;
 let size_small = 20;
 let total_cost_small = () => { return toggles["toggle_small_city"] == 1 ? cost_small * 1000 * size_small * 100 : 0 }
@@ -254,7 +254,7 @@ let lifelong_cost = {
   "Alcohol": () => { return toggles["toggle_alcoholic"] == 1 ? monthly2Lifetime(drink_monthly()) : 0 },
   "QPhones": total_qphone_cost,
   "An apartment in a big city": total_cost_big_city,
-  "A house in a small known city": total_cost_small,
+  "A house in a small city": total_cost_small,
   "Cars": total_car_cost,
   "A child": total_child_cost,
   "Vacations":total_vacation_cost,
@@ -355,7 +355,7 @@ let lines2 = [`Your hourly rate was ${clickable( "hourly_rate")} dollars. Your m
 
 `${toggle("QPhones", "toggle_qphone")}: <span class='toggle_content'>QPhone was the phone to have during your lifetime. You switched to the newest QPhone every ${clickable( "old_qphone_last_years")} years. Each QPhone cost ${clickable( "qphone_cost")} dollars. You got your first QPhone when you were ${clickable( "first_qphone_age")}. You had ${dependent("total_number_of_qphones")} QPhones in total. And they cost ${dependent( "total_qphone_cost")} dollars.</span>`,
 
-`${toggle("A house in a small city", "toggle_small_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_less_known_city_house")}, you bought a house in a small city. The cost per square foot was ${clickable( "cost_small")} hundred dollars. The size of your apartment was ${clickable( "size_small")} hundred square feet. The total cost of the apartment was ${dependent( "total_cost_small")} dollars.</span>`,
+`${toggle("A house in a small city", "toggle_small_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_small_city_house")}, you bought a house in a small city. The cost per square foot was ${clickable( "cost_small")} hundred dollars. The size of your apartment was ${clickable( "size_small")} hundred square feet. The total cost of the apartment was ${dependent( "total_cost_small")} dollars.</span>`,
 
 `${toggle("An apartment in a big city", "toggle_big_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_big_city_apartment")}, you bought an expensive apartment in Q City. The cost per square foot was ${clickable( "cost_big_city")} hundred dollars. The size of your apartment was ${clickable( "size_big_city")} hundred square feet. The total cost of the apartment was ${dependent( "total_cost_big_city")} dollars.</span>`,
 
