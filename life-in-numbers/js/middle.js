@@ -269,7 +269,7 @@ let lifelong_cost = {
 let lines = [
   `How will you spend your life, if you know that your life will only have ${dependent( "total_hours")} hours?`,
 
-  `You started working since you were ${clickable( "work_start_age")}, retired at the age of ${clickable( "work_end_age")}; that's ${dependent( "work_years")} working years. Your retirement lasted ${dependent( "retirement_years")} years.`,
+  `You started working since you were ${clickable( "work_start_age")}, retired at the age of ${clickable( "work_end_age")}; that's ${dependent( "work_years")} working years. Retirement spanned ${dependent( "retirement_years")} years.`,
 
   `You worked ${clickable( "work_hours_per_day")} hours per day ${clickable( "work_days_per_week")} days a week. You had ${clickable( "paid_holidays")} days of paid holidays per year. Besides, you did not need to work on the ${clickable( "national_holidays")} national holidays. In total, you spent ${dependent( "work_percent")} percent of your life working.`,
 
