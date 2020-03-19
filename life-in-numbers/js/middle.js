@@ -163,14 +163,14 @@ let qphone_cost = 999;
 let first_qphone_age = 21;
 let total_number_of_qphones = () => { return Math.ceil((max_age - first_qphone_age) / old_qphone_last_years) };
 let total_qphone_cost = () => { return toggles["toggle_qphone"] == 1 ? total_number_of_qphones() * qphone_cost : 0 };
-let age_bought_famous_city_apartment = 40;
-let cost_famous_city = 90;
-let size_famous_city = 20;
-let total_cost_famous_city = () => { return toggles["toggle_famous_city"] == 1 ? cost_famous_city * 100 * size_famous_city * 100 : 0 }
+let age_bought_big_city_apartment = 40;
+let cost_big_city = 90;
+let size_big_city = 20;
+let total_cost_big_city = () => { return toggles["toggle_big_city"] == 1 ? cost_big_city * 100 * size_big_city * 100 : 0 }
 let age_bought_less_known_city_house = 35;
-let cost_lesser_known = 0.5;
-let size_lesser_known = 20;
-let total_cost_lesser_known = () => { return toggles["toggle_lesser_known_city"] == 1 ? cost_lesser_known * 1000 * size_lesser_known * 100 : 0 }
+let cost_small = 0.5;
+let size_small = 20;
+let total_cost_small = () => { return toggles["toggle_small_city"] == 1 ? cost_small * 1000 * size_small * 100 : 0 }
 let each_car_cost = 10;
 let gas_monthly = 2;
 let garage_monthly = 2;
@@ -253,8 +253,8 @@ let lifelong_cost = {
   "Retirement account": retirement_cost_lifetime,
   "Alcohol": () => { return toggles["toggle_alcoholic"] == 1 ? monthly2Lifetime(drink_monthly()) : 0 },
   "QPhones": total_qphone_cost,
-  "An apartment in a famous city": total_cost_famous_city,
-  "A house in a lesser known city": total_cost_lesser_known,
+  "An apartment in a big city": total_cost_big_city,
+  "A house in a small known city": total_cost_small,
   "Cars": total_car_cost,
   "A child": total_child_cost,
   "Vacations":total_vacation_cost,
@@ -285,17 +285,17 @@ let lines = [
 
   `When you were a student, each summer vacation lasted ${clickable("summer_vacation")} days and each winter vacation lasted ${clickable("winter_vacation")} days. During the vacations, you studied ${clickable("vacation_study_hours")} hours per day.`,
 
-  `${toggle("Video Games", "toggle_video_games")}: <span class='toggle_content'>You started to play video games since you were ${clickable( "video_game_start_age")}. When you were young, your parents allowed you to play 1 hour per day. But you managed to play ${clickable( "actual_play_time")} hours per day.<br><br></span>
+  `${toggle("Video games", "toggle_video_games")}: <span class='toggle_content'>You started to play video games since you were ${clickable( "video_game_start_age")}. When you were young, your parents allowed you to play 1 hour per day. But you managed to play ${clickable( "actual_play_time")} hours per day.<br><br></span>
 
 <span class='toggle_content'>Strangely enough, you did not play video games much while you were in college. However, after you graduated from college because you needed to entertain yourself while not working, you played video games for about ${clickable( "play_time_after_working")} hour on a daily basis. That's a total of ${dependent( "total_video_game_hours")} hours in your lifetime.</span>`,
 
-  `${toggle("Dating Apps", "toggle_dating_apps")}: <span class='toggle_content'>When you were between the age of ${clickable( "dating_apps_start_age")} and ${clickable( "dating_apps_end_age")}, because you were single, and due to the digital culture of the time, and a lack of opportunity to meet new people in real life, you spent on average ${clickable( "dating_apps_daily_time")} hours per day on dating apps.</span>`,
+  `${toggle("Dating apps", "toggle_dating_apps")}: <span class='toggle_content'>When you were between the age of ${clickable( "dating_apps_start_age")} and ${clickable( "dating_apps_end_age")}, because you were single, and due to the digital culture of the time, and a lack of opportunity to meet new people in real life, you spent on average ${clickable( "dating_apps_daily_time")} hours per day on dating apps.</span>`,
 
-  `${toggle("A Long-lasting Relationship", "toggle_love")}:<span class='toggle_content'> You found the love of your life when you were ${clickable( "fall_in_love_age")}, and since then you spent ${clickable( "long_last_relationship_hours_per_day")} hours with the person daily. Major activities include: eating, sleeping, talking, making plans, helping each other out and etc.</span>`,
+  `${toggle("A Long-lasting relationship", "toggle_love")}:<span class='toggle_content'> You found the love of your life when you were ${clickable( "fall_in_love_age")}, and since then you spent ${clickable( "long_last_relationship_hours_per_day")} hours with the person daily. Major activities include: eating, sleeping, talking, making plans, helping each other out and etc.</span>`,
 
-  `${toggle("Social Media", "toggle_social_media")}: <span class='toggle_content'>Qbook, Qgram, Qter, and Qchat were the most popular social media sites. You spent ${dependent( "total_social_media_hours")} hours on those sites since they appeared since you were ${clickable( "age_social_media_appeared")}. That's an average of ${clickable( "social_media_hours_per_day")} hours per day. You gave up social media at the age of ${clickable( "social_media_give_up_age")}, that gave you a lot of time to do other things.</span>`,
+  `${toggle("Social media", "toggle_social_media")}: <span class='toggle_content'>Qbook, Qgram, Qter, and Qchat were the most popular social media sites. You spent ${dependent( "total_social_media_hours")} hours on those sites since they appeared since you were ${clickable( "age_social_media_appeared")}. That's an average of ${clickable( "social_media_hours_per_day")} hours per day. You gave up social media at the age of ${clickable( "social_media_give_up_age")}, that gave you a lot of time to do other things.</span>`,
 
-  `${toggle("Lifelong Learning", "toggle_lifelong_learning")}: <span class='toggle_content'>Life became repetitive and boring soon after you graduated from college. However, one day when you were ${clickable( "age_rediscovered_learning")}, you rediscovered the glamor of learning. When you study, you always meet new and exciting things! That's exactly what you needed in life: motion and liveliness.<br><br></span>
+  `${toggle("Lifelong learning", "toggle_lifelong_learning")}: <span class='toggle_content'>Life became repetitive and boring soon after you graduated from college. However, one day when you were ${clickable( "age_rediscovered_learning")}, you rediscovered the glamor of learning. When you study, you always meet new and exciting things! That's exactly what you needed in life: motion and liveliness.<br><br></span>
 
 <span class='toggle_content'>Since the moment of realization, you studied on average ${clickable( "lifelong_study_hour_per_day")} hours per day and became a lifelong learner worthy of the name.</span>`,
 
@@ -355,9 +355,9 @@ let lines2 = [`Your hourly rate was ${clickable( "hourly_rate")} dollars. Your m
 
 `${toggle("QPhones", "toggle_qphone")}: <span class='toggle_content'>QPhone was the phone to have during your lifetime. You switched to the newest QPhone every ${clickable( "old_qphone_last_years")} years. Each QPhone cost ${clickable( "qphone_cost")} dollars. You got your first QPhone when you were ${clickable( "first_qphone_age")}. You had ${dependent("total_number_of_qphones")} QPhones in total. And they cost ${dependent( "total_qphone_cost")} dollars.</span>`,
 
-`${toggle("A House in a Lesser-known City", "toggle_lesser_known_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_less_known_city_house")}, you bought a house in a lesser-known city. The cost per square foot was ${clickable( "cost_lesser_known")} hundred dollars. The size of your apartment was ${clickable( "size_lesser_known")} hundred square feet. The total cost of the apartment was ${dependent( "total_cost_lesser_known")} dollars.</span>`,
+`${toggle("A house in a small city", "toggle_small_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_less_known_city_house")}, you bought a house in a small city. The cost per square foot was ${clickable( "cost_small")} hundred dollars. The size of your apartment was ${clickable( "size_small")} hundred square feet. The total cost of the apartment was ${dependent( "total_cost_small")} dollars.</span>`,
 
-`${toggle("An Apartment in a Famous City", "toggle_famous_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_famous_city_apartment")}, you bought an expensive apartment in Q City. The cost per square foot was ${clickable( "cost_famous_city")} hundred dollars. The size of your apartment was ${clickable( "size_famous_city")} hundred square feet. The total cost of the apartment was ${dependent( "total_cost_famous_city")} dollars.</span>`,
+`${toggle("An apartment in a big city", "toggle_big_city")}: <span class='toggle_content'> When you were ${clickable("age_bought_big_city_apartment")}, you bought an expensive apartment in Q City. The cost per square foot was ${clickable( "cost_big_city")} hundred dollars. The size of your apartment was ${clickable( "size_big_city")} hundred square feet. The total cost of the apartment was ${dependent( "total_cost_big_city")} dollars.</span>`,
 
 `${toggle("Cars", "toggle_cars")}: <span class="toggle_content">Unlike New York City where you mainly rely on taking subways to move around, you lived in a place where buying a car was necessary. Each car cost ${clickable( "each_car_cost")} thousand dollars. The monthly cost of gasoline was ${clickable( "gas_monthly")} hundred dollars. Having a garage cost another ${clickable( "garage_monthly")} hundred dollars per month. The car lasted ${clickable( "car_longevity")} years. So in your lifetime, since you got your first car when you were ${clickable( "first_car_age")}, you bought ${dependent( "total_car_number")} cars in total and they cost ${dependent( "total_car_cost")} dollars.</span>`,
 

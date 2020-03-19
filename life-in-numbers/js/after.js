@@ -11,17 +11,7 @@ for(let table of document.querySelectorAll("table")){
 let timetext = document.querySelector("#timetext")
 let cashtext = document.querySelector("#cashtext")
 
-// let titlediv = document.createElement("div");
-// titlediv.setAttribute("class", "titlediv");
-// titlediv.textContent = "Chapter I";
-// timetext.append(titlediv)
-
 writelines(lines, timetext)
-
-// let titlediv2 = document.createElement("div");
-// titlediv2.setAttribute("class", "titlediv");
-// titlediv2.textContent = "Chapter II";
-// cashtext.append(titlediv2)
 
 writelines(lines2, cashtext);
 
