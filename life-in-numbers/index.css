@@ -130,3 +130,13 @@ button.toggle, button.music{
   opacity: 0.04;
   z-index: -1;
 }
+
+div.music{
+  display: flex;
+  justify-content: center;
+}
+
+div.center{
+  display: flex;
+  justify-content: center;
+}
