@@ -57,7 +57,7 @@ function setup() {
     cnv.position((windowWidth - w) / 2, (windowHeight - h) / 2);
 
     for (let i = 0; i < years * 20; i++) {
-        items.push(new Item(random(m, w / 2 * years), random(m, h - m), random([...bacteria, ...virus, "HIV", "HIV", ...love, ...vaccine, ...prevention, ...cure, "💀", "💡"])))
+        items.push(new Item(random(m, w / 2 * years), random(m, h - m), random([...bacteria, ...virus,...love, ...vaccine, ...prevention, ...cure, "💀", "💡", "HIV", "HIV", "ART" ])))
     }
 
     you = createSprite(w / 2, h / 2, sprite_size, sprite_size)
@@ -70,12 +70,15 @@ function setup() {
             vertex(random(-20, 20), random(-20, 20));
         }
         endShape(CLOSE);
+        if (frameCount < frameRate() * 10){
+            textSize(12)
+            text("🎯Live & LOVE 81 Years", 0,30)
+        }
         if (talkative) {
             textSize(15)
             let g = 7 //gap
             text("💬", g, g)
             text("💬", -g, -g)
-
         }
         pop()
     }
