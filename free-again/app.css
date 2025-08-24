@@ -1,0 +1,87 @@
+body {
+	background-color: #2b263c;
+	margin: 0px;
+}
+
+@font-face {
+	font-family: "Actor";
+	src: url("Actor-Regular.ttf");
+}
+
+#footer {
+	margin-left: 40px;
+	height: 20px;
+	font-size: 14px;
+	position: absolute;
+	top: 680px;
+	z-index: 0;
+}
+
+body,
+#footer,
+a {
+	color: #f7f5e6;
+	font-family: "Actor";
+}
+
+#block1,
+#block2 {
+	display: inline-block;
+}
+
+#block2 {
+	margin-left: 100px;
+
+}
+
+.basic {
+	width: 600px;
+	margin: 40px;
+}
+
+#info_iframe {
+	position: absolute;
+	height: 100%;
+	width: 1020px;
+	left: 0px;
+	top: 0px;
+	display: none;
+	z-index: 1;
+}
+
+.keys {
+	color: #e1b923;
+}
+
+figure {
+	display: inline-block;
+}
+
+h1 {
+	color: #ffca05;
+	font-size: 1.5em;
+}
+
+h2 {
+	color: #ffca05;
+	font-size: 1.2em;
+}
+
+figcaption {
+	color: #5aa6d7;
+}
+
+#return_button {
+	position: absolute;
+	left: 850px;
+	top: 50px;
+	border: 2px solid #f7f5e6;
+	border-radius: 10px;
+	padding: 5px;
+	display: none;
+	z-index: 2;
+}
+
+#return_button a {
+	text-decoration: none;
+}

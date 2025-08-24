@@ -1,0 +1,12 @@
+define(["jquery"],function($){
+	$(".footer-button").click(function(){
+		$("#info_iframe").attr("src",$(this).data("page")+".html");
+		$("#info_iframe").show();
+		$("#return_button").show();
+	});
+	$("#return_button").click(function(){
+		$("#info_iframe").attr("src","about:blank");
+		$("#info_iframe").hide();
+		$("#return_button").hide();
+	});
+});
