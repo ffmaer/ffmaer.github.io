@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Draw a line of varying width in p5.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  </head>
+  <body>
+    <h1>
+      Draw a line of varying width in p5.js
+    </h1>
+    <script>
+      let start_x = 0;
+      let start_y = 0;
+      let prev_loc_x = start_x;
+      let prev_loc_y = start_y;
+      let end_stroke_weight = 3;
+      let steps = 30;
+      let scale_factor = steps / end_stroke_weight;
+      let end_x = 50 * scale_factor;
+      let end_y = 50 * scale_factor;
+      function setup() {
+        createCanvas(200, 200);
+        background("black");
+        stroke("white");
+        noLoop();
+      }
+      function draw() {
+        strokeWeight(9);
+        line(30,30, 60,60);
+        stroke("black");
+        strokeWeight(8.1);
+        line(30,30, 60,60);
+      }
+    </script>
+  </body>
+</html>

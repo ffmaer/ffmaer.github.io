@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pixel Art 8x8</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    deer = [
+      [0, 1, 0, 0, 0, 0, 1, 0],
+      [1, 1, 0, 0, 0, 0, 1, 1],
+      [0, 0, 1, 0, 0, 1, 0, 0],
+      [0, 1, 0, 1, 1, 0, 1, 0],
+      [0, 0, 1, 0, 0, 1, 0, 0],
+      [0, 1, 0, 0, 0, 0, 1, 0],
+      [0, 0, 1, 0, 0, 1, 0, 0],
+      [0, 0, 0, 1, 1, 0, 0, 0],
+    ];
+    
+    clover = [
+      [0,1,1,1,0,1,1,0],
+      []
+    ];
+
+    function setup() {
+      createCanvas(320, 320);
+      background("yellow");
+      translate(20, 20);
+      for (let i = 0; i < deer.length; i++) {
+        for (let j = 0; j < deer[i].length; j++) {
+          textAlign(CENTER, CENTER);
+          textSize(40);
+          if (deer[i][j] == 1) {
+            // fill("red");
+            // noStroke();
+            // circle(j * 40, i * 40, 40);
+
+            text("🦌", j * 40, i * 40);
+          } else {
+            text("🥦", j * 40, i * 40);
+          }
+        }
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

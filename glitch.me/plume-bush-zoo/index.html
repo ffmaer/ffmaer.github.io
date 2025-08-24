@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(500, 500, WEBGL);
+      }
+
+      function draw() {
+        let mx = map(mouseX, 0, width, 0, 100);
+        let my = map(mouseY, 0, height, 0, 50);
+        background("white");
+        stroke("black");
+        noFill();
+        angleMode(DEGREES);
+        beginShape();
+        count = 500;
+        for (let i = 0; i < count; i++) {
+          let r =
+            100 + mx + map(noise(i, frameCount / 100), 0, 1, 0, my);
+          let x = r * cos((360 / count) * i);
+          let y = r * sin((360 / count) * i);
+          vertex(x, y);
+        }
+        endShape(CLOSE);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>An AFRAME Project</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene background="color: #FAFAFA" vr-mode-ui="enabled: false">
+      <a-entity id="camera" camera look-controls
+        ><a-cursor material="color: yellow; shader: flat"></a-cursor
+      ></a-entity>
+      <a-sky
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Equirectangular_projection_SW.jpg/1920px-Equirectangular_projection_SW.jpg"
+      ></a-sky>
+    </a-scene>
+    <script>
+      var myCam = document.querySelector("#camera");
+      
+      
+      myCam.setAttribute(
+        "animation__13",
+        "property: rotation; to: -4.68 -210.55 0; loop: false; dur: 2000; startEvents: event13"
+      );
+      
+      myCam.setAttribute(
+        "animation__32",
+        "property: rotation; to: -2.30 59.36 0; loop: false; dur: 2000; startEvents: event32"
+      );
+
+
+      document.addEventListener("keydown", event => {
+        if (event.keyCode == 13) {
+          myCam.emit("event13");
+          myCam.components[
+            "look-controls"
+          ].pitchObject.rotation.x = -0.08168140899333462;
+          myCam.components[
+            "look-controls"
+          ].yawObject.rotation.y = -3.674790740074061;
+        } else if (event.keyCode == 32) {
+          myCam.emit("event32");
+          myCam.components[
+            "look-controls"
+          ].pitchObject.rotation.x = -0.04014257279586958;
+          myCam.components[
+            "look-controls"
+          ].yawObject.rotation.y = 1.051735407251783;
+        }
+      });
+    </script>
+  </body>
+</html>

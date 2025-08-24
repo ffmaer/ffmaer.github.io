@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+
+      function setup() {
+        perline=20
+        createCanvas(windowWidth, windowHeight, WEBGL);
+        // debugMode(1000, 10, 0, 0, 0, 1000, 0, 10, 0);
+        debugMode()
+        camera(0, -100, 1500, 0, 0, 0, 0, 1, 0);
+        frameRate(30)
+        
+      }
+
+      function draw() {
+        noiseDetail(16, map(mouseX,0,width,0,1));
+        // red X
+        // green Y
+        // blue Z
+
+       
+        let terrain = [...Array(perline)].map(x => Array(perline).fill(0));
+
+        background("violet");
+        orbitControl();
+
+        stroke("black");
+        noFill();
+
+        for (let row = 0; row < perline; row++) {
+          for (let col = 0; col < perline; col++) {
+            terrain[row][col] = noise(col, row) * 100;
+          }
+        }
+
+        for (let row = 0; row < perline; row++) {
+          beginShape();
+          for (let col = 0; col < perline; col++) {
+            let y = map(row, 0, perline - 1, -height / 2, height / 2);
+            let x = map(col, 0, perline - 1, -width / 2, width / 2);
+            let z = terrain[row][col];
+            vertex(x, y, z);
+          }
+          endShape();
+        }
+        for (let col = 0; col < perline; col++) {
+          beginShape();
+          for (let row = 0; row < perline; row++) {
+            let y = map(row, 0, perline - 1, -height / 2, height / 2);
+            let x = map(col, 0, perline - 1, -width / 2, width / 2);
+            let z = terrain[row][col];
+            vertex(x, y, z);
+          }
+          endShape();
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "computer-artists",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "public/*"
+    ]
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "nib": "^1.1.2",
+    "pug": "^2.0.3",
+    "random-normal": "^1.0.0",
+    "socketio": "^1.0.0",
+    "styl": "^0.2.9"
+  }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.js paint with curves</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let img;
+
+      function preload() {
+        img = loadImage(
+          "https://cdn.glitch.me/e639e346-c4e0-420a-a254-dc09bf7a2f03%2Ftc.jpg?v=1634112583211"
+        );
+      }
+
+      function setup() {
+        createCanvas(img.width, img.height);
+        angleMode(DEGREES);
+        let step = 5;
+        for (let col = 0; col < img.width; col += step) {
+          for (let row = 0; row < img.height; row += step) {
+            let c = img.get(col, row);
+            stroke(c);
+            strokeWeight(1);
+            noFill();
+            push();
+            translate(col, row);
+            rotate(random(360));
+            curve(
+              -step * 5,
+              step * 5,
+              -step,
+              -step,
+              step,
+              step,
+              -step * 5,
+              step * 5
+            );
+            pop();
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

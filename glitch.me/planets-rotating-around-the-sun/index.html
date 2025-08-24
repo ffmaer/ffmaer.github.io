@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>planets rotating around the sun</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  </head>
+  <body>
+    <p>
+      Answering and code from:
+      https://stackoverflow.com/questions/62864804/how-do-i-get-my-planets-to-rotate-around-the-sun-i-have-made
+    </p>
+    <script>
+      var x = 35;
+      var y = 120;
+      var d = 80;
+
+      function setup() {
+        // this function will run once
+        createCanvas(320, 240); // create a 320x240 pixel drawing canvas
+      }
+
+      function draw() {
+        background(255); //light gray background
+        translate(x, y);
+
+        if (mouseIsPressed == true) {
+          background(0); //black background
+
+          fill(255, 153, 51); //orange
+          ellipse(0, 0, d, d); // sun
+          angleMode(DEGREES);
+          rotate(frameCount);
+        }
+
+        fill(163, 210, 6); //green
+        ellipse(52, 0, d - 7, d - 7); //jupiter
+
+        fill(239, 233, 49); //yellow
+        ellipse(95, 0, d - 14, d - 14); //saturn
+
+        fill(49, 239, 239); //neon blue
+        ellipse(192, 0, d - 21, d - 21); //uranus
+
+        fill(201, 49, 239); //purple
+        ellipse(301, 0, d - 28, d - 28); //neptune
+
+        fill(0, 85, 255); //blue
+        ellipse(10, 0, d - 35, d - 35); //earth
+
+        fill(255, 51, 153); //pink
+        ellipse(7.2, 0, d - 42, d - 42); //venus
+
+        fill(210, 95, 6); //red
+        ellipse(15, 0, d - 49, d - 49); //mars
+
+        fill(64, 64, 64); //gray
+        ellipse(3.8, 0, d - 56, d - 56); //mercury
+      }
+    </script>
+  </body>
+</html>

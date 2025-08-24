@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      // https://youtu.be/G6skrOtJtbM
+      // https://web.cs.wpi.edu/~emmanuel/courses/cs543/f13/slides/lecture04_p3.pdf
+      // https://learnopengl.com/Getting-started/Camera
+      function preload() {
+        rock = loadModel(
+          "https://cdn.glitch.com/a60683fa-4d70-423a-a058-341afb92e6b2%2Fcrystal-rock.stl"
+        );
+      }
+      function setup() {
+        createCanvas(windowWidth, windowHeight, WEBGL);
+        debugMode(1000, 10, 0, 0, 0, 1000, 0, 10, 0);
+        camera(-200, -100, 200, 300, -20, -300, 0, 1, 0);
+      }
+
+      function draw() {
+        // red X
+        // green Y
+        // blue Z
+
+        let count = 20;
+        let terrain = [...Array(count)].map(x => Array(count).fill(0));
+
+        background("papayawhip");
+        orbitControl();
+
+        push();
+        translate(-200, -100, 200);
+        fill("lime");
+        box(); //camera
+        pop();
+
+        push();
+        fill("gold");
+        translate(0, 500, 0);
+        rotateX(PI / 2);
+        scale(50);
+        model(rock);
+        pop();
+
+        push();
+        fill("red");
+        translate(0, -500, 0);
+        rotateX(PI / 2);
+        scale(50);
+        model(rock);
+        pop();
+
+        push();
+        fill("lime");
+        translate(300, -20, -300);
+        rotateX(PI / 2);
+        scale(30);
+        model(rock);
+        pop();
+
+        push();
+        fill("purple");
+        scale(100);
+        rotateX(PI / 2);
+        model(rock);
+        pop();
+
+        stroke("black");
+        noFill();
+
+        for (let row = 0; row < count; row++) {
+          for (let col = 0; col < count; col++) {
+            terrain[row][col] = noise(col, row) * 100;
+          }
+        }
+
+        for (let row = 0; row < count; row++) {
+          beginShape();
+          for (let col = 0; col < count; col++) {
+            let y = map(row, 0, count - 1, -height / 2, height / 2);
+            let x = map(col, 0, count - 1, -width / 2, width / 2);
+            let z = terrain[row][col];
+            vertex(x, y, z);
+          }
+          endShape();
+        }
+        for (let col = 0; col < count; col++) {
+          beginShape();
+          for (let row = 0; row < count; row++) {
+            let y = map(row, 0, count - 1, -height / 2, height / 2);
+            let x = map(col, 0, count - 1, -width / 2, width / 2);
+            let z = terrain[row][col];
+            vertex(x, y, z);
+          }
+          endShape();
+        }
+      }
+    </script>
+  </body>
+</html>

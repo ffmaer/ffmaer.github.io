@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Draw a line of varying width in p5.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  </head>
+  <body>
+    <h1>
+      Draw a line of varying width in p5.js
+    </h1>
+    <script>
+      function setup() {
+        createCanvas(200, 200);
+        background("black");
+        stroke("white");
+        gradientLine(random(width), random(height), random(width), random(height), 1, 10, 100);
+        noLoop();
+      }
+
+      function gradientLine(
+        start_x,
+        start_y,
+        end_x,
+        end_y,
+        start_weight,
+        end_weight,
+        segments
+      ) {
+        let prev_loc_x = start_x;
+        let prev_loc_y = start_y;
+        for (let i = 1; i <= segments; i++) {
+          let cur_loc_x = lerp(start_x, end_x, i / segments);
+          let cur_loc_y = lerp(start_y, end_y, i / segments);
+          push();
+          strokeWeight(lerp(start_weight, end_weight, i / segments));
+          line(prev_loc_x, prev_loc_y, cur_loc_x, cur_loc_y);
+          pop();
+          prev_loc_x = cur_loc_x;
+          prev_loc_y = cur_loc_y;
+        }
+      }
+    </script>
+  </body>
+</html>

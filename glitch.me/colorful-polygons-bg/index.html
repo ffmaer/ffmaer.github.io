@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(windowWidth, windowHeight);
+        rings = [];
+        gap = 50;
+        count = 40;
+        for (let i = 0; i < count; i++) {
+          let x = random(20,width-20);
+          let y = random(20,height-20);
+          rings.push(new Ring(x, y));
+        }
+
+        background("black");
+        for (let i = 0; i < rings.length; i++) {
+          rings[i].update();
+          rings[i].draw();
+        }
+      }
+      class Ring {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+        }
+        update() {
+          this.z += 10;
+          if (this.z > 500) {
+            this.z = -1000;
+          }
+        }
+        draw() {
+          push();
+          translate(this.x, this.y);
+          strokeWeight(10);
+          stroke(
+            random([
+              "red",
+              "yellow",
+              "gold",
+              "LightSkyBlue",
+              "Magenta",
+              "GreenYellow",
+            ])
+          );
+          noFill();
+          angleMode(DEGREES);
+          beginShape();
+          let r = 20;
+          count = random(5, 8);
+          for (let i = 0; i < count; i++) {
+            let x = r * cos((360 / count) * i);
+            let y = r * sin((360 / count) * i);
+            vertex(x, y);
+          }
+          endShape(CLOSE);
+          pop();
+        }
+      }
+      function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+      }
+    </script>
+  </body>
+</html>

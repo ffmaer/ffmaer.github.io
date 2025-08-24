@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chain Functions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    // Chain functions (the input should be a number; the output should also be a number)
+
+    
+    function setup() {
+      frameRate(60)
+      createCanvas(800, 600);
+      tc_noise = createGraphics(width, height)
+      tc_seed = 100
+      tc_random = createGraphics(width,height)
+    }
+
+    function draw() {
+      background("black");
+      drawTCNoise()
+      // drawTCRandom()
+      
+    }
+    
+    function drawTCNoise(){
+      tc_noise.noStroke()
+      tc_noise.fill("lime")
+      tc_noise.circle(frameCount%width,noise(frameCount/100)*height,5)
+      // // tint(255,64)
+      image(tc_noise,0,0,width,height)
+    }
+    
+    function drawTCRandom(){
+      tc_random.noStroke()
+      tc_random.fill("red")
+      tc_random.circle(frameCount%width,random()*height,5)
+      // tint(255,64)
+      image(tc_random,0,0,width,height)
+    }
+ 
+ 
+
+  </script>
+
+  <body></body>
+</html>

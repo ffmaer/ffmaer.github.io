@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>text random walk 3</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let x;
+      let y;
+      let end_y;
+      let ends = [];
+      function setup() {
+        createCanvas(400, 400);
+        background("black");
+        x = random(width);
+        y = 0;
+        end_y = random(height);
+      }
+
+      function draw() {
+        background("black");
+        let i = 0;
+        while (i < ends.length) {
+          text("文字", ends[i][0], ends[i][1]);
+          i++;
+        }
+        fill("white");
+        x = x + random(-5, 5);
+        y = y + random(5);
+        text("文字", x, y);
+        if (y > end_y) {
+          ends.push([x, y]);
+          x = random(width);
+          y = 0;
+          end_y = random(height);
+        }
+      }
+    </script>
+  </body>
+</html>

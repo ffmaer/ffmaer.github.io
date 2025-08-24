@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>An AFRAME Project</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene background="color: #FAFAFA">
+      <a-camera
+        id="myCam"
+        cursor="rayOrigin:mouse"
+        look-controls="reverseMouseDrag:true"
+      >
+        <a-cursor material="color: yellow; shader: flat"></a-cursor>
+      </a-camera>
+      <a-sky
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Equirectangular_projection_SW.jpg/1920px-Equirectangular_projection_SW.jpg"
+      ></a-sky>
+    </a-scene>
+    <script>
+      var myCam = document.querySelector("a-camera");
+      var x_from, y_from;
+      document.addEventListener("keydown", event => {
+        x_from =
+          (myCam.components["look-controls"].pitchObject.rotation.x * 180) /
+          Math.PI;
+        y_from =
+          (myCam.components["look-controls"].yawObject.rotation.y * 180) /
+          Math.PI;
+        if (Math.abs(y_from) > 90) y_from -= 360 * Math.sign(y_from);
+        if (event.keyCode == 13) {
+          myCam.setAttribute(
+            "animation",
+            "property: rotation; from: " +
+              x_from +
+              " " +
+              y_from +
+              " 0; to: -4.68 149.45 0; loop: false; dur: 2000; startEvents: lookAtSomething"
+          );
+          myCam.emit("lookAtSomething");
+          myCam.components[
+            "look-controls"
+          ].pitchObject.rotation.x = -0.08168140899333462;
+          myCam.components[
+            "look-controls"
+          ].yawObject.rotation.y = -3.674790740074061;
+        } else if (event.keyCode == 32) {
+          myCam.setAttribute(
+            "animation",
+            "property: rotation; from: " +
+              x_from +
+              " " +
+              y_from +
+              " 0; to: -2.30 59.36 0; loop: false; dur: 2000; startEvents: lookAtSomething"
+          );
+          myCam.emit("lookAtSomething");
+          myCam.components[
+            "look-controls"
+          ].pitchObject.rotation.x = -0.04014257279586958;
+          myCam.components[
+            "look-controls"
+          ].yawObject.rotation.y = 1.051735407251783;
+        }
+      });
+    </script>
+  </body>
+</html>

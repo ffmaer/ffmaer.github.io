@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.js paint with dots</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let img;
+      let mic;
+      let audio_notice = "tap to start";
+
+      function preload() {
+        // img = loadImage("https://cdn.glitch.com/3d1b02dd-bdd8-4bbf-8ab9-4f064c51473d%2Fsmall.jpg?v=1628154688001");
+      }
+
+      function setup() {
+        createCanvas(img.width, img.height);
+        let step = 10;
+        for (let x = 0; x < img.width; x += step) {
+          for (let y = 0; y < img.height; y += step) {
+            let c = img.get(x, y);
+            stroke(c);
+            strokeWeight((step / 3) * 2);
+            point(x, y);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

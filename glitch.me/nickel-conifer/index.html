@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Textures - A-Frame School</title>
+    <meta name="description" content="Textures - A-Frame School">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+    <script src="components/set-image.js"></script>
+    <script>
+      AFRAME.registerComponent('school-playground',{
+        init: function(){
+          var boxes = document.querySelector('#boxes')
+          var amount  = 10;
+          var special = Math.floor(Math.random()*amount);
+          for(i=0;i<amount;i++){
+            var box = document.createElement("a-box");
+            box.setAttribute('scale',{radius:Math.random()});
+            box.setAttribute('position',{x:Math.random()*40-20,y:Math.random()*40-20,z:Math.random()*40-20});
+            
+            if(i==special){
+              box.setAttribute('handle-special',"");
+            }else{
+              box.setAttribute('handle-events',"");
+            }
+            boxes.appendChild(box);
+          }          
+        }
+      })
+      AFRAME.registerComponent('handle-events', {
+        init: function () {
+          var el = this.el;  // <a-box>
+          el.addEventListener('click', function () {
+            el.setAttribute('color', '#EF2D5E');  
+          });
+        } 
+      });
+      AFRAME.registerComponent('handle-special', {
+        init: function () {
+          var el = this.el;  // <a-box>
+          el.addEventListener('click', function () {
+            el.setAttribute('color', 'yellow');  
+          });
+        } 
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene school-playground>
+      <a-entity id="boxes"></a-entity>
+
+      <a-sky src="https://cdn.glitch.com/b870d9ec-1139-44f9-b462-223e4a2c74e7%2Fsechelt.jpg?1490307995926" radius="50"></a-sky>
+      
+      <!-- Camera + cursor. -->
+      <a-camera>
+        <a-cursor id="cursor" material="color: yellow; shader: flat"></a-cursor>
+      </a-camera>
+      
+      
+    </a-scene>
+  </body>
+</html>

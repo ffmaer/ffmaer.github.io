@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>two painters</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.1.1"></script>
+  </head>
+  <body>
+    <script>
+      // there are two painters
+      // each can only draw one point at a time
+      let allpoints=[]
+      function setup() {
+        createCanvas(400, 400, SVG);
+        frameRate(10);
+        stroke("white");
+        background("black");
+        noFill();
+        for(let i=0;i<100;i++){
+          let [x1, y1] = a1();
+          let [x2, y2] = c1();
+          let [x3, y3] = c2();
+          let [x4, y4] = a2();
+          allpoints.push([x1, y1, x2, y2, x3, y3, x4, y4])
+        }
+        
+        for(let i=0;i<allpoints.length;i++){
+          let [x1, y1, x2, y2, x3, y3, x4, y4] = allpoints[i]
+           bezier(x1, y1, x2, y2, x3, y3, x4, y4);
+            text(p1[frameCount%p1.length], x1, y1)
+            text(p2[frameCount%p2.length], x4, y4)
+        }
+      }
+      let apoints = [];
+      let p1=["what","do","you","want","to","say","?"]
+      let p2=["code", "is", "my", "love", "language"]
+      function draw() {
+
+      
+       
+        if (frameCount > 100) {
+          noLoop();
+          save();
+        }
+        
+      }
+      let right = 0;
+      let down = 0;
+      function a1() {
+        if (frameCount % 2 == 0) {
+          right++;
+        } else {
+          down++;
+        }
+        let step = 10;
+        return [step * right, step * down];
+      }
+      function c1() {
+        return [random(width), random(height)];
+      }
+      function a2() {
+        let somePoints = [23, 86, 200, 189, 13, 99, 313, 381, 62, 57, 212, 289];
+        let pointX = random(somePoints);
+        let pointY = random(somePoints);
+        console.log(pointX, pointY);
+        return [pointX, pointY];
+      }
+      function c2() {
+        return [frameCount * 2, frameCount * 3];
+      }
+    </script>
+  </body>
+</html>

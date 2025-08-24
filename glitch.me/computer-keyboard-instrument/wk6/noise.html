@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    function setup() {
+      createCanvas(400, 300);
+      capture = createCapture(VIDEO);
+      capture.size(400, 300);
+      capture.hide();
+    }
+    function draw() {
+      capture.loadPixels();
+      for (let i = 0; i < capture.pixels.length; i += 4) {
+        capture.pixels[i] += random(-100, 100); //red
+        capture.pixels[i + 1] = 0; //green
+        capture.pixels[i + 2] = 0; //blue
+        capture.pixels[i+3] = 255;//alpha
+       
+      }
+      capture.updatePixels();
+      image(capture, 0, 0, width, height);
+    }
+    function keyPressed() {
+      if (key == "s") {
+        saveGif("capture.gif", 5);
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

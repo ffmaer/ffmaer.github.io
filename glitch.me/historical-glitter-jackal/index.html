@@ -1,0 +1,320 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Many Brushes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+  </head>
+
+  <script>
+    //tc 1 2
+    //Una b
+    //Leila c
+    //jason j
+    //eaden e
+    //anora-p
+    //Doris-s
+    //Nightray--t
+    //younghyun k
+    //ALLEN!! a
+    //Stella --l
+    //Irene -- g
+    //MJ q
+    //Christy -- o
+    //Zhiyi--z
+    //elaine y
+    //Jiarui r,n
+    //mia m
+    let img;
+
+    function preload() {
+      name = "";
+    }
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      background("yellow");
+      img = loadImage(
+        "https://cdn.glitch.global/dad15687-19c6-4e9c-83d1-0f15b9de482d/emoji.png?v=1688683552406"
+      ); // Load the image
+      ppfrog = new frog(mouseX, mouseY, random(0.01, 0.6));
+    }
+
+    function draw() {
+      drawInstructions();
+      drawName();
+      let sizet = map(mouseX, 0, width, 10, 100); //nightray
+      let rt = map(mouseX, 0, width, 0, 255); // nightray
+      let gt = map(mouseY, 0, height, 0, 255); // nightray
+      let bt = map(mouseX, 0, width, 255, 0); //nightray
+      if (!mouseIsPressed) return;
+
+      push();
+      if (key == "1") {
+        name = "tc1";
+        fill("black");
+        circle(mouseX, mouseY, 50);
+        fill("white");
+        circle(mouseX, mouseY, 30);
+      } else if (key == "2") {
+        name = "tc2";
+        noStroke();
+        fill("blue");
+        square(mouseX, mouseY, 20);
+      } else if (key == "r") {
+        name = "jr1";
+        stroke("GoldenRod");
+        line(mouseX, mouseY, mouseX + 15, mouseY + 15);
+        strokeWeight(8);
+      } else if (key == "n") {
+        name = "jr2";
+        image(img, mouseX, mouseY, img.width / 100, img.height / 100);
+      } else if (key == "l") {
+        name = "stella";
+        fill("purple");
+        circle(mouseX, mouseY, 60);
+        fill("bule");
+        circle(mouseX, mouseY, 90);
+      } else if (key == "c") {
+        name = "Leila";
+        fill(185, 83, 213, 180);
+        noStroke();
+        const distance = dist(mouseX, mouseY, pmouseX, pmouseY);
+        const midX = (mouseX + pmouseX) / 2;
+        const midY = (mouseY + pmouseY) / 2;
+        circle(midX, midY, distance);
+      } else if (key == "q") {
+        name = "MJ";
+        fill("#ED848C");
+        circle(mouseX, mouseY, 30);
+      } else if (key == "j") {
+        name = "jason";
+        fill("#797979");
+        noStroke();
+        circle(mouseX + random(1, 5), mouseY + random(1, 5), 2);
+        fill("#494949");
+        noStroke();
+        circle(mouseX + random(1, 5), mouseY + random(1, 5), 2);
+        fill("#CFCFCF");
+        noStroke();
+        circle(mouseX + random(1, 5), mouseY + random(1, 5), 2);
+      } else if (key == "y") {
+        name = "elaine";
+        fill("#7ac9a6");
+        noStroke();
+        square(mouseX, mouseY, 30);
+      } else if (key == "g") {
+        name = "irene";
+        fill("#A6CB68");
+        ppfrog.update(mouseX, mouseY, random(0.01, 0.6));
+        ppfrog.draw();
+      } else if (key == "o") {
+        name = "christy";
+        fill(20, 100, 35, 60);
+        rect(mouseX, mouseY, 20, 40);
+      } else if (key == "p") {
+        name = "anora";
+        c = color("#FFB4CF");
+        c.setAlpha(random(10, 100));
+        fill(c);
+        noStroke();
+        circle(mouseX, mouseY, 80);
+        circle(mouseX - 60, mouseY - 30, 30);
+        circle(mouseX + 60, mouseY - 30, 30);
+        circle(mouseX + 20, mouseY - 60, 30);
+        circle(mouseX - 20, mouseY - 60, 30);
+      } else if (key == "s") {
+        name = "Doris";
+        fill("#6A70BE");
+        square(mouseX, mouseY, 20, 20);
+        fill("black");
+        circle(mouseX, mouseY, 20);
+        text("yasaxi", mouseX, mouseY);
+      } else if (key == "t") {
+        name = "Nightray";
+        fill(rt, gt, bt);
+        noStroke();
+        ellipse(mouseX, mouseY, sizet, sizet);
+        text("🚩", mouseX, mouseY + 50);
+        text("🔥", mouseX + 20, mouseY + 20);
+        text("🔥", mouseX - 20, mouseY - 20);
+        text(" leave me alone!🐈", mouseX, mouseY - 50);
+        text("🐾", mouseX + 20, mouseY);
+        text("🐾", mouseX - 20, mouseY);
+      } else if (key == "k") {
+        name = "yh";
+        fill("skyblue");
+        noStroke();
+        rect(mouseX, mouseY, random(10, 50), random(10, 50));
+      } else if (key == "m") {
+        name = "mia";
+        fill("#a429a6");
+        noStroke();
+        ellipse(mouseX, mouseY, 30, 30);
+        textSize(20);
+        text("hungry🍔now", mouseX, mouseY);
+      } else if (key == "b") {
+        name = "Una";
+        noStroke();
+        fill("pink");
+        circle(mouseX, mouseY, random(0, 100));
+      } else if (key == "a") {
+        //>uwu<
+        name = "Allen";
+        fill(255, 248, 220, 10);
+        circle(mouseY, mouseX, map(mouseX, 0, 500, 0, 1000));
+      } else if (key == "z") {
+        name = "Zhiyi";
+        let colorX = map(mouseX, 0, width, 0, 255);
+        let colorY = map(mouseX, 0, height, 0, 255);
+        stroke((colorX + colorY) / 2);
+        strokeWeight(5);
+        fill(colorX, colorY, (colorX + colorY) / 2);
+        textSize(48);
+        text("😳ha🥵ha😍ha😭ha😮ha🤯ha🙀", mouseX, mouseY);
+        square(mouseX + random(-10, 10), mouseY + random(-10, 10), random(10));
+        circle(mouseX + random(-10, 10), mouseY + random(-10, 10), random(10));
+      } else if (key == "e") {
+        name = "eaden";
+        let c1 = random(0, 255);
+        let c2 = random(0, 255);
+        let c3 = random(0, 255);
+        fill(c1, c2, c3, 90);
+        textSize(90);
+        text("BET", mouseX, mouseY); //eaden
+      }
+      pop();
+    }
+
+    function drawInstructions() {
+      let size = 24;
+      let instuction =
+        "Press 1, 2, a, b, c, e, g, j, k, l, m, n, o, p, q, r, s, t, y, z";
+      textAlign(LEFT, TOP);
+      textSize(size);
+      rect(size, height - size * 2, textWidth(instuction), size);
+      text(instuction, size, height - size * 2);
+    }
+
+    function drawName() {
+      textAlign(LEFT, TOP);
+      textSize(50);
+      rect(50, 50, textWidth(name), 50);
+      text(name, 50, 50);
+    }
+    class frog {
+      constructor(x, y, size) {
+        //1 is the normal this.size
+        this.size = size;
+        this.x = x;
+        this.y = y;
+      }
+
+      update(x, y, size) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+      }
+
+      draw() {
+        fill("#000000");
+        noStroke();
+
+        //head and eyes outline
+
+        {
+          ellipse(this.x, this.y, 205 * this.size, 180 * this.size);
+          circle(
+            -50 * this.size + this.x,
+            -85 * this.size + this.y,
+            55 * this.size
+          );
+          circle(
+            50 * this.size + this.x,
+            -85 * this.size + this.y,
+            55 * this.size
+          );
+        }
+
+        fill("#A6CB68");
+        //head and eyes main
+        {
+          ellipse(this.x, this.y, 200 * this.size, 175 * this.size);
+          circle(
+            -50 * this.size + this.x,
+            -85 * this.size + this.y,
+            50 * this.size
+          );
+          circle(
+            50 * this.size + this.x,
+            -85 * this.size + this.y,
+            50 * this.size
+          );
+        }
+
+        //ethis.ye whites
+        fill("##D7FCD4");
+        {
+          circle(
+            -50 * this.size + this.x,
+            -85 * this.size + this.y,
+            35 * this.size
+          );
+          circle(
+            50 * this.size + this.x,
+            -85 * this.size + this.y,
+            35 * this.size
+          );
+        }
+
+        //pupils
+        fill("#412234");
+        {
+          circle(
+            -50 * this.size + this.x,
+            -85 * this.size + this.y,
+            20 * this.size
+          );
+          circle(
+            50 * this.size + this.x,
+            -85 * this.size + this.y,
+            20 * this.size
+          );
+        }
+
+        //ethis.ye highlights
+        noStroke();
+        fill("white");
+        {
+          circle(
+            -58 * this.size + this.x,
+            -80 * this.size + this.y,
+            9 * this.size
+          );
+          circle(
+            42 * this.size + this.x,
+            -80 * this.size + this.y,
+            9 * this.size
+          );
+        }
+
+        //mouth
+        strokeWeight(3);
+        stroke("#D35368");
+        fill("#F86F86");
+        {
+          arc(
+            this.x,
+            -35 * this.size + this.y,
+            100 * this.size,
+            (mouseY / 6) * this.size,
+            0,
+            PI,
+            CHORD
+          );
+        }
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

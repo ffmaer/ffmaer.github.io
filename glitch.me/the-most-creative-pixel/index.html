@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Most Creative Pixel</title>
+  <style>
+    body{
+        background-color: black;
+    }
+    @media (min-width: 800px){
+      body{
+        display: flex;
+        justify-content: center;
+      }
+    }
+    canvas{
+      border-color: white;
+      border-radius: 10px;
+      border-width: 5px;
+      border-style: solid;
+    }
+  </style>
+  <script>
+    let params = (new URL(document.location)).searchParams
+    if(params.has("frame")){
+      document.location = "https://cdn.glitch.com/8898d942-35f4-4e27-be9d-43f49f34e36c%2Fimg.png?v=1604287007068"
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <script src="p5.min.js"></script>
+  <script src="data-generator.js"></script>
+  <script src="big-canvas.js"></script>
+  <script src="tensorflow.js"></script>
+
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(500, 500, WEBGL);
+
+        debugMode();
+      }
+      function draw() {
+        // noiseDetail(8, map(mouseX, 0, width, 0, 1));
+        background("black");
+        noFill();
+        stroke("yellow");
+        strokeWeight(2);
+        translate(-width / 2, -height / 4);
+        beginShape();
+        for (let i = 0; i < 500; i++) {
+          let scalefactor = map(mouseX, 0, width, 1, 100);
+          vertex(i, noise(i / scalefactor) * 200);
+        }
+        endShape();
+
+        orbitControl();
+        stroke("lime");
+      }
+    </script>
+  </body>
+</html>

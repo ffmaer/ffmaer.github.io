@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.js Multiply the camera input</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let capture;
+
+      function setup() {
+        createCanvas(640, 480);
+        background("yellow");
+        capture = createCapture(VIDEO); //640*480
+        capture.hide();
+      }
+
+      function draw() {
+        image(capture, random(width - 160), random(height - 120), 160, 120);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>p5.js Play Video Fullscreen</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <style>
+      canvas {
+        position: absolute;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      let vid;
+      let vid_loaded = false;
+
+      function setup() {
+        noCanvas();
+        vid = createVideo(
+          [
+            "https://cdn.glitch.com/edf81bae-bc65-4a10-b8e1-2466f2b8b20b%2Fwaterfall.mp4?v=1593681548049"
+          ],
+          function() {
+            vid_loaded = true;
+            vid.volume(0);
+            vid.size(document.body.clientWidth, document.body.clientHeight);
+          }
+        );
+        
+      }
+
+      function touchStarted() {
+        if (vid_loaded) {
+          vid.loop();
+        }
+      }
+    </script>
+  </body>
+</html>

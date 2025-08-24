@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>p5.js Play Video Fullscreen</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <style>
+      canvas {
+        position: absolute;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      let vid;
+      let playing = false;
+
+      function setup() {
+        createCanvas(windowWidth, windowHeight);
+        vid = createVideo([
+          "https://cdn.glitch.com/edf81bae-bc65-4a10-b8e1-2466f2b8b20b%2Fwaterfall.mp4?v=1593681548049"
+        ]);
+        document.querySelector("video").setAttribute("playsinline", ""); // for iOS, so the video plays in line
+        vid.volume(0);
+      }
+      function draw() {
+        image(vid, 0, 0, width, height);
+        if (!playing) {
+          noFill();
+          stroke("LIME");
+          strokeWeight(10);
+          textSize(width / 5);
+          textAlign(CENTER, CENTER);
+          text("CLICK", width / 2, height / 2);
+        }
+      }
+      function touchStarted() {
+        if (!playing) {
+          vid.hide();
+          vid.loop();
+          playing = true;
+        }
+      }
+      function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+      }
+    </script>
+  </body>
+</html>

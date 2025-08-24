@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>interactive lightning</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let mic;
+      function setup() {
+        let cnv = createCanvas(500, 500);
+        cnv.mousePressed(userStartAudio);
+        mic = new p5.AudioIn();
+        mic.start();
+      }
+
+      function draw() {
+        background("black");
+        stroke("white");
+        strokeWeight(3);
+        textAlign(CENTER);
+        text("闪电，tap to start, clap your hands", width / 2, 20);
+        let level = mic.getLevel();
+        console.log(level);
+        if (level > 0.3) {
+          let x = random(width);
+          let y = 0;
+          while (y < height) {
+            let end_x = random(width);
+            let end_y = y + random(20, 50);
+            line(x, y, end_x, end_y);
+            x = end_x;
+            y = end_y;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

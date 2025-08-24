@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Low Poly</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let sketch = function(p) {
+        let start_t;
+
+        p.setup = function() {
+          let d = new Date();
+          start_t = d.getTime();
+          p.createCanvas(50, 50);
+          p.background(p.random(255), p.random(255), p.random(255));
+          p.stroke(p.random(255), p.random(255), p.random(255));
+        };
+        p.draw = function() {
+          p.point(p.random(p.width), p.random(p.height));
+          let d = new Date();
+          let time_used = Math.floor((d.getTime() - start_t) / 1000) + 1;
+          p.push();
+          p.fill(p.random(255), p.random(255), p.random(255));
+          p.textAlign(p.CENTER, p.CENTER);
+          p.text(
+            Math.floor(p.frameCount / time_used),
+            p.width / 2,
+            p.height / 2
+          );
+          p.pop();
+        };
+      };
+      for (let i = 0; i < 400; i++) {
+        new p5(sketch);
+      }
+    </script>
+  </body>
+</html>

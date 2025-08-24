@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.play Procreate Animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="./p5.play.js"></script>
+  </head>
+  <body>
+    <script>
+      let minion;
+      let minion_ss;
+      let minion_animate;
+      function preload() {
+        minion_ss = loadSpriteSheet(
+          "https://cdn.glitch.com/dc122c87-3702-4e86-8f63-eea043d864ca%2Fezgif-6-54b25e0a96a3.png?v=1628769250046",
+          100,
+          100,
+          10
+        );
+      }
+      function setup() {
+        createCanvas(400, 400);
+
+        minion_animate = loadAnimation(minion_ss);
+        
+        minion = createSprite(100, 100, 45, 66);
+
+        minion.draw = function() {
+          animation(minion_animate, 0, 0);
+        };
+        minion.setCollider("circle", 0, 0, 22);
+      }
+
+      function draw() {
+        background("Lavender");
+
+        if (keyDown(68) || keyDown(RIGHT_ARROW)) {
+          minion.position.x += 3;
+        }
+        if (keyDown(65) || keyDown(LEFT_ARROW)) {
+          minion.position.x -= 3;
+        }
+        if (keyDown(83) || keyDown(DOWN_ARROW)) {
+          minion.position.y += 3;
+        }
+        if (keyDown(87) || keyDown(UP_ARROW)) {
+          minion.position.y -= 3;
+        }
+
+        drawSprites();
+      }
+    </script>
+    <pre>
+      https://ezgif.com/gif-to-sprite
+    </pre>
+  </body>
+</html>

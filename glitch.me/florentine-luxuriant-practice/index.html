@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.play animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="./p5.play.js"></script>
+  </head>
+  <body>
+    <script>
+      let you;
+      let black_circle;
+      let lawngreen_circle;
+      let darkviolet_circle;
+      let orangered_circle;
+      let red_circle;
+
+      function setup() {
+        createCanvas(800, 800);
+
+        you = createSprite(260, 300, 50, 50);
+        black_circle = createSprite(400, 400, 100, 100);
+        lawngreen_circle = createSprite(500, 500, 50, 50);
+        darkviolet_circle = createSprite(150, 350, 10, 10);
+        orangered_circle = createSprite(600, 300, 200, 200);
+        red_circle = createSprite(400, 250, 80, 80);
+
+        you.depth = 2;
+        black_circle.depth = 3;
+        lawngreen_circle.depth = 3;
+        darkviolet_circle.depth = 3;
+        orangered_circle.depth = 1;
+        darkviolet_circle.depth = 3;
+
+        you.draw = function() {
+          stroke("white");
+          fill("white");
+          square(0, 0, 50);
+        };
+
+        black_circle.draw = function() {
+          fill("black");
+          ellipse(0, 0, 100);
+        };
+
+        lawngreen_circle.draw = function() {
+          fill("lawngreen");
+          ellipse(0, 0, 50);
+        };
+
+        darkviolet_circle.draw = function() {
+          fill("darkviolet");
+          ellipse(0, 0, 10);
+        };
+
+        orangered_circle.draw = function() {
+          fill("orangered");
+          ellipse(0, 0, 200);
+        };
+
+        create_the_button("red");
+
+        red_circle.onMousePressed = function() {
+          create_the_button("Gold");
+        };
+
+        red_circle.onMouseReleased = function() {
+          create_the_button("red");
+        };
+      }
+
+      function create_the_button(color) {
+        red_circle.draw = function() {
+          fill(color);
+          ellipse(0, 0, 80);
+          fill("white");
+          textAlign(CENTER, CENTER);
+          text("click me", 0, 0);
+        };
+      }
+
+      function draw() {
+        background("violet");
+        fill("white");
+        text("Use asdw or arrow keys to navigate.", 20, 680);
+
+        if (keyDown(68) || keyDown(RIGHT_ARROW)) {
+          you.position.x += 3;
+        }
+        if (keyDown(65) || keyDown(LEFT_ARROW)) {
+          you.position.x -= 3;
+        }
+        if (keyDown(83) || keyDown(DOWN_ARROW)) {
+          you.position.y += 3;
+        }
+        if (keyDown(87) || keyDown(UP_ARROW)) {
+          you.position.y -= 3;
+        }
+
+        black_circle.overlap(you, function() {
+          black_circle.draw = function() {
+            fill("yellow");
+            ellipse(0, 0, 100);
+          };
+        });
+
+        you.displace(lawngreen_circle, function() {
+          lawngreen_circle.draw = function() {
+            fill("yellow");
+            ellipse(0, 0, 50);
+          };
+        });
+
+        you.collide(darkviolet_circle, function() {
+          darkviolet_circle.draw = function() {
+            fill("yellow");
+            ellipse(0, 0, 10);
+          };
+        });
+
+        orangered_circle.overlap(you, function() {
+          orangered_circle.draw = function() {
+            fill("yellow");
+            ellipse(0, 0, 200);
+          };
+        });
+
+        drawSprites();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+answering and code adapted from: https://stackoverflow.com/questions/62758599/error-failed-to-link-vertex-and-fragment-shaders

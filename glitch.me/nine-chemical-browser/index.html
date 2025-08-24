@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>大漠孤烟直</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function thinText(str, x, y, size) {
+        push();
+        noStroke();
+        fill("grey");
+        textSize(size);
+        textAlign(CENTER, CENTER);
+        text(str, x, y);
+        pop();
+      }
+
+      function thinTextContour(str, x, y, size) {
+        push();
+        noFill();
+        textSize(size);
+        textAlign(CENTER, CENTER);
+        text(str, x, y);
+        pop();
+      }
+
+      function setup() {
+        w = 600;
+        h = 600;
+        createCanvas(w, h);
+        pixelDensity(1);
+        background("lime");
+        stroke("grey");
+        noFill();
+        strokeWeight(2);
+        drawingContext.setLineDash([5, 5]);
+        //room
+        rect(20, 20, w - 40, h - 40);
+
+        //directions
+        push();
+        text_size = 40;
+        margin = 20;
+        thinTextContour("N", w / 2, margin, text_size);
+        thinTextContour("S", w / 2, h - margin, text_size);
+        thinTextContour("E", w - margin, h / 2, text_size);
+        thinTextContour("W", margin, h / 2, text_size);
+        pop();
+
+        //movable wall
+        rect(60, 120, w - 120, 40);
+        thinText("movable wall", w / 2, 140, 12);
+
+        //tables
+        function table(x, y, angle) {
+          push();
+          translate(x, y);
+          rectMode(CENTER);
+          rotate(angle);
+          rect(0, 0, 160, 60);
+          thinText("art objects\ntable", 0, 0, 18);
+          thinText("𓆸", -80, 0, 100);
+          push();
+          translate(60, 0);
+          scale(-1, 1);
+          thinText("𓆰", 0, 0, 100);
+          pop();
+          pop();
+        }
+        table(w / 2, 220, 0);
+        table(80, 440, -PI / 2);
+        table(w - 80, 440, PI / 2);
+
+        //plants
+        thinTextContour("𓇣", 80, 260, 160);
+        thinTextContour("𓇣", w - 80, 260, 160);
+
+        //route
+        text_size = 10;
+        thinText("◄", w - 10 - 30, h - 40, text_size);
+        thinText("◄", w - 10 - 60, h - 40, text_size);
+        thinText("◄", w - 10 - 90, h - 40, text_size);
+        thinText("◄", w - 10 - 120, h - 40, text_size);
+        thinText("◄", w - 10 - 150, h - 40, text_size);
+        thinText("▲", w - 10 - 150, h - 70, text_size);
+        thinText("▲", w - 10 - 150, h - 100, text_size);
+        thinText("▲", w - 10 - 150, h - 130, text_size);
+        thinText("►", w - 10 - 120, h - 130, text_size);
+        thinText("▲", w - 10 - 120, h - 160, text_size);
+        thinText("▲", w - 10 - 120, h - 190, text_size);
+        for (let i = 0; i < 12; i++) {
+          thinText("◄", w - 10 - 150 - 30 * i, h - 190, text_size);
+        }
+        thinText("▼", 110, h - 160, text_size);
+        thinText("▼", 110, h - 130, text_size);
+        for (let i = 0; i < 5; i++) {
+          thinText("►", 140 + 30 * i, h - 130, text_size);
+        }
+        for (let i = 0; i < 8; i++) {
+          thinText("▲", 290, h - 130 - 30 * i, text_size);
+        }
+      }
+    </script>
+  </body>
+</html>

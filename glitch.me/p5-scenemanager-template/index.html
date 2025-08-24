@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.SceneManager template</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="scenemanager.js"></script>
+    <script src="./p5.play.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(400, 400);
+        mgr = new SceneManager();
+        mgr.addScene(s1);
+        mgr.addScene(s2);
+        mgr.showScene(s2);
+        rectMode(CENTER);
+      }
+
+      function keyPressed() {
+        switch (key) {
+          case "1":
+            mgr.showScene(s1);
+            break;
+          case "2":
+            mgr.showScene(s2);
+            break;
+        }
+        mgr.handleEvent("keyPressed");
+      }
+
+      function draw() {
+        mgr.draw();
+      }
+
+      function s1() {
+        this.enter = function() {
+          background(random(255));
+          noStroke();
+          fill(random(255));
+          circle(width / 2, height / 2, 300);
+          fill(random(255));
+          circle(width / 2, height / 2, 200);
+          fill(random(255));
+          circle(width / 2, height / 2, 100);
+        };
+      }
+
+      function s2() {
+        this.enter = function() {
+          background(random(255));
+          noStroke();
+          fill(random(255));
+          square(width / 2, height / 2, 300);
+          fill(random(255));
+          square(width / 2, height / 2, 200);
+          fill(random(255));
+          square(width / 2, height / 2, 100);
+        };
+      }
+    </script>
+    <pre>
+    Press 1,2 to switch scenes.
+    
+    Reference:
+    
+    https://github.com/mveteanu/p5.SceneManager/blob/master/sample.html
+    
+    </pre>
+  </body>
+</html>

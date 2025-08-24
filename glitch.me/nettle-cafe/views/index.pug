@@ -1,0 +1,59 @@
+doctype html
+html
+  head
+    title Seekers & Seers
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', type='text/css', href='/mobile.css')
+    script(src='jquery.js')
+    script(src='/mobile.js')
+  body
+    
+    #index(data-role='page')
+      div(data-role='header')
+        h1(role='heading') Seekers & Seers
+      .ui-content(role='main')
+        a.ui-btn.ui-shadow(href='#join-a-game') Join a game
+        a.ui-btn.ui-shadow(href='#tutorial') Tutorial
+        a.ui-btn.ui-shadow(href='#credits') Credits
+      div(data-role='footer')
+    #join-a-game(data-role='page')
+      div(data-role='header')
+        h1 Join a game
+        a.ui-btn-left.ui-btn.ui-icon-back.ui-btn-icon-notext.ui-shadow.ui-corner-all(href='#', data-rel='back', data-role='button', role='button') Back
+      .ui-content(role='main')
+        div(data-role="popup" id="popupInfo" class="ui-content" data-theme="a" style="max-width:350px;")
+          p If you don't know the room ID, just create one!
+        form(id="target")
+          label(for='text-3') Enter room ID here
+            a(href="#popupInfo" data-rel="popup" data-transition="pop" class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext" title="Learn more") Learn more
+            | :
+          input#room_id(data-clear-btn='true', name='room_id', value='', type='text')
+          button(class="ui-btn ui-shadow" type="submit") Enter
+          #errorMessages
+      div(data-role='footer')
+    #tutorial(data-role='page')
+      div(data-role='header')
+        h1 Tutorial
+        a.ui-btn-left.ui-btn.ui-icon-back.ui-btn-icon-notext.ui-shadow.ui-corner-all(href='#', data-rel='back', data-role='button', role='button') Back
+      .ui-content(role='main')
+      div(data-role='footer')
+    #credits(data-role='page')
+      div(data-role='header')
+        h1 Credits
+        a.ui-btn-left.ui-btn.ui-icon-back.ui-btn-icon-notext.ui-shadow.ui-corner-all(href='#', data-rel='back', data-role='button', role='button') Back
+      .ui-content(role='main')
+
+      div(data-role='footer')
+    script.
+      $(function(){
+        $( "#target" ).submit(function( event ) {
+          event.preventDefault();
+          var room_id = $("#room_id").val();
+          if(room_id.length>2){
+            location.assign("/join-game/"+room_id); 
+          }else{
+            $("#errorMessages").html("The room ID shall be at least 3 characters!");
+          }
+        });
+      })

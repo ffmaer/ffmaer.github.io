@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5 single loop and nested loops</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(400, 400);
+        background("darkorange");
+        noStroke();
+        for (let x = 0; x < 5; x++) {
+          let center_distance = 50;
+          let diameter = 20;
+          fill("red");
+          circle(x * center_distance, 100, diameter);
+        }
+        for (let y = 0; y < 5; y++) {
+          let center_distance = 50;
+          let diameter = 20;
+          fill("lawngreen");
+          circle(300, y * center_distance, diameter);
+        }
+        for (let x = 0; x < 5; x++) {
+          for (let y = 0; y < 5; y++) {
+            let diameter = 5;
+            let center_distance = 20;
+            fill("yellow");
+            circle(
+              x * center_distance + 200,
+              y * center_distance + 200,
+              diameter
+            );
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

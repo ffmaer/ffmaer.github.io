@@ -1,0 +1,146 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Import Fonts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      background("yellow");
+      tc = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Pacifico-Regular.ttf?v=1689289805225"
+      );
+
+      nightray = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/nightrayfont.ttf?v=1689290279483"
+      );
+      anora = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/anora-ShadowsIntoLight-Regular.ttf?v=1689290222009"
+      );
+
+      jiarui = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/ZatiyanRegular-ZV9Jm.otf?v=1689290200765"
+      );
+      mj = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/NeoDunggeunmoPro-Regular.ttf?v=1689290326948"
+      );
+
+      christy = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/VT323-Regular.ttf?v=1689290375717"
+      );
+
+      Doris = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Doris-VT323-Regular.ttf?v=1689290247900"
+      );
+      jason = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/VT323-Regular.ttf?v=1689290691531"
+      );
+
+      stella = loadFont("https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Lumanosimo-Regular.ttf?v=1689292650531");
+
+      eaden = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/ComicNeue-Regular.ttf?v=1689290277178"
+      );
+      Una = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Una.otf?v=1689290555357"
+      );
+      younghyun = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/IndieFlower-Regular.ttf?v=1689290796435"
+      );
+
+      mia = loadFont(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/mia.otf?v=1689290689280"
+      );
+    }
+
+    function draw() {
+      textSize(12);
+      textFont(tc);
+      text(
+        "Physical mirrors let you see your appearacne. You need different type of mirror to see what's inside.",
+        random(width),
+        random(height)
+      );
+      textSize(25); //
+      textFont(nightray);
+      fill("#a2d2ff");
+      text(
+        "Mirrors often only see the outside, but I hope that the things I make will allow people to see things from a different angle about my appearance that cannot be seen on the outside",
+        random(width),
+        random(height)
+      );
+      fill("MediumBlue");
+      textSize(20);
+      textFont(jiarui);
+      text(
+        "Magic Mirror on the screen, who is the fairest one of all?",
+        random(width),
+        random(height)
+      ); //jiarui
+      //mj
+      text("Insert Coins", random(width), random(height));
+
+      fill("#008080");
+      textSize(25);
+      textFont(stella);
+      text("Meow");
+      random(width);
+      random(height);
+      //stella
+
+      fill(0, 0, random(255));
+      textSize(20);
+      textFont(Doris);
+      text(
+        "A mountain pig that can't be socialized",
+        random(width),
+        random(height)
+      ); //Doris
+
+      textSize(20);
+      fill("lightblue");
+      textFont(mia);
+      text("世界毁灭", random(width), random(height)); //mia
+
+      fill("red");
+      textSize(200);
+      textFont(anora);
+      text("Defeat", random(width), random(height));
+
+      fill("white");
+      textSize(7);
+      textFont(younghyun);
+      text("OMG", random(width), random(height));
+
+      fill(0);
+      textSize(16);
+      textFont(eaden);
+      text(
+        "Sometimes the most important mirrors are staring you in the face",
+        random(width),
+        random(height)
+      );
+
+      textSize(24);
+      textFont(christy);
+      text("mirrors are cool", width / 2, height / 2);
+
+      textSize(5);
+      textFont(jason);
+      text("hello world", random(width), random(height));
+
+      fill("black");
+      textSize(12);
+      textFont(Una);
+      text(
+        "life is more than small little things we know.",
+        random(width),
+        random(height)
+      ); //Una
+    }
+  </script>
+
+  <body></body>
+</html>

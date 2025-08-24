@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lorenz attractor</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      // https://www.stsci.edu/~lbradley/seminar/attractors.html
+      function setup() {
+        createCanvas(500, 500);
+      }
+      // P = 10, R = 28, B = 8/3.
+      const P = 10;
+      const R = 28;
+      const B = 8 / 3;
+      let x = 10;
+      let y = 0;
+      let z = 0;
+
+      function draw() {
+        translate(width/2,height/2)
+        dt = 0.01;
+        dx = P * (y - x) * dt;
+        dy = (R * x - y - x * z) * dt;
+        dz = (x * y - B * z) * dt;
+        x = x + dx;
+        y = y + dy;
+        z = z + dz;
+        point(x*5, z*5);
+        if(frameCount>500) noLoop()
+      }
+    </script>
+  </body>
+</html>

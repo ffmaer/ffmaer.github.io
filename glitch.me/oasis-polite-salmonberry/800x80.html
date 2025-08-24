@@ -1,0 +1,62 @@
+{<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>800x80</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    function setup() {
+      cnv = createCanvas(800, 80);
+      angleMode(DEGREES);
+    }
+
+    function draw() {
+      blendMode(BLEND);
+      background("black");
+      drawWave();
+      blendMode(DIFFERENCE);
+        drawBoat(frameCount % width, 15, 0.15, "white", "white");
+      
+    }
+    function drawBoat(x, y, s, c1, c2) {
+      //tc
+      push();
+      translate(x, y);
+      rotate(sin(frameCount * 4) * 15);
+      scale(s);
+      fill(c1);
+      noStroke();
+      triangle(212, 22, 64, 231, 206, 232); // left sail
+      rect(216, 17, 11, 246); // pole
+      fill(c2);
+      triangle(236, 26, 348, 239, 231, 230); // right sail
+      quad(50, 253, 368, 257, 316, 300, 86, 302); // body
+      pop();
+    }
+ 
+    function drawWave() {
+      beginShape();
+      fill("lightblue");
+      noStroke();
+      vertex(0, height); //lower left
+      for (let i = 0; i <= width; i++) {
+        vertex(i, sin(frameCount - i) * 20 + 30);
+      }
+      vertex(width, height); // lower right
+      endShape();
+    }
+    function keyPressed() {
+      // this will download the first x seconds of the animation!
+      if (key == "s") {
+        saveGif("800x80", 5);
+      }
+
+      if (key == "c") {
+        saveCanvas(cnv, "myCanvas.png");
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

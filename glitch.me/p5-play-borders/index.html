@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.play borders</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="./p5.play.js"></script>
+  </head>
+  <body>
+    <script>
+      let you;
+      let border_top, border_bottom, border_left, border_right;
+      let borders;
+      function setup() {
+        createCanvas(800, 800);
+        you = createSprite(260, 300, 50, 50);
+        let thick = 20;
+        border_top = createSprite(width / 2, 0, width, thick);
+        border_bottom = createSprite(width / 2, height, width, thick);
+        border_left = createSprite(0, height / 2, thick, height);
+        border_right = createSprite(width, height / 2, thick, height);
+        borders = Group();
+        borders.add(border_top);
+        borders.add(border_bottom);
+        borders.add(border_left);
+        borders.add(border_right);
+        you.draw = function() {
+          stroke("white");
+          fill("white");
+          square(0, 0, 50);
+        };
+      }
+
+      function draw() {
+        background("violet");
+        fill("white");
+        text("Use asdw or arrow keys to navigate.", 20, 680);
+
+        if (keyDown(68) || keyDown(RIGHT_ARROW)) {
+          you.position.x += 3;
+        }
+        if (keyDown(65) || keyDown(LEFT_ARROW)) {
+          you.position.x -= 3;
+        }
+        if (keyDown(83) || keyDown(DOWN_ARROW)) {
+          you.position.y += 3;
+        }
+        if (keyDown(87) || keyDown(UP_ARROW)) {
+          you.position.y -= 3;
+        }
+        you.collide(borders, function() {
+          console.log("zhuangdao!");
+        });
+        drawSprites();
+      }
+    </script>
+  </body>
+</html>

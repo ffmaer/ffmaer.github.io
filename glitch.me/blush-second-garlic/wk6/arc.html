@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    function setup() {
+      createCanvas(400, 300);
+      capture = createCapture(VIDEO);
+      capture.size(400, 300);
+      capture.hide();
+    }
+    function draw() {
+      background("white");
+      capture.loadPixels();
+      let gap = 5;
+      for (let i = 0; i < capture.width; i += gap) {
+        for (let j = 0; j < capture.height; j += gap) {
+          let index = (j * capture.width + i) * 4;
+          let red = capture.pixels[index];
+          let green = capture.pixels[index + 1];
+          let blue = capture.pixels[index + 2];
+          let alpha = capture.pixels[index + 3];
+          stroke(red, green, blue);
+          noFill();
+          arc(
+            i,
+            j,
+            random(gap * 2, gap * 4),
+            random(gap * 2, gap * 4),
+            random(0, PI),
+            random(PI, TWO_PI)
+          );
+        }
+      }
+    }
+    function keyPressed() {
+      if (key == "s") {
+        saveGif("capture.gif", 5);
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

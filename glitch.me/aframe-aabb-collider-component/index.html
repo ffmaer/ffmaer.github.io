@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>aframe-aabb-collider</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-aabb-collider-component@3.2.0/dist/aframe-aabb-collider-component.min.js"></script>
+    <script src="https://cdn.glitch.com/e4008b07-4695-42a8-a940-9164a7b3f985%2FDragControls.js?v=1593650469380"></script>
+  </head>
+
+  <body>
+    <script>
+      AFRAME.registerComponent("drag-controls", {
+        schema: { objects: { type: "string", default: "a-entity" } },
+
+        init: function() {
+          var objects = [];
+          var el = this.el;
+          var els;
+          var dragControls;
+
+          els = el.sceneEl.querySelectorAll(this.data.objects);
+          for (i = 0; i < els.length; i++) {
+            objects.push(els[i].object3D);
+          }
+
+          el.sceneEl.addEventListener("renderstart", function() {
+            dragControls = new THREE.DragControls(
+              objects,
+              el.sceneEl.camera,
+              el.sceneEl.renderer.domElement
+            );
+          });
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll("a-box").forEach(function(box) {
+          box.addEventListener("hitstart", function(event) {
+            console.log(
+              event.target.id,
+              "collided with",
+              event.target.components["aabb-collider"]["intersectedEls"]
+            );
+          });
+        });
+      });
+    </script>
+    <a-scene drag-controls="objects: a-box">
+      <a-box
+        id="blue"
+        color="blue"
+        position="0 1 -5"
+        aabb-collider="objects: a-box"
+      ></a-box>
+      <a-box
+        id="green"
+        color="green"
+        position="2 1 -5"
+        aabb-collider="objects: a-box"
+      ></a-box>
+    </a-scene>
+  </body>
+</html>

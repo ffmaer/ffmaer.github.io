@@ -1,0 +1,44 @@
+<html lang="en">
+  <head>
+    <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script>
+    <script src="https://unpkg.com/aframe-orbit-controls@1.0.0/dist/aframe-orbit-controls.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene
+      id="scene"
+      vr-mode-ui="enabled: false"
+      cursor="rayOrigin: mouse"
+      background="color:black"
+    >
+      <a-camera
+        id="camera"
+        name="mainCamera"
+        camera="fov: 45;"
+        position="0 0 0"
+        look-controls
+        orbit-controls="target: 0 0 0; minDistance: 0.5; maxDistance: 1500; initialPosition: 20 20 20;"
+        camera-distance
+        position-listener
+      >
+      </a-camera>
+    </a-scene>
+    <script>
+      var material = new THREE.LineDashedMaterial({
+        color: "white",
+        dashSize: 0.5,
+        gapSize: 0.5
+      });
+
+      var geometrySpline = new THREE.Geometry();
+      geometrySpline.vertices.push(
+        new THREE.Vector3(0, -10, -10),
+        new THREE.Vector3(0, 10, 10)
+      );
+
+      var line = new THREE.Line(geometrySpline, material);
+      line.computeLineDistances();
+      document.querySelector("a-scene").object3D.add(line);
+    </script>
+  </body>
+</html>

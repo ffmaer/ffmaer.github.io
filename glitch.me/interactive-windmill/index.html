@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interactive Windmill</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let mic;
+      let angle = 0;
+      let cloud_x = 0;
+      let cloud_y = 30;
+      let cloud_scale = 0.5;
+
+      function setup() {
+        createCanvas(600, 600);
+        angleMode(DEGREES);
+        mic = new p5.AudioIn();
+        let start_btn = createButton("Tap to start").mousePressed(function() {
+          userStartAudio();
+          mic.start();
+          start_btn.hide();
+        });
+      }
+
+      function draw() {
+        let level = mic.getLevel();
+        let speed = 1 + level * 30;
+        background("blue");
+        cloud(speed);
+        windmill(speed);
+      }
+
+      function windmill(speed) {
+        angle += speed;
+        push();
+        strokeWeight(5);
+        stroke("red");
+        translate(width / 2, height / 2);
+
+        rotate(angle);
+        for (let i = 0; i < 4; i++) {
+          push();
+          rotate(90 * i);
+          if (i % 2 == 0) {
+            fill("yellow");
+          } else {
+            fill("red");
+          }
+          for (let j = 0; j < 5; j++) {
+            rect(0, 40 * j, 40, 40);
+            rect(40, 40 * j, 40, 40);
+          }
+
+          pop();
+        }
+        pop();
+      }
+
+      function cloud(speed) {
+        cloud_x += speed;
+        if (cloud_x > width + 100) {
+          cloud_x = 0;
+          cloud_y = random(50, 250);
+          cloud_scale = random(0.3, 1.5);
+        }
+        push();
+        translate(cloud_x, cloud_y);
+        scale(cloud_scale);
+        fill("white");
+        noStroke();
+        ellipse(0, 0, 100, 50);
+        ellipse(20, 20, 100, 50);
+        ellipse(-20, 20, 100, 50);
+        pop();
+      }
+    </script>
+  </body>
+</html>

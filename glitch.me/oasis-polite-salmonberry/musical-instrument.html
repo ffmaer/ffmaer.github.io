@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Keyboard Instrument</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+  </head>
+
+  <script>
+    function preload() {
+      tc = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/tc.wav?v=1688661581483"
+      );
+      anora1 = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/anora.wav?v=1689286313124"
+      );
+      Doris1 = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Doris.wav?v=1689288503323"
+      );
+      Nightray = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/nightray1.wav?v=1689290801358"
+      );
+      mia = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/mia.wav?v=1689286293767"
+      );
+      younghyun = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/younghyun.wav?v=1689286502819"
+      );
+      mj = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/MJ.wav?v=1689286332869"
+      );
+      stella = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Stella?v=1689286569342"
+      );
+      christy = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/4864349798400000.wav?v=1689286959062"
+      );
+      elaine = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/elaine.wav?v=1689286478165"
+      );
+      Una = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Una.wav?v=1689286447359"
+      );
+      eaden1 = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/eaden3.wav?v=1689287073679"
+      );
+      irene = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/irene?v=1689287513840"
+      );
+      jiarui = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/jiarui.wav?v=1689287087714"
+      );
+      Allen = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Allen.wav?v=1689287869909"
+      );
+      Leila = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Leila.wav?v=1689287884800"
+      );
+      Jason = loadSound(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/Jason.wav?v=1689287602360"
+      );
+    }
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      name = "";
+    }
+    function draw() {
+      background("yellow");
+      drawName();
+      drawInstructions();
+    }
+    function keyPressed() {
+      if (key == "a") {
+        tc.play();
+        name = "T.C.";
+      } else if (key == "n") {
+        anora1.play();
+        name = "anora";
+      } else if (key == "c") {
+        irene.play();
+        name = "irene";
+      } else if (key == "t") {
+        Nightray.play(); //这个是调用名
+        name = "Nightray"; //这个是啥都可以
+      } else if (key == "d") {
+        name = "Christy";
+        christy.play();
+      } else if (key == "s") {
+        Doris1.play();
+        name = "Doris1";
+      } else if (key == "k") {
+        younghyun.play();
+        name = "younghyun";
+      } else if (key == "q") {
+        mj.play();
+        name = "mj";
+      } else if (key == "u") {
+        Una.play();
+        name = "Una";
+      } else if (key == "e") {
+        eaden1.play();
+        name = "eaden";
+      } else if (key == "l") {
+        stella.play();
+        name = "stella";
+      } else if (key == "p") {
+        Allen.play();
+        name = "Allen";
+      } else if (key == "j") {
+        Jason.play();
+        name = "Jason";
+      } else if (key == "i") {
+        Leila.play();
+        name = "Leila";
+      } else if (key == "y") {
+        elaine.play();
+        name = "elaine";
+      } else if (key == "m") {
+        mia.play();
+        name = "mia";
+      } else if (key == "r") {
+        jiarui.play();
+        name = "jiarui";
+      }
+    }
+    function drawName() {
+      textAlign(CENTER, CENTER);
+      textSize(50);
+      text(name, height / 2, width / 2);
+    }
+    function drawInstructions() {
+      textAlign(LEFT, TOP);
+      textSize(18);
+      text("Press a, c, d, e, i, j, k, l, m, n, p, q, r, s, t, u, y", 20, 20);
+    }
+  </script>
+
+  <body></body>
+</html>

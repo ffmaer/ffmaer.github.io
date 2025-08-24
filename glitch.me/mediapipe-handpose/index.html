@@ -1,0 +1,69 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>MediaPipe Handpose example using p5.js</title>
+  <script src="./p5.min.js"></script>
+  <style>
+    video {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+      /* Safari and Chrome */
+      -moz-transform: rotateY(180deg);
+      /* Firefox */
+    }
+  </style>
+</head>
+
+<body>
+  <h1>HandPose</h1>
+  <script src="./bundle.js"></script>
+  <script>
+    let capture;
+    const fingers = {
+      thumb: [0, 1, 2, 3, 4],
+      indexFinger: [0, 5, 6, 7, 8],
+      middleFinger: [0, 9, 10, 11, 12],
+      ringFinger: [0, 13, 14, 15, 16],
+      pinky: [0, 17, 18, 19, 20]
+    };
+
+    function setup() {
+      createCanvas(640, 480);
+      stroke("white");
+      strokeWeight(10);
+      capture = createCapture(VIDEO, function () {
+        console.log("capture created")
+        document.querySelector("video").onloadeddata = function () {
+          console.log("onloadeddata");
+          bundle.main();
+        }
+      });
+    }
+
+    function draw() {
+      background("Black");
+      if (bundle.predictions != null) {
+        for (let j = 0; j < bundle.predictions.length; j++) {
+          let keypoints = bundle.predictions[j].landmarks;
+          for (let k = 0; k < keypoints.length; k++) {
+            let [x, y, z] = keypoints[k];
+            point(-x + width, y, z)
+          }
+          for (let name in fingers) {
+            for (let x = 0; x < fingers[name].length - 1; x++) {
+              let [x1, y1, z1] = keypoints[fingers[name][x]];
+              let [x2, y2, z2] = keypoints[fingers[name][x + 1]];
+              line(-x1 + width, y1, -x2 + width, y2);
+            }
+          }
+        }
+        bundle.predictions = null;
+        bundle.main();
+      }
+    }
+  </script>
+  <p>Based on <a href="https://github.com/tensorflow/tfjs-models/tree/master/handpose">MediaPipe Handpose</a></p>
+</body>
+
+</html>

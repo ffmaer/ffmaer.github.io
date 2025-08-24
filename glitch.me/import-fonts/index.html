@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Import GIFs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    function setup() {
+      createCanvas(500, 500);
+      background("yellow");
+      tc_font = loadFont(
+        "https://cdn.glitch.global/dd6c9f87-3224-4f9c-86e9-9ecdb5f22c4c/Pacifico-Regular.ttf?v=1688673522170"
+      );
+    }
+    function draw() {}
+
+    function keyPressed() {
+      if (key == "a") {
+        textSize(36);
+        textFont(tc_font);
+        text("TC", random(width), random(height));
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

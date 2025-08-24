@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Low Poly</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <style>
+      canvas {
+        position: absolute;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      window.oncontextmenu = function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      };
+      let sqx;
+      let sqy;
+      function setup() {
+        createCanvas(document.body.clientWidth, document.body.clientHeight);
+        sqx = width / 2;
+        sqy = height / 2;
+      }
+      function draw() {
+        background("pink");
+        noFill();
+        rect(0, 0, width / 4, height);
+        rect((width / 4) * 3, 0, width / 4, height);
+        rect(0, 0, width, height / 4);
+        rect(0, (height / 4) * 3, width, height / 4);
+        push();
+        noStroke();
+        fill("black");
+        rectMode(CENTER);
+        rect(sqx, sqy, 20, 20);
+        pop();
+        if (touches.length == 1) {
+          let tx = touches[0].x;
+          let ty = touches[0].y;
+          if (tx < width / 4) {
+            sqx -= 1;
+          }
+          if (tx > (width / 4) * 3) {
+            sqx += 1;
+          }
+          if (ty < height / 4) {
+            sqy -= 1;
+          }
+          if (ty > (height / 4) * 3) {
+            sqy += 1;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

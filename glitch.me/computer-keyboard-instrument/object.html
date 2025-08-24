@@ -1,0 +1,653 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Object Orientation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+       // https://www.artic.edu/collection?q=room
+       // https://artsandculture.google.com/asset/the-archdukes-albert-and-isabella-viiting-a-collector-s-cabinet/ogH_NJF61Jjjmg
+       // Objects have states and behaviors.
+       function setup() {
+         createCanvas(600, 720);
+
+          
+         Doris = new Doris(
+         random(width),
+           random(height),
+           random(0.3,0.8),
+           random(["white","red","green"])
+           random(["black","pink","orange"])
+         mj = new MJ(
+           random(width),
+           random(height),
+           random(0.2, 0.5),
+           random(["lime", "orange", "black"]),
+           random(["yellow", "green", "blue"])
+         );
+         tr1 = new Terrorist(random(width),random(height),random(0.4,0.6),random("black","white"),"red",random(true,false))
+         
+         nt1 = new Nightray(random(width),random(height), random(0.2,0.5), random(["black","white"，yellow]), random(["black","white","yellow"]))
+         nt2 = new Nightray(random(width),random(height), random(0.2,0.5), random(["black","white"，yellow]), random(["black","white","yellow"]))
+         
+         Una = new Una();
+         
+         Anora=new Anora(){
+           random(height),
+           random(80,40,10,100)
+           random(1,2,3,4,5,6,7)
+           random(["white","red","green"])
+           random(["black","pink","orange"])
+         }
+         
+         mia=new mia(){
+           random(width),
+             random(height),
+             random(0.6,0.6),
+             random(["lightblue","red","purple"])
+            random(["pink","black","white"]),
+              
+         }
+         
+         christy = new Christy(random(width), random(height), 'blue');
+       }
+
+       function draw() {
+         background("deepskyblue");
+         tc1.move();
+         tc1.draw();
+         tc2.move();
+         tc2.draw();
+         mj.draw();
+         Doris.draw();
+         Anora.draw();
+         Una.draw();
+         christy.draw();
+         
+       }
+
+       class Template {
+         constructor() {}
+         move() {}
+         draw() {}
+       }
+
+       class TC2 {
+         constructor() {}
+         move() {}
+         draw() {}
+       }
+       class Jason {
+         constructor(x, y, s, c1, c2, c3, c4, c5, c6, c7, c8) {
+           this.x = x;
+           this.y = y;
+           this.s = s;
+           this.c1 = c1;
+           this.c2 = c2;
+           this.c3 = c3;
+           this.c4 = c4;
+           this.c5 = c5;
+           this.c6 = c6;
+           this.c7 = c7;
+           this.c8 = c8;
+         }
+         move() {}
+         draw() {
+          push()
+          translate(this.x+400,this.y+400);
+          //rotate(sin(frameCount * 10) * 1);
+          scale(this.s)
+          noStroke();
+          fill(this.c1)
+          rect(400, 420, 160, 55);
+          rect(440, 365, 100, 55);
+          fill(this.c2)
+          rect(400, 420, 40, 10);
+          rect(440, 365, 100, 10);
+          rect(540, 410, 20, 10);
+          fill(this.c3)
+          rect(450, 375, 40, 40);
+          rect(495, 375, 40, 40);
+          circle (435,470,50);
+          circle (530,470,50);
+          fill(this.c4);
+          circle (435,470,30);
+          circle (530,470,30);
+          rect(390, 450, 20, 15);
+          rect(555, 450, 10, 15);
+          circle (435,470,10);
+          circle (530,470,10);
+          fill(this.c5);
+          circle (435,470,20);
+          circle (530,470,20);
+          fill(this.c6);
+          circle (435,470,15);
+          circle (530,470,15);
+          fill(this.c7);
+          rect(390, 450, 20, 5);
+          rect(555, 450, 10, 5);
+
+          fill(this.c8);
+          rect(390, 430, 10, 15);
+          stroke(10);
+          fill(this.c8)
+          stroke(this.c8);
+          strokeWeight(6);
+          line(455, 380, 485, 410);
+          line(500, 380, 530, 410);
+          pop() //Jason
+         }
+       }
+
+    class cat{//nightray
+         constructor(x, y, s, z1, z2,z3) {
+           this.x = x;
+           this.y = y;
+           this.s = s;
+           this.z1 = z1;
+           this.z2= z2;
+           this.z3=z3;
+           
+            push();
+  translate(x, y);
+  angleMode(DEGREES);
+  rotate(cos(frameCount * 2) * 5);
+  scale(this.s);
+  noStroke();
+  fill(this.z1);
+  rect(w1, w2, w3, w4); //weiba
+  rect(0, 150, 10, 10);
+  rect(10, 120, 90, 50); //tou
+  rect(100, 150, 10, 10);
+  rect(30, 170, 60, 10); //bozi
+  rect(50, 170, 90, 50); //xiong
+  rect(40, 190, 20, 40);
+  rect(30, 210, 20, 60); //zuojiao
+  rect(100, 210, 20, 70); //youjiao'
+  rect(120, 210, 10, 30);
+  rect(120, 160, 110, 50); //shenzi
+  rect(130, 220, 10, 10); //youjiaokuai
+  rect(110, 170, 10, 10); //xiaokuai
+
+  rect(70, 110, 40, 10);
+  rect(80, 100, 30, 10);
+  rect(80, 90, 20, 10); //youer
+
+  rect(20, 110, 30, 10);
+  rect(20, 100, 30, 10);
+  rect(20, 90, 20, 10); //zuoer
+
+  rect(160, 210, 40, 10);
+  rect(170, 220, 30, 20);
+  rect(190, 230, 20, 50); //zuohou
+
+  rect(220, 200, 20, 40);
+  rect(230, 220, 20, 40);
+  rect(240, 230, 20, 50); //youhou
+
+  fill(this.z2);
+  rect(60, 140, 10, 10); //yanjing
+  rect(30, 140, 10, 10); //yanjing
+  fill(this.z3);
+  rect(40, 160, 10, 10);
+  rect(90, 110, 10, 10); //er
+  rect(30, 110, 10, 10); //er
+  pop();
+}
+
+         }
+         move() {}
+         draw() {}
+       }
+
+       class Boat { // tc
+         constructor(x, y, s, c1, c2) {
+           this.x = x;
+           this.y = y;
+           this.s = s;
+           this.c1 = c1;
+           this.c2 = c2;
+         }
+         move() {}
+         draw() {
+           push();
+           translate(this.x, this.y);
+           scale(this.s);
+           noStroke();
+           fill(this.c1);
+           triangle(212, 22, 64, 231, 206, 232); // left sail
+           rect(216, 17, 11, 246); // pole
+           fill(this.c2);
+           triangle(236, 26, 348, 239, 231, 230); // right sail
+           quad(50, 253, 368, 257, 316, 300, 86, 302); // body
+           pop();
+         }
+       }
+    class MJ {
+         constructor(x, y, s, c1, c2) {
+           this.x = x;
+           this.y = y;
+           this.s = s;
+           this.c1 = c1;
+           this.c2 = c2;
+         }
+         move() {}
+         draw() {
+          //mj
+          push();
+          scale(s);
+          translate(width * (this.s+1), height * (this.s+1) - this.y);
+
+          // Drawing the body
+          strokeWeight(1);
+          fill(this.c1); // Cream color
+          ellipse(this.x, this.y, 150, 200); // Body
+
+          // Drawing the legs
+          stroke(this.c1); // Cream color
+          rect(this.x-60, this.y+80, 30, 80); // Left leg
+          rect(this.x+30, this.y+80, 30, 80); // Right leg
+
+          // Drawing the head
+          fill(this.c1); // Cream color
+          ellipse(this.x, this.y-100, 120,120); // Head
+
+          // Drawing the eyes
+          fill(0); // Black color
+          ellipse(this.x-15, this.y-115, 20, 40); // Left eye
+          ellipse(this.x+25, this.y-115, 20, 40); // Right eye
+
+          // Drawing the nose
+          fill(255, 105, 180); // Hot pink color
+          triangle(this.x, this.y-95, this.x-10, this.y-85, this.x+10, this.y-85); // Nose
+
+          // Drawing the mouth
+          stroke("black");
+          line(x, this.y-95, 200, 130); // Vertical part
+          line(x, this.y-70, 180, 150); // Left part
+          line(x, this.y-70, 220, 150); // Right part
+
+          // Drawing the ears
+          stroke(this.c2); // Cream color
+          fill(this.c1); // Cream color
+          triangle(x-70, this.y-170, this.x-60, this.y-100, this.x-30, this.y-120); // Left ear
+          triangle(x+60, this.y-170, this.x+30, this.y-120, this.x+60, this.y-100); // Right ear
+
+          // Drawing the tail
+          noFill();
+          strokeWeight(20);
+          stroke(this.c1); // Cream color
+          bezier(this.x+50, this.y+50, this.x+70, this.y, this.x+150, y+20, this.x+200, this.y+50); // Tail
+          pop();
+         }
+       }
+
+       class Christy {
+         constructor(x,y,c) {
+           this.x = x;
+           this.y = y;
+           this.c = c;
+
+
+         }
+         move(x,y) {
+           translate(x,y);
+
+         }
+         draw() {
+           fill(this.c);
+           circle(this.x, this.y, 10);
+           
+           
+           
+         }
+       }
+       class Allen {
+         constructor(x,y,s,color1,color2) {
+           this.x=x
+           this.y=y
+           this.s=s
+           this.color1=color1
+           this.color2=color2
+    }
+     
+         draw() { //Allen
+      push();
+      translate(this.x, this.y);
+      scale(this.s);
+      fill(this.color1);
+      noStroke();
+      ellipse(400, 300, 300);
+      circle(300, 125, 150);
+      circle(500, 125, 150);
+      circle(300, 125, 100);
+      fill(this.color2);
+      ellipseMode(CENTER);
+      ellipse(340, 250, 75);
+      ellipse(460, 250, 75);
+      fill("pink");
+      circle(300, 125, 100);
+      circle(500, 125, 100);
+
+      fill("black");
+      ellipse(400, 300, 50);
+      ellipse(340, 250, 50);
+      ellipse(460, 250, 50);
+
+      stroke(200, 0, 0);
+      strokeWeight(5);
+      ellipse(400, 375, 80, 90);
+      pop();}
+       }
+
+       class Doris{
+         constructor(x,y,z,a1,a2){
+           this.x = x;
+           this.y = y;
+           this.z = z;
+           this.a1 = a1;
+           this.a2 = a2;
+         }
+         move(){}
+         draw(){
+           push();
+      // scale(3);
+      translate(this.x, this.y);
+      scale(this.z);
+      fill(this.a1);
+      noStroke();
+      circle(width / 2, height / 2, 80);
+      translate(width / 2, height / 2);
+      fill(this.a2);
+      ellipse(0, 0, 50, 80);
+      fill(this.a1);
+      ellipse(0, 0, 20, 80);
+      pop();
+         }
+       }
+       class Jiarui {
+         constructor(x, y, s, c1, c2) {
+           this.x = x;
+           this.y = y;
+           this.s = s;
+           this.c1 = c1;
+           this.c2 = c2;
+         }
+       class Terrorist
+       {
+
+         constructor(x,y,s,c1,c2,lr)
+         {
+           this.x=x;
+           this.y=y;
+           this.s=s;
+           this.c1=c1;
+           this.c2=c2;
+           this.lr=lr;
+         }
+         move()
+         {
+
+         }
+         draw()
+         {
+           let xX = (3 * width) / 4;
+           let yY = height / 2;
+
+           xX = 0;
+           yY = 0;
+
+           push();
+
+           translate(this.x,this.y);
+           scale(this.s);
+
+           strokeWeight(10);
+           stroke(this.c1);
+
+           // Draw the head
+           fill(255);
+           circle(xX, yY, 200);
+
+           // Draw the body
+           fill(this.c2);
+           rect(xX - 20, yY + 100, 40, 120);
+
+           // Draw the arms
+           line(xX - 70, yY + 120, xX + 70, yY + 120);
+
+           // Draw the eyes
+           circle(xX - 40, yY - 20, 30);
+           line(0, 0, xX - 40, yY - 20);
+           circle(xX + 40, yY - 20, 30);
+           line(width, 0, xX + 40, yY - 20);
+
+           // Draw the bomb
+           if (this.lr == true)
+           {
+             circle(xX - 70, yY + 120, 50);
+             line(xX - 70, yY + 95, xX - 95, yY + 70);
+           }
+           else
+           {
+             circle(xX + 70, yY + 120, 50);
+             line(xX + 70, yY + 95, xX - 95, yY + 70);
+           }
+       };
+
+       class Anora {
+         constructor(x,y,s,c1,c2) {
+           this.x=x
+           this.y=y
+           this.s=s
+           this.c1=c1
+           this.c2=c2
+         }
+         move() {}
+         draw() { 
+      push();
+      translate(this.x, this.y);
+      scale(this.s);
+
+      noStroke();
+      // wall
+      fill(this.c1);
+      rect(100, 200, 220, 200);
+      // roof
+      fill("#CBF3F4");
+      triangle(80, 200, 340, 200, 210, 100);
+      fill("#39DEFF");
+      triangle(80, 200, 100, 200, 210, 100);
+      // door
+      fill("#755A49");
+      rect(195, 300, 40, 100);
+      // house
+      fill(this.c2);
+      rect(100, 200, 220, 150);
+      // windows
+      fill("#DE7C85");
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+          rect(120 + i * 50, 220 + j * 30, 30, 20);
+        }
+      }
+      pop();
+         }
+       }
+
+
+       class mia{
+         constructorz(x,y,s,c1,c2){
+           this.x=x
+           this.y=y
+           this.s=s
+           this.c1=c1
+           this.c2=c2
+         }
+         move(){}
+         draw(){
+      push()       
+      translate(this.x,this.y+50);
+      rotate(sin(frameCount*5)*15);
+      scale(0.5);
+      fill(this.c1);
+      noStroke();
+      ellipse(this.x, this.y, 200);
+      beginShape();
+      translate(this.x, this.y);s
+      noFill();
+      strokeWeight(10);
+      stroke(this.c2);
+      vertex(this.x-120, this.y);
+      bezierVertex(-30+300, this.y+100, 50, 100, 120, 0);
+      endShape();
+           pop();
+      
+         }
+
+       }
+
+       class elaine{
+         constructor(x,y,c1,c2,c3){
+           this.x = x;
+           this.y = y;
+           this.s = s;
+           this.c1 = c1;
+           this.c2 = c2;
+           this.c3 = c3;
+         }
+         move(){}
+         draw(){
+           push();
+           noStroke();
+           fill(this.c1);
+           triangle(this.x+200, this.y+50, this.x+100, this.y, this.x, this.y+50);
+           triangle(this.x+200, this.y+100, this.x+100, this.y+50, this.x, this.y+100); 
+           fill(this.c2);
+           rect(this.x+85, this.y+100, 30, 150); 
+           fill(this.c3);
+           circle(this.x+75, this.y+100, 50);
+           circle(this.x+125, this.y+110, 50); 
+           pop();
+         }
+       }
+
+       class Bird {
+         constructor(x1,y1,s1,col1,col2) {
+           this.x1 = x1;
+           this.y1 = y1;
+           this.s1 = s1;
+           this.col1 = col1;
+           this.col2 = col2;
+         }
+         move() {}
+         draw() {
+           push()
+           translate(this.x1,this.y1);
+           scale(this.s1);
+           fill(this.col1);
+           triangle(780, 75, 745, 100, 780, 100); //tail
+           triangle(680, 25, 670, 100, 720, 100); //left wing
+           ellipse(700, 100, 80, 50); //body
+           triangle(710, 25, 680, 100, 730, 100); //right wing
+           ellipse(630, 100, 40); //head
+           fill("orange");
+           triangle(600, 100, 620, 100, 620, 110); //beak
+           fill(this.col2);
+           ellipse(630, 90, 10); //eye
+           pop();
+         }
+       }
+
+       class younghyun{
+         constructor(x, y, s, c1, c2) {
+           this.x = x;
+           this.y = y;
+           this.s = s;
+           this.c1 = c1;
+           this.c2 = c2;
+         move(){}
+         draw(){}
+      push();
+      scale(0.5);
+      translate(100, 380);
+      noStroke();
+      fill("#f2d580");
+      rect(50, 120, 50, 110);
+      rect(70, 140, 160, 110);
+      rect(190, 120, 50, 110);
+      rect(100, 241, 130, 19);
+      rect(110, 260, 50, 60);
+      rect(158, 250, 148, 50);
+      rect(230, 292, 30, 28);
+      rect(270, 290, 30, 30);
+      rect(280, 230, 20, 26);
+      rect(290, 210, 20, 40);
+      fill("#27251e");
+      square(90, 200, 20);
+      square(170, 200, 20);
+      rect(120, 240, 40, 30);
+      fill("#dba5a5");
+      square(60, 130, 20);
+      square(200, 130, 20);
+       }
+
+       class Bear{
+       constructor(x,y,s,c1,c2){
+          this.x=x
+           this.y=y
+           this.s=s
+           this.c1=c1
+           this.c2=c2
+       }
+       move(){}
+       draw(){
+         
+         push();
+  
+  
+  noStroke();
+  
+  translate(x,y);
+  scale(s);
+  
+  fill("pink");
+  circle(100,100, 150);
+  circle(300,100, 150);
+  
+  fill("white");
+  circle(200,200, 300);
+  
+  fill("black");
+  circle(130,180, 70);
+  circle(270,180, 70);
+  
+  fill("white");
+  circle(130,165, 35);
+  circle(116,196, 28);
+  circle(145,196, 28);//L eye
+  
+  circle(270,165, 35);
+  circle(256,196, 28);
+  circle(285,196, 28);//R eye
+  
+  fill("pink");
+  circle(200, 265, 80);
+  
+  fill("brown")
+  circle(200, 220, 20);
+  
+  fill("red");
+  circle(130, 110, 10);
+  circle(270, 110, 10);
+  
+  pop();
+       }
+
+       }
+  </script>
+
+  <body></body>
+</html>
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Textures - A-Frame School</title>
+    <meta name="description" content="Textures - A-Frame School">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+
+    
+    <script>
+      AFRAME.registerComponent('school-playground',{
+        init: function(){
+          var boxes = document.querySelector('#boxes')
+          var amount  = 10;
+          var special = Math.floor(Math.random()*amount);
+          for(i=0;i<amount;i++){
+            var box = document.createElement("a-box");
+            box.setAttribute('scale',{radius:Math.random()});
+            box.setAttribute('position',{x:Math.random()*40-20,y:Math.random()*40-20,z:Math.random()*40-20});
+            box.setAttribute('data-index',i);
+            if(i==special){
+              box.setAttribute('handle-special',"");
+            }else{
+              box.setAttribute('handle-events',"");
+            }
+            boxes.appendChild(box);
+          }          
+        }
+      })
+      AFRAME.registerComponent('handle-events', {
+        init: function () {
+          var el = this.el;  // <a-box>
+          el.addEventListener('click', function () {
+            el.setAttribute('color', '#EF2D5E');  
+          });
+        } 
+      });
+      AFRAME.registerComponent('handle-special', {
+        init: function () {
+          var el = this.el;  // <a-box>
+          el.addEventListener('click', function () {
+            el.setAttribute('color', 'yellow');  
+          });
+        } 
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene school-playground>
+      <a-entity id="boxes"></a-entity>
+
+      <a-sky src="https://cdn.glitch.com/a44bb2cc-c539-484f-ba4a-2c0b3d5a79e7%2Fsechelt.jpg?1498247954719" radius="50"></a-sky>
+      
+      <!-- Camera + cursor. -->
+      <a-camera>
+        <a-cursor id="cursor" material="color: yellow; shader: flat"></a-cursor>
+      </a-camera>
+      
+      
+    </a-scene>
+    
+    <!-- Your web-app is https, so your scripts need to be too -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/game-client.js"></script>
+  </body>
+</html>

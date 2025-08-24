@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.play loadSound</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="./p5.play.js"></script>
+    <script src="./p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let bubble;
+      let bubble_ss;
+      let bubble_animate;
+      let slap1;
+      function preload() {
+        bubble_ss = loadSpriteSheet(
+          "https://cdn.glitch.com/dc122c87-3702-4e86-8f63-eea043d864ca%2Fezgif-6-54b25e0a96a3.png?v=1628769250046",
+          100,
+          100,
+          10
+        );
+        slap1 = loadSound(
+          "https://cdn.glitch.com/73b7268a-e651-4500-99a6-ec6cf90c5120%2F429722__fellur__slap1.wav?v=1629075190344"
+        );
+      }
+      function setup() {
+        createCanvas(400, 400);
+
+        bubble_animate = loadAnimation(bubble_ss);
+        bubble = createSprite(100, 100, 45, 66);
+        bubble.addAnimation("normal", bubble_animate);
+        slap1.playMode("untilDone"); //sustain （重叠）, restart, untilDone
+      }
+
+      function draw() {
+        background("Lavender");
+
+        if (keyDown("a") || keyDown("s") || keyDown("d") || keyDown("w")) {
+          slap1.play();
+        }
+
+        if (keyDown("d")) {
+          bubble.position.x += 3;
+        }
+        if (keyDown("a")) {
+          bubble.position.x -= 3;
+        }
+        if (keyDown("s")) {
+          bubble.position.y += 3;
+        }
+        if (keyDown("w")) {
+          bubble.position.y -= 3;
+        }
+
+        drawSprites();
+      }
+    </script>
+    <pre>
+      https://ezgif.com/gif-to-sprite
+    </pre>
+  </body>
+</html>

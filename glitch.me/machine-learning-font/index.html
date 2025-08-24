@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Low Poly</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let mlfontv2;
+      function preload() {
+        mlfontv2 = loadFont(
+          "https://cdn.glitch.com/6f3a17f0-1f62-4a67-85ee-4b4470d44439%2FMachineLearningFont-v2.otf?v=1591443401433"
+        );
+      }
+      function setup() {
+        createCanvas(640, 480);
+        background("black");
+        fill("white");
+        let size = 72;
+        textSize(size);
+        textFont(mlfontv2);
+        let words = "machine learning font MACHINE LEARNING FONT".split(" ");
+        for (let i = 0; i < words.length; i++) {
+          text(words[i], size, size + size * i);
+        }
+      }
+      function draw() {}
+    </script>
+    <p>
+      The font is created by
+      <a href="http://www.machinelearningfont.com/"
+        >www.machinelearningfont.com</a
+      >
+    </p>
+  </body>
+</html>

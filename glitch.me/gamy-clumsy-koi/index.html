@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        perline = 10;
+        cnv = createCanvas(500, 500, WEBGL);
+        cnv.mousePressed(userStartAudio);
+        mic = new p5.AudioIn();
+        mic.start()
+        levels = [];
+        colors = [
+          "GreenYellow",
+          "Chartreuse",
+          "LawnGreen",
+          "Lime",
+          "LimeGreen",
+          "PaleGreen",
+          "LightGreen",
+          "MediumSpringGreen",
+          "SpringGreen",
+          "MediumSeaGreen",
+          "SeaGreen",
+          "ForestGreen",
+          "Green",
+          "DarkGreen",
+          "YellowGreen",
+          "OliveDrab",
+          "Olive",
+          "DarkOliveGreen",
+          "MediumAquamarine",
+          "DarkSeaGreen",
+          "LightSeaGreen",
+          "DarkCyan",
+          "Teal"
+        ];
+        debugMode();
+        buildings = [];
+        for (let i = 0; i < perline; i++) {
+          buildings.push(new Building(20, 20, 120, random(colors)));
+        }
+      }
+      function draw() {
+        levels.push(mic.getLevel());
+        while (levels.length > perline) {
+          levels.shift();
+        }
+        // console.log(levels);
+        background("yellow");
+        stroke("white");
+        strokeWeight(2);
+        translate(-width / 4, 0, -height / 4);
+        gap = 30;
+        for (let i = 0; i < perline; i++) {
+          let b = buildings[i];
+          b.h = levels[i] * 100;
+          push();
+          translate(i * gap, -b.h / 2, 0);
+          fill(b.c);
+          box(b.a1, b.h, b.a2);
+          pop();
+        }
+
+        orbitControl();
+      }
+      class Building {
+        constructor(a1, a2, h, c) {
+          this.a1 = a1;
+          this.a2 = a2;
+          this.h = h;
+          this.c = c;
+        }
+      }
+    </script>
+  </body>
+</html>

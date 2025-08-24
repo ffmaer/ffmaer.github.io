@@ -1,0 +1,1 @@
+Answering: https://stackoverflow.com/questions/14934452/how-to-get-all-registered-routes-in-express

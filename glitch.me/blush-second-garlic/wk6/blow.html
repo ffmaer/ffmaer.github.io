@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blow</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+    
+  </head>
+
+  <script>
+    function setup() {
+      createCanvas(200, 150);
+      capture = createCapture(VIDEO);
+      capture.size(200, 150);
+      capture.hide();
+      mic = new p5.AudioIn();
+      mic.start();
+    }
+    function draw() {
+      micLevel = mic.getLevel();
+      capture.loadPixels();
+
+      for (let i = 0; i < capture.pixels.length; i += 4) {
+
+        if (random() < 0.3) {
+          next_i = int(map(micLevel, 0, 1, 0, 30)) * 4;
+
+          if (next_i < capture.pixels.length) {
+            capture.pixels[i + next_i] = capture.pixels[i];
+            capture.pixels[i + next_i + 1] = capture.pixels[i + 1];
+            capture.pixels[i + next_i + 2] = capture.pixels[i + 2];
+          }
+        }
+
+      }
+      capture.updatePixels();
+      image(capture, 0, 0, width, height);
+    }
+    function keyPressed() {
+      if (key == "s") {
+        saveGif("capture.gif", 5);
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

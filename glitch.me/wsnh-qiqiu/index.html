@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
+    <script src="./p5.speech.js"></script>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>
+      我说你画【气球🎈】
+    </h1>
+    <p>
+      Tengchao Zhou
+    </p>
+    <p>
+      说：圆形、三角形、正方形、正五边形、正六边形、正七边形、正八边形
+    </p>
+    <p>
+      可以一次说多个图形
+    </p>
+    <script>
+      let p = [];
+      let xyztexture = [];
+      let count = 0;
+      let countlimit = 0;
+      let myRec = new p5.SpeechRec("zh-CN");
+      myRec.continuous = true;
+      let result = "";
+      let results;
+
+      function setup() {
+        createCanvas(400, 400);
+        myRec.onEnd = () => {
+          // the voice recognition stops after inactivity for a while
+          // so we need to restart the voice recognition
+          myRec.start();
+        };
+        myRec.onResult = parseResult;
+        myRec.start();
+        noLoop();
+        textAlign(CENTER);
+        background("blue");
+        results = createDiv("");
+        createDiv(
+          '<a href="https://idmnyu.github.io/p5.js-speech/">Learn more about p5.speech</a>'
+        );
+      }
+
+      function draw() {
+        let words = result.split("形");
+
+        for (let word of words) {
+          fill(random(["red", "yellow", "blue"]));
+          if (word == "圆") {
+            ellipse(random(width), random(width), random(20, 80));
+          } else if (word == "三角") {
+            polygon(random(width), random(width), random(20, 80), 3);
+          } else if (word == "正方") {
+            polygon(random(width), random(width), random(20, 80), 4);
+          } else if (word == "正五边") {
+            polygon(random(width), random(width), random(20, 80), 5);
+          } else if (word == "正六边") {
+            polygon(random(width), random(width), random(20, 80), 6);
+          } else if (word == "正七边") {
+            polygon(random(width), random(width), random(20, 80), 7);
+          } else if (word == "正八边") {
+            polygon(random(width), random(width), random(20, 80), 8);
+          } else if (word == "气球"){
+            fill("red")
+            circle(random(width), random(width),random(20,80) );
+          }
+        }
+      }
+
+      function parseResult() {
+        result = myRec.resultString.toLowerCase();
+        if (result != "") {
+          results.html(`${results.html()}<br>${result}`);
+        }
+        redraw();
+      }
+
+      // the polygon function is by p5js.org licensed under CC-BY-NC-SA
+      function polygon(x, y, radius, npoints) {
+        let angle = TWO_PI / npoints;
+        beginShape();
+        for (let a = 0; a < TWO_PI; a += angle) {
+          let sx = x + cos(a) * radius;
+          let sy = y + sin(a) * radius;
+          vertex(sx, sy);
+        }
+        endShape(CLOSE);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+doctype html
+html
+  head
+    title Seers and Seekers
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    script(src='https://aframe.io/releases/0.5.0/aframe.min.js')
+    script(src='https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js')
+    script(src='https://unpkg.com/aframe-template-component@^3.2.1/dist/aframe-template-component.min.js')
+    script(src='https://code.jquery.com/jquery-2.2.1.min.js', integrity='sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=', crossorigin='anonymous')
+    script(src='/socket.io/socket.io.js')
+    script.
+      var socket = io();
+      
+      function getRoomId(){
+        var pathnames = window.location.pathname.split("/");
+        return pathnames[pathnames.length-1];
+      }      
+      var room_id = getRoomId();
+      console.log(room_id);
+      
+      function setColor(el){
+          if(el.hasAttribute("is_gold")){
+            var particles = document.createElement("a-entity");
+            particles.setAttribute("particle-system","preset: default; color: #515; particleCount: 1000")
+            el.appendChild(particles);
+            el.setAttribute('color', 'yellow');    
+          }else{
+            el.setAttribute('color', '#EF2D5E');  
+          }
+        }
+      AFRAME.registerComponent('handle-click', {
+          init: function () {
+            var el = this.el;
+            el.addEventListener('click', function () {
+              setColor(el);
+              socket.emit('click', {room_id: room_id, box_index: $(el).data("box_index")});
+            });
+          } 
+        });
+      AFRAME.registerComponent('handle-restart', {
+          init: function () {
+            var el = this.el;
+            el.addEventListener('click', function () {
+              socket.emit('restart', {room_id:room_id});
+            });
+          } 
+        });
+      var role;
+      AFRAME.registerComponent('handle-choose-role', {
+          init: function () {
+            var el = this.el;
+            el.addEventListener('click', function () {
+              role = $(el).data('role');
+              emptyControls();
+              socket.emit('get-data', {room_id:room_id} );
+              addRestartControl();
+            });
+          } 
+        });
+
+      function emptyBoxes(){
+        var boxes = document.querySelector('#boxes');
+        $(boxes).empty();
+      }
+
+      function setupABox(box,data,i){
+          box.setAttribute('scale',{x:data.boxes[i].scale,
+                                   y:data.boxes[i].scale,
+                                   z:data.boxes[i].scale});
+          box.setAttribute('position',{x:data.boxes[i].x,
+                                       y:data.boxes[i].y,
+                                       z:data.boxes[i].z});
+          box.setAttribute('data-box_index',i);
+          box.setAttribute('id',"box"+i);
+      }
+      function placeBoxesSeeker(data){
+        var boxes = document.querySelector('#boxes');
+        for(i=0;i<data.amount;i++){
+          var box = document.createElement("a-box");
+          setupABox(box,data,i);
+
+          if(data.gold_index == i){
+            box.setAttribute("is_gold","");
+          }
+          if(data.boxes[i].is_clicked==1){
+            if(data.gold_index == i){
+              box.setAttribute('color',"yellow");
+            }else{
+              box.setAttribute('color',"#EF2D5E");  
+            }
+          }
+          box.setAttribute('handle-click',"");
+          boxes.appendChild(box);
+        }
+      }
+      function placeBoxesSeer(data){
+        var boxes = document.querySelector('#boxes');
+        for(i=0;i<data.amount;i++){
+          var box = document.createElement("a-box");
+          setupABox(box,data,i);
+
+          if(data.gold_index == i){
+            box.setAttribute("is_gold","");
+            box.setAttribute('color',"yellow");
+          }
+          if(data.boxes[i].is_clicked==1){
+            if(data.gold_index == i){
+              box.setAttribute('color',"yellow");
+            }else{
+              box.setAttribute('color',"#EF2D5E");  
+            }
+          }
+          boxes.appendChild(box);
+        }
+      }
+      function addChooseRoleControls(){
+        document.querySelector("#seekerButton").setAttribute("visible",true);
+        document.querySelector("#seerButton").setAttribute("visible",true);
+      }
+      function addRestartControl(){
+        document.querySelector("#restartButton").setAttribute("visible",true);
+      }
+      function emptyControls(){
+        document.querySelector("#seekerButton").setAttribute("visible",false);
+        document.querySelector("#seerButton").setAttribute("visible",false);
+        document.querySelector("#restartButton").setAttribute("visible",false);
+      }
+
+      socket.on('data-ready', function(data){
+        if(role == "seer"){
+          placeBoxesSeer(data);
+        }else if(role == "seeker"){
+          placeBoxesSeeker(data);
+        }
+      });
+
+      socket.on('click', function(data){
+        var el = document.querySelector("#box"+data.box_index);
+        if(el){
+          setColor(el);  
+        }
+      });
+
+      socket.on('restart', function(){
+        emptyBoxes();
+        emptyControls();
+        addChooseRoleControls();
+      });
+      
+      socket.on('error', function(data){
+        console.log(data.message);
+      });
+  body
+    a-scene(school-playground='')
+      a-assets
+        script#buttonTemplate(type='text/html').
+          <a-entity id="${id}" text="align: center; width:8; value: ${value}; 
+          font: https://cdn.glitch.com/154861f4-22e1-4f8e-a746-d3143393326a%2Fkaiti-tc.fnt; 
+          fontImage: https://cdn.glitch.com/154861f4-22e1-4f8e-a746-d3143393326a%2Fkaiti-tc.png" 
+          material="color: black;" geometry="primitive:plane;" position="${p_x} ${p_y} ${p_z}" data-role="${role}" ${handler}></a-entity>
+      a-entity#boxes
+      a-entity#controls
+        a-entity(template='src: #buttonTemplate', data-id='seerButton', data-value='我来\n描述', data-p_x='-1', data-p_y='1.5', data-p_z='-3', data-role='seer', data-handler='handle-choose-role')
+        a-entity(template='src: #buttonTemplate', data-id='seekerButton', data-value='我来\n探寻', data-p_x='1', data-p_y='1.5', data-p_z='-3', data-role='seeker', data-handler='handle-choose-role')
+        a-entity(template='src: #buttonTemplate', data-id='restartButton', data-value='重新\n开始', data-p_x='0', data-p_y='2', data-p_z='-6', data-role='', data-handler='handle-restart')
+      a-sky(src='https://cdn.glitch.com/a44bb2cc-c539-484f-ba4a-2c0b3d5a79e7%2Fsechelt.jpg?1498247954719', radius='50')
+      // Camera + cursor.
+      a-camera
+        a-cursor#cursor(material='color: yellow; shader: flat')
+    script.
+      $(function(){
+        
+        emptyControls();
+        addChooseRoleControls();
+      })

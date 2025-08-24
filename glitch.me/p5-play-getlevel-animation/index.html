@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.play getLevel animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="./p5.play.js"></script>
+    <script src="./p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let frames = 8;
+      function preload() {
+        mage1 = loadSpriteSheet(
+          "https://cdn.glitch.com/044695de-e559-42ff-9a3f-6d480aac438b%2Fmage-3-87x110.png?v=1628750728787",
+          87,
+          110,
+          frames
+        );
+        mage2 = loadSpriteSheet(
+          "https://cdn.glitch.com/044695de-e559-42ff-9a3f-6d480aac438b%2Fmage-1-85x94.png?v=1628750729053",
+          85,
+          94,
+          frames
+        );
+      }
+      function setup() {
+        cnv = createCanvas(400, 400);
+        cnv.mousePressed(userStartAudio);
+        mic = new p5.AudioIn();
+        mic.start();
+        mage1a = loadAnimation(mage1);
+        mage2a = loadAnimation(mage2);
+        ani = mage1a;
+        gif1 = createSprite(width / 3, height / 2, 50, 50);
+        gif1.draw = function() {
+          animation(ani, 0, 0);
+        };
+        gif2 = createSprite(width / 3*2, height / 2, 50, 50);
+        gif2.draw = function() {
+          animation(ani, 0, 0);
+        };
+      }
+
+      function keyPressed() {
+        switch (key) {
+          case "1":
+            ani = mage1a;
+            break;
+          case "2":
+            ani = mage2a;
+            break;
+        }
+      }
+
+      function draw() {
+        background("Lavender");
+        level = int(mic.getLevel() * 20);
+
+        if (level > frames - 1) {
+          level = frames - 1;
+        }
+        ani.goToFrame(level);
+        drawSprites();
+        fill("white");
+        text(level, width / 2, height / 2);
+      }
+    </script>
+    <pre>
+      https://ezgif.com/gif-to-sprite
+    </pre>
+  </body>
+</html>

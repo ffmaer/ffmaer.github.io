@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
+    <script src="./p5.speech.js"></script>
+    <meta charset="utf-8" />
+    <title>p5.speech setLang() setVoice()</title>
+  </head>
+  <body>
+    <script>
+      let say;
+      let notes;
+      let is_hidden = 1;
+      let lang_span;
+      let voice_span;
+      let sentence_input;
+      let text = "The weather is horrible.";
+      function setup() {
+        let cnv = createCanvas(1, 1);
+        cnv.hide();
+        say = new p5.Speech();
+        say.onLoad = function() {
+          sentence_input = createElement("textarea", `${text}`);
+          sentence_input.attribute("rows", "5");
+          sentence_input.attribute("cols", "50");
+          sentence_input.style("font-style", "italic");
+          sentence_input.style("font-size", "24px");
+          sentence_input.style("color", "skyblue");
+
+          let current = createDiv();
+          current.style("color", "blue");
+          createSpan("current lang: ").parent(current);
+          lang_span = createSpan("____").parent(current);
+          createSpan(", current voice: ").parent(current);
+          voice_span = createSpan("____").parent(current);
+
+          createDiv(`<h2>setLang()</h2>`);
+
+          for (let lang of [
+            "it-IT",
+            "es-ES",
+            "en-US",
+            "en-GB",
+            "en-NZ",
+            "en-CA",
+            "en-AU",
+            "ru-RU",
+            "zh-CN",
+            "vi-VN"
+          ]) {
+            createButton(lang).mouseClicked(function() {
+              lang_span.html(lang);
+              text = sentence_input.value();
+              say.setLang(lang);
+              say.speak(text);
+            });
+          }
+
+          createDiv(`<h2>setVoice()</h2>`);
+          for (let voice of say.voices) {
+            createButton(voice.name).mouseClicked(function() {
+              voice_span.html(voice.name);
+              text = sentence_input.value();
+              say.setVoice(voice.name);
+              say.speak(text);
+            });
+          }
+
+          createDiv(`<h2>Notes</h2>`);
+
+          createButton("Toggle Notes").mouseClicked(function() {
+            is_hidden *= -1;
+            if (is_hidden == 1) {
+              notes.style.display = "none";
+            } else {
+              notes.style.display = "block";
+            }
+          });
+
+          notes = document.querySelector("#notes");
+          let body = document.querySelector("body");
+          body.append(notes);
+          notes.style.display = "none";
+        };
+      }
+    </script>
+    <div id="notes">
+      <hr />
+      <h2>
+        p5.speech setLang(language)
+      </h2>
+
+      <p>
+        For example:
+      </p>
+      <ul>
+        <li>setLang("it-IT")</li>
+        <li>setLang("en-US")</li>
+        <li>setLang("en-GB")</li>
+        <li>setLang("es-ES")</li>
+      </ul>
+
+      <h2>
+        p5.speech setVoice(voice)
+      </h2>
+
+      <p>
+        For example:
+      </p>
+      <ul>
+        <li>setVoice("Microsoft David Desktop - English (United States)")</li>
+        <li>setVoice("Microsoft Zira Desktop - English (United States)")</li>
+        <li>setVoice("Google US English")</li>
+        <li>setVoice("Google UK English Female")</li>
+      </ul>
+
+      <p>
+        References:
+        <a
+          href="https://docs.microsoft.com/en-us/previous-versions/commerce-server/ee825488(v=cs.20)"
+          >BCP-47 code for languages</a
+        >
+        |
+        <a href="https://idmnyu.github.io/p5.js-speech/#reference"
+          >p5.speech reference</a
+        >
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    function setup() {
+      createCanvas(400, 300);
+      capture = createCapture(VIDEO);
+      capture.size(400, 300);
+      capture.hide();
+      initOrChangePattern();
+    }
+    function initOrChangePattern() {
+      channel_shift = int(random(1, 4));
+      glitch_len = int(random(4000, 8000)) * 4;
+    }
+    function draw() {
+      background("black");
+      if (frameCount % 60 == 0) {
+        initOrChangePattern();
+      }
+
+      capture.loadPixels();
+      for (let i = 0; i < capture.pixels.length; i += glitch_len) {
+        for (let p = channel_shift; p < glitch_len; p += 4)
+          if (i + p + 2 < capture.pixels.length) {
+            capture.pixels[i + p] = capture.pixels[i];
+            capture.pixels[i + p + 1] = capture.pixels[i + 1];
+            capture.pixels[i + p + 2] = capture.pixels[i + 2];
+          }
+      }
+      capture.updatePixels();
+      image(capture, 0, 0, width, height);
+    }
+    function keyPressed() {
+      if (key == "s") {
+        saveGif("capture.gif", 5);
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

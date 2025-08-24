@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(windowWidth, windowHeight, WEBGL);
+        rings = [];
+        gap = 300;
+        count = 30;
+        for (let i = 0; i < count; i++) {
+          let x = mouseX;
+          let y = mouseY;
+          let z = -i * gap;
+          rings.push(new Ring(x, y, z));
+        }
+      }
+
+      function draw() {
+        background("LimeGreen");
+        let camX = map(mouseX, 0, width, -50, 50);
+        let camY = map(mouseY, 0, height, -50, 50);
+        camera(camX, camY, 100, 0, 0, 0);
+        orbitControl();
+        for (let i = 0; i < rings.length; i++) {
+          rings[i].update();
+          rings[i].draw();
+        }
+      }
+      class Ring {
+        constructor(x, y, z) {
+          this.x = x;
+          this.y = y;
+          this.z = z;
+        }
+        update() {
+          this.z += 10;
+          if (this.z > 500) {
+            this.z = -1000;
+          }
+        }
+        draw() {
+          push();
+          rectMode(CORNER);
+          translate(this.x, this.y, this.z);
+          stroke("LightYellow");
+          Fill("emonChiffon");
+          rect(5, 3, 5, 5, 2);
+          pop();
+        }
+      }
+    </script>
+  </body>
+</html>

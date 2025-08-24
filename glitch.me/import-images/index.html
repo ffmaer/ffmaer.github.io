@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Import GIFs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    function preload() {
+      tc = loadImage(
+        "https://cdn.glitch.global/d06f60a8-16f4-48b3-9c82-733c590d7dd0/car.gif?v=1689275298907"
+      );
+    }
+    function setup() {
+      createCanvas(500, 500);
+      background("yellow");
+    }
+    function draw() {
+    }
+
+    function keyPressed() {
+      if (key == "a") {
+        text('a', random(width), random(height));
+        image(tc, random(width), random(height));
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Delicious Fish Skin</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(640, 480);
+      }
+      function draw() {
+
+        if(frameCount % 1000 == 0){
+          background("white")
+        }
+
+        push()
+        fill("green")
+        noStroke()
+        square(random(width),random(height),10)
+        pop()
+
+        push()
+        fill("brown")
+        noStroke()
+        circle(random(width),random(height),10)
+        pop()
+
+        let gap_size = 250
+        let progress = frameCount % gap_size / gap_size
+        
+        for(let i=0;i<5;i++){
+          if(progress < 0.5){
+            line(i*gap_size*progress,0,width,height)
+            line(i*gap_size*progress,0,0,height)
+          }else{
+            line(i*gap_size*(1-progress),0,width,height)
+            line(i*gap_size*(1-progress),0,0,height)
+          }
+        }
+
+
+        fill("white")
+        textSize(100)
+        push()
+        textStyle(BOLD)
+        text("爽鱼皮",0,100)
+        pop()
+        textFont('Georgia');
+        text("Delicious",0,200)
+        text("Fish",0,300)
+        text("Skin",0,400)
+      }
+    </script>
+  </body>
+  
+</html>

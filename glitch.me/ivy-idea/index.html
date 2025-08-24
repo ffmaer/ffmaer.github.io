@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cursor Handler - A-Frame School</title>
+    <meta name="description" content="Cursor Handler - A-Frame School">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script>
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+      AFRAME.registerComponent('handle-events', {
+        init: function () {
+          var el = this.el;  // <a-box>
+          // Add event listeners here.
+          el.addEventListener('mouseenter',function(){
+            var color = getRandomColor();
+            console.log(color);
+            el.setAttribute('color',color);
+            el.setAttribute('scale',{x:Math.random()*2+1,y:Math.random()*2+1,z:Math.random()*2+1})
+          });
+          el.addEventListener('mouseleave',function(){
+            el.setAttribute('color','blue');
+          });
+          el.addEventListener('click',function(){
+            el.setAttribute('scale',{x:2,y:2,z:2})
+          });
+        } 
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-box color="#EF2D5E" position="0 1 -4" handle-events></a-box>
+      
+      <a-camera><a-cursor></a-cursor></a-camera>
+      <a-sky color="#333"></a-sky>
+      <a-plane color="#000" rotation="-90 0 0" width="500" height="500"></a-plane>
+    </a-scene>
+  </body>
+</html>

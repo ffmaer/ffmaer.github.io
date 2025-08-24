@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Import GIFs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    let tc
+    function preload() {
+      tc = loadImage(
+        "https://cdn.glitch.global/b0bbd36a-7479-473e-89c1-97d619ee1b43/color%20mirror.gif?v=1688668534242"
+      );
+      Doris = loadImage(
+        "https://cdn.glitch.global/b0bbd36a-7479-473e-89c1-97d619ee1b43/Doris.jpeg?v=1689289210671"
+      );
+    }
+    function setup() {
+      createCanvas(500, 500);
+      background("yellow");
+    }
+    function draw() {
+      image(tc, 200,200);
+      image(Doris,10,10,150,160);
+    }
+
+  </script>
+
+  <body></body>
+</html>

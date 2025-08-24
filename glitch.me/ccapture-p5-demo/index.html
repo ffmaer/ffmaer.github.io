@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
+    <script src="./CCapture.all.min.js"></script>
+  </head>
+  <body>
+    <script>
+      const fr = 30; //framerate
+      let capturer = new CCapture({ format: "webm", framerate: fr });
+      let btn;
+      let counter = 1;
+      let centerX, centerY;
+      let squareSize;
+      let step;
+      let angle;
+      let div;
+      function setup() {
+        createCanvas(300, 300);
+        background("LavenderBlush");
+        frameRate(fr);
+        capturer.start();
+        createDiv("Recording!")
+        div=createDiv("0 seconds recorded!")
+        btn = createButton("Save").mousePressed(function() {
+          capturer.save();
+        });
+        createDiv("You need Chrome for this to work.");
+        angleMode(DEGREES);
+        randomConfig();
+      }
+
+      function draw() {
+        if (angle == 360) {
+          randomConfig();
+        }
+        translate(centerX, centerY);
+        rotate(angle);
+        stroke(random(["deeppink", "mediumvioletred"]));
+        noFill();
+        rect(30, 30, squareSize, squareSize);
+        angle += step;
+        
+        capturer.capture(document.getElementById("defaultCanvas0"));
+        div.html(`${floor(frameCount / fr)} seconds recorded`);
+        if(frameCount > fr * 60 * 10){
+          // after 10 minutes
+          createDiv("Recording stopped!");
+          capturer.stop();
+          noLoop();
+        } 
+      }
+
+      function randomConfig() {
+        angle = 0;
+        centerX = random(width);
+        centerY = random(height);
+        squareSize = random(20, 40);
+        step = random([1, 2, 3, 4, 5, 6, 8]);
+      }
+    </script>
+  </body>
+</html>

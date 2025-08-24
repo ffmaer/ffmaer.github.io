@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Object Orientation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    let balls = [];
+    function setup() {
+      createCanvas(200, 200);
+      background("yellow");
+      for (let i = 0; i < 20; i++) {
+        balls.push(new Ball(random(width), random(height)));
+      }
+    }
+    function draw() {
+      for (let i = 0; i < balls.length; i++) {
+        balls[i].move();
+        balls[i].draw();
+      }
+    }
+
+    class Ball {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.d = random(15, 30);
+        this.color = random(["magenta", "pink", "purple"]);
+        this.symbol = random(["🚓","🏎️","🚗"])
+      }
+      move() {
+        this.x -= 1;
+        if (this.x < 0) {
+          this.reappear();
+        }
+      }
+      reappear() {
+        this.x = random(width);
+        this.y = random(height);
+        this.d = random(15, 30);
+      }
+      draw() {
+        fill(this.color);
+        stroke("yellow");
+        // circle(this.x, this.y, this.d);
+        textSize(this.d)
+        text(this.symbol,this.x,this.y)
+      }
+    }
+    function keyPressed() {
+      if (key == "s") {
+        saveGif("object-array", 5);
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>My A-Frame Scene</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-aabb-collider-component@3.2.0/dist/aframe-aabb-collider-component.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene>
+      <a-box class="box" color="blue" position="0 1 -5"></a-box>
+      <a-box class="box" color="red" position="0.5 1 -5"></a-box>
+      <a-entity id="collider" aabb-collider="objects: .box"></a-entity>
+    </a-scene>
+    <script>
+      console.log(document.querySelector("#collider").components["aabb-collider"]);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.js Mask the camera input</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let capture;
+      let msk;
+
+      function setup() {
+        createCanvas(640, 480);
+        background("black");
+        capture = createCapture(VIDEO); //640*480
+        capture.hide();
+        msk = createGraphics(width, height);
+        msk.circle(random(width), random(height), random(100, 300));
+        msk.circle(random(width), random(height), random(100, 300));
+        msk.circle(random(width), random(height), random(100, 300));
+      }
+
+      function draw() {
+        push();
+        translate(width, 0); // flip the camera input horizontally
+        scale(-1, 1); // flip the camera input horizontally
+        capture.mask(msk);
+        image(capture, 0, 0, width, height);
+        pop();
+      }
+    </script>
+  </body>
+</html>

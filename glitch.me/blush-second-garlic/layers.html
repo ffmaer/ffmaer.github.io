@@ -1,0 +1,191 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chain Functions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    // Chain functions (the input should be a number; the output should also be a number)
+
+    function setup() {
+      createCanvas(800, 600);
+      tc = createGraphics(width, height);
+      tc2 = createGraphics(width, height);
+      Nightray = createGraphics(width, height);
+      christy = createGraphics(width, height);
+      anora = createGraphics(width, height);
+      eaden = createGraphics(width, height);
+      mia = createGraphics(width, height);
+      Doris = createGraphics(width, height);
+      elaine = createGraphics(width, height);
+      Allen = createGraphics(width, height);
+      Zhiyi = createGraphics(width, height);
+      Jiarui = createGraphics(width, height);
+      younghyun = createGraphics(width, height);
+      mj = createGraphics(width, height);
+      Jason = createGraphics(width, height);
+      mia = createGraphics(width, height);
+      Leila = createGraphics(width, height);
+      Stella = createGraphics(width, height);
+      Una = createGraphics(width, height);
+    }
+
+    function alphaCurve(offset) {
+      return (frameCount + offset) % 255;
+    }
+
+    function draw() {
+      background("lightblue");
+      drawTCLayer1(alphaCurve(100));
+      drawTCLayer2(alphaCurve(200));
+      drawDorislayer(alphaCurve(120));
+      drawEadenLayer(alphaCurve(50));
+      drawNightrayLayer(alphaCurve(225));
+      drawAllenLayer(alphaCurve(130));
+      drawElaineLayer(alphaCurve(140));
+      drawZhiyiLayer(alphaCurve(64));
+      drawJiaruiLayer(alphaCurve(150));
+      drawChristyLayer(alphaCurve(100));
+      drawYounghyunLayer(alphaCurve(400));
+      drawAnoraLayer(alphaCurve(80));
+      drawLeilaLayer(alphaCurve(100));
+      drawJasonLayer(alphaCurve(1));
+      drawStellaLayer(alphaCurve(150));
+      drawUnaLayer(alphaCurve(111));
+    }
+
+    function drawTCLayer1(alpha) {
+      tc.circle(random(width), random(height), random(5, 10));
+      tint(255, alpha); // make the layer transparent
+      image(tc, 0, 0, width, height);
+    }
+
+    function drawTCLayer2(alpha) {
+      tc2.square(random(width), random(height), random(5, 10));
+      tint(255, alpha); // make the layer transparent
+      image(tc2, 0, 0, width, height);
+    }
+
+    function drawAnoraLayer(alpha) {
+      anora.noStroke();
+      anora.fill("red");
+      anora.triangle(30, 75, 58, 20, 86, 75);
+      tint(200, alpha);
+      image(anora, 0, 0, width, height);
+    }
+    function drawDorislayer(alpha) {
+      Doris.rect(random(width), random(height), random(5, 40), random(20, 30));
+      tint(255, alpha);
+      image(Doris, 0, 0, width, height);
+    }
+    function drawChristyLayer(alpha) {
+      christy.strokeWeight(5);
+      christy.line(
+        random(0, width),
+        random(0, height),
+        random(0, width),
+        random(0, height)
+      );
+      tint(255, alpha);
+      image(christy, 0, 0, width, height);
+    }
+
+    function drawNightrayLayer(alpha) {
+      Nightray.text("🐾", random(0, width), random(0, height));
+      tint(255, alpha); // make the layer transparent
+      image(Nightray, 0, 0, width, height);
+    }
+
+    function drawmiaLayer2(alpha) {
+      mia.strokeWeight(3);
+      mia.circle(random(width), random(height), random(5, 80));
+      tint(255, alpha); // make the layer transparent
+      image(mia, 0, 0, width, height);
+    }
+
+    function drawMjLayer(alpha) {
+      mj.strokeWeight(3);
+      mj.fill("#D2EF63");
+      mj.circle(random(width), random(height), random(5, 80));
+      tint(255, alpha); // make the layer transparent
+      image(mj, 0, 0, width, height);
+    }
+    function drawElaineLayer(alpha) {
+      elaine.noStroke();
+      elaine.circle(random(width), random(height), random(5, 10));
+      tint(255, alpha);
+      image(elaine, 0, 0, width, height);
+    }
+
+    function drawEadenLayer(alpha) {
+      eaden.ellipse(
+        random(width),
+        random(height),
+        random(5, 20),
+        random(5, 20)
+      );
+      tint(255, alpha);
+      image(eaden, 0, 0, width, height);
+    }
+
+    function drawAllenLayer(alpha) {
+      Allen.rotate(PI / 4);
+      Allen.rect(random(width), random(height), 100, 200);
+      Allen.tint(255, alpha);
+      Allen.image(Allen, 0, 0, height, width);
+    }
+
+    function drawUnaLayer(alpha) {
+      Una.noStroke();
+      Una.fill("pink");
+      Una.ellipse(random(width), random(height), 100, 200);
+      Una.tint(255, alpha);
+      Una.image(Una, 0, 0, width, height);
+    }
+
+    function drawYounghyunLayer(alpha) {
+      younghyun.circle(random(width), random(height), random(3, 50));
+      tint(255, alpha);
+      image(younghyun, 0, 0, width, height);
+    }
+
+    function drawZhiyiLayer(alpha) {
+      Zhiyi.textSize(10);
+      Zhiyi.text("🐽", random(width), random(height));
+      tint(255, alpha);
+      image(Zhiyi, 0, 0, width, height);
+    }
+    function drawJiaruiLayer(alpha) {
+      Jiarui.circle(random(width), random(height), 20);
+      tint(255, alpha);
+      image(Jiarui, 0, 0, width, height);
+      
+    }
+
+    function drawLeilaLayer(alpha) {
+      Leila.circle(10, 20, 50);
+      tint(255, alpha);
+      image(Leila, 0, 0, width, height);
+    }
+    function drawJasonLayer(alpha) {
+      Jason.circle(random(width), random(height), 50, 200);
+      tint(255, alpha);
+      image(Jason, 0, 0, width, height);
+    }
+
+    function drawMiaLayer(alpha) {
+      mia.line(random(width), random(height), 400, 200);
+      tint(255, alpha);
+      image(mia, 0, 0, width, height);
+    }
+
+    function drawStellaLayer(alpha) {
+      Stella.text("👻", random(width), random(height), 40);
+      tint(255, alpha);
+      image(Stella, 0, 0, width, height);
+    }
+  </script>
+
+  <body></body>
+</html>

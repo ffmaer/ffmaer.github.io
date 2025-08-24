@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>2D noise</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    function setup() {
+      createCanvas(400, 400);
+      for (let i = 0; i < width; i++) {
+        for (let j = 0; j < height; j++) {
+          let val = noise(i / 100, j / 100);
+          val = map(val, 0, 1, 0, 6);
+          if (val > 5) {
+            stroke("yellow");
+          } else if (val > 4) {
+            stroke("magenta");
+          } else if (val > 3) {
+            stroke("cyan");
+          } else if (val > 2) {
+            stroke("red");
+          } else if (val > 1) {
+            stroke("lime");
+          } else if (val > 0) {
+            stroke("blue");
+          }
+          point(i, j);
+        }
+      }
+    }
+  </script>
+
+  <body></body>
+</html>

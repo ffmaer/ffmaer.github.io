@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Many Brushes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+  </head>
+
+  <script>
+    // https://p5js.org/reference/#/p5.AudioIn
+
+    function setup() {
+      sidelen = 100;
+      let cnv = createCanvas(sidelen * 6, sidelen * 3);
+      background("yellow");
+      textAlign(LEFT, TOP);
+      mic = new p5.AudioIn();
+      mic.start();
+      cnv.mousePressed(userStartAudio);
+    }
+
+    function draw() {
+      micLevel = mic.getLevel();
+
+      for (let i = 0; i < 6; i++) {
+        //draw the grid
+        for (let j = 0; j < 3; j++) {
+          fill("yellow");
+          square(i * sidelen, j * sidelen, sidelen);
+        }
+      }
+
+      fill("black");
+      text("tap to start", 25, 5);
+
+      push();
+      translate(sidelen * 0, sidelen * 0);
+      c1 = color("yellow");
+      c2 = color("red");
+      c_mid = lerpColor(c1, c2, micLevel);
+      fill(c_mid); // gradually changing the color from yellow to red
+      circle(50, 50, 50);
+
+      fill("black");
+      text("tc", 5, 5);
+
+      circle(sidelen / 2 - 10, sidelen / 2 - 10, 5); // left eye
+      circle(sidelen / 2 + 10, sidelen / 2 - 10, 5); // right eye
+      ellipse(sidelen / 2, sidelen / 2 + 10, 40 * micLevel, 30 * micLevel); // mouth
+      pop();
+    }
+  </script>
+
+  <body></body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.play setCollider</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="./p5.play.js"></script>
+  </head>
+  <body>
+    <script>
+      let disciple;
+      let disciple_ss;
+      let disciple_animate;
+      let minion;
+      let minion_ss;
+      let minion_animate;
+      function preload() {
+        disciple_ss = loadSpriteSheet(
+          "https://cdn.glitch.com/044695de-e559-42ff-9a3f-6d480aac438b%2Fdisciple-45x51.png?v=1628750727750",
+          45,
+          51,
+          11
+        );
+        minion_ss = loadSpriteSheet(
+          "https://cdn.glitch.com/044695de-e559-42ff-9a3f-6d480aac438b%2Fminion-45x66.png?v=1628750728522",
+          45,
+          66,
+          6
+        );
+      }
+      function setup() {
+        createCanvas(400, 400);
+        disciple_animate = loadAnimation(disciple_ss);
+        disciple_animate.looping = false;
+        disciple_animate.stop();
+        disciple = createSprite(200, 200, 45, 51);
+        disciple.debug = true;
+        disciple.setCollider("rectangle", -5, 0, 30, 51);
+        disciple.draw = function() {
+          animation(disciple_animate, 0, 0);
+        };
+
+        minion_animate = loadAnimation(minion_ss);
+        minion = createSprite(100, 100, 45, 66);
+        minion.debug = true;
+        minion.draw = function() {
+          animation(minion_animate, 0, 0);
+        };
+        minion.setCollider("circle", 0, 0, 22);
+      }
+
+      function draw() {
+        background("violet");
+
+        if (keyDown(68) || keyDown(RIGHT_ARROW)) {
+          minion.position.x += 3;
+        }
+        if (keyDown(65) || keyDown(LEFT_ARROW)) {
+          minion.position.x -= 3;
+        }
+        if (keyDown(83) || keyDown(DOWN_ARROW)) {
+          minion.position.y += 3;
+        }
+        if (keyDown(87) || keyDown(UP_ARROW)) {
+          minion.position.y -= 3;
+        }
+
+        //         if(keyDown(68) || keyDown(65) || keyDown(83) || keyDown(87)){
+
+        //           if(!xiaohei_animate.playing){
+        //             xiaohei_animate.rewind()
+        //           }
+
+        //           xiaohei_animate.play()
+
+        //         }
+
+        minion.collide(disciple, function() {
+          disciple_animate.play();
+          disciple.setCollider("rectangle", 0, 20, 45, 20);
+        });
+
+        drawSprites();
+      }
+    </script>
+    <pre>
+      Copyright/Attribution Notice:
+      
+      Attibution to Stephen Challener (Redshrike) for the original sprites and a link to OpenGameArt.org
+      
+      https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria
+    </pre>
+  </body>
+</html>

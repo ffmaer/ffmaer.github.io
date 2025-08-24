@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.js pixels array, camera, mic</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let mic;
+      let capture;
+
+      function setup() {
+        let cnv = createCanvas(320, 240);
+        cnv.mousePressed(userStartAudio);
+        mic = new p5.AudioIn();
+        mic.start();
+        capture = createCapture(VIDEO);
+        capture.hide();
+      }
+
+      function draw() {
+        image(capture, 0, 0, width, height);
+        loadPixels();
+        let count = pixels.length / 4;
+        for (let i = 0; i < count / 2; i++) {
+          let selected_index = int(random(count));
+          let new_index = selected_index + int(random(mic.getLevel() * 100));
+          pixels[new_index * 4] = pixels[selected_index * 4];
+          pixels[new_index * 4 + 1] = pixels[selected_index * 4 + 1];
+          pixels[new_index * 4 + 2] = pixels[selected_index * 4 + 2];
+          pixels[new_index * 4 + 3] = pixels[selected_index * 4 + 3];
+        }
+        updatePixels();
+
+        fill("white");
+        textAlign(CENTER);
+        text("tap to start", width / 2, 20);
+      }
+    </script>
+  </body>
+</html>

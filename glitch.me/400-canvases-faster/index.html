@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Low Poly</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let start_t;
+      let strokeColors;
+      function setup() {
+        let d = new Date();
+        start_t = d.getTime();
+        createCanvas(1000, 1000);
+        strokeColors = [...Array(20)].map(e => Array(20));
+        for (let i = 0; i < 20; i++) {
+          for (let j = 0; j < 20; j++) {
+            noStroke();
+            fill(random(255), random(255), random(255));
+            strokeColors[i][j] = [random(255), random(255), random(255)];
+            rect(i * 50, j * 50, 50, 50);
+          }
+        }
+      }
+      function draw() {
+        for (let i = 0; i < 20; i++) {
+          for (let j = 0; j < 20; j++) {
+            stroke(...strokeColors[i][j]);
+            point(random(50) + i * 50, random(50) + j * 50);
+            let d = new Date();
+            let time_used = Math.floor((d.getTime() - start_t) / 1000) + 1;
+            push();
+            fill(random(255), random(255), random(255));
+            textAlign(CENTER, CENTER);
+            text(
+              Math.floor(frameCount / time_used),
+              50 / 2 + i * 50,
+              50 / 2 + j * 50
+            );
+            pop();
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

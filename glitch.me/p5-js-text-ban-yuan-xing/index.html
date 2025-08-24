@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(400, 400);
+        background("springgreen");
+      }
+
+      function draw() {
+        fill(random(["deeppink", "orangered", "yellow"]));
+        noStroke();
+        let x = random(width);
+        let y = random(width);
+        let content = "半圆形";
+        let padding = 10;
+        rectMode(CENTER);
+        textAlign(CENTER, CENTER);
+        rect(x, y, textWidth(content) + padding, textAscent(content) + padding);
+        fill("springgreen");
+        text(content, x, y);
+      }
+    </script>
+  </body>
+</html>

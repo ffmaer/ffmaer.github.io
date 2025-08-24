@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        perline = 10;
+        createCanvas(500, 500, WEBGL);
+        colors = [
+          "GreenYellow",
+          "Chartreuse",
+          "LawnGreen",
+          "Lime",
+          "LimeGreen",
+          "PaleGreen",
+          "LightGreen",
+          "MediumSpringGreen",
+          "SpringGreen",
+          "MediumSeaGreen",
+          "SeaGreen",
+          "ForestGreen",
+          "Green",
+          "DarkGreen",
+          "YellowGreen",
+          "OliveDrab",
+          "Olive",
+          "DarkOliveGreen",
+          "MediumAquamarine",
+          "DarkSeaGreen",
+          "LightSeaGreen",
+          "DarkCyan",
+          "Teal"
+        ];
+        debugMode();
+        buildings = [];
+        for (let col = 0; col < perline; col++) {
+          for (let row = 0; row < perline; row++) {
+            buildings.push(
+              new Building(
+                random(30, 50),
+                random(30, 50),
+                random(10, 150),
+                random(colors)
+              )
+            );
+          }
+        }
+      }
+      function draw() {
+        background("yellow");
+
+        stroke("white");
+        strokeWeight(2);
+        translate(-width / 4, 0, -height / 4);
+        gap = 30;
+        for (let row = 0; row < perline; row++) {
+          for (let col = 0; col < perline; col++) {
+            let index = row * perline + col;
+            let b = buildings[index];
+            push();
+            translate(col * gap, -b.h / 2, row * gap);
+            fill(b.c);
+            box(b.a1, b.h, b.a2);
+            pop();
+          }
+        }
+
+        orbitControl();
+      }
+      class Building {
+        constructor(a1, a2, h, c) {
+          this.a1 = a1;
+          this.a2 = a2;
+          this.h = h;
+          this.c = c;
+        }
+      }
+    </script>
+  </body>
+</html>

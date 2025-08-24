@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>two painters</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.1.1"></script>
+  </head>
+  <body>
+    <script>
+      let w;
+      let columns;
+      let rows;
+      let board;
+      let next;
+      let lifePoints = [];
+      let generationSpacing = 1;
+      // there are two painters
+      // each can only draw one point at a time
+      function setup() {
+        createCanvas(700, 700, SVG);
+        // For Game of Life Randomizer
+        w = 20;
+        columns = floor(width / w);
+        rows = floor(height / w);
+        board = new Array(columns);
+        for (let i = 0; i < columns; i++) {
+          board[i] = new Array(rows);
+        }
+        next = new Array(columns);
+        for (i = 0; i < columns; i++) {
+          next[i] = new Array(rows);
+        }
+        init();
+
+        // frameRate(10);
+        stroke("white");
+        background("black");
+        noFill();
+      }
+      let apoints = [];
+      let p1 = ["what", "do", "you", "want", "to", "say", "?"];
+      let p2 = [
+        "the",
+        "undoing",
+        "of",
+        "the",
+        "plot",
+        "proceeds",
+        "by",
+        "stealth"
+      ];
+
+      function draw() {
+        // Game of Life CODE
+        for (let i = 0; i < generationSpacing; i++) {
+          generate();
+        }
+
+        // empty lifePoints array
+        lifePoints.length = 0;
+
+        // Plotter Code
+        let [x1, y1] = a1();
+        let [x2, y2] = c1();
+        let [x3, y3] = c2();
+        let [x4, y4] = a2();
+        if (frameCount % 10) bezier(x1, y1, x2, y2, x3, y3, x4, y4);
+        let size=6
+        // circle(x2, y2, size);
+        push();
+        translate(x3, y3);
+        rotate(random(PI * 2));
+        // square(0, 0, size);
+        pop();
+
+        push();
+        fill("white");
+        noStroke();
+        text(p1[frameCount % p1.length], x1, y1);
+
+        text(p2[frameCount % p2.length], x4, y4);
+        pop();
+
+        if (frameCount > 200) {
+          noLoop();
+          save();
+        }
+      }
+
+      let right = 0;
+      let down = 0;
+      const P = 10;
+      const R = 28;
+      const B = 8 / 3;
+      let a1x = 10;
+      let a1y = 0;
+      let a1z = 0;
+      let a2x = 10;
+      let a2y = 0;
+      let a2z = 0;
+      function a1() {
+        //tc
+        let dt = 0.01;
+        let dx = P * (a1y - a1x) * dt;
+        let dy = (R * a1x - a1y - a1x * a1z) * dt;
+        let dz = (a1x * a1y - B * a1z) * dt;
+        a1x = a1x + dx;
+        a1y = a1y + dy;
+        a1z = a1z + dz;
+
+        return [a1x * 15 + width / 2, a1z * 15];
+      }
+
+      function c1() {
+        // bobby joe
+        for (let i = 0; i < columns; i++) {
+          for (let j = 0; j < rows; j++) {
+            if (board[i][j] == 1) {
+              lifePoints.push([i * w, j * w]);
+            }
+          }
+        }
+
+        return [
+          lifePoints[Math.floor(lifePoints.length / 2)][0],
+          lifePoints[Math.floor(lifePoints.length / 2)][1]
+        ];
+      }
+
+      function c2() {
+        //tc
+        let dt = 0.01;
+        let dx = P * (a2y - a2x) * dt;
+        let dy = (R * a2x - a2y - a2x * a2z) * dt;
+        let dz = (a2x * a2y - B * a2z) * dt;
+        a2x = a2x + dx;
+        a2y = a2y + dy;
+        a2z = a2z + dz;
+        return [a2y * 10 + width / 2, a2z * 10 + height / 2];
+      }
+
+      function a2() {
+        // bobby joe
+        for (let i = 0; i < columns; i++) {
+          for (let j = 0; j < rows; j++) {
+            if (board[i][j] == 1) {
+              lifePoints.push([i * w, j * w]);
+            }
+          }
+        }
+
+        return [lifePoints[0][0], lifePoints[0][1]];
+      }
+
+      // Game of Life Code
+      // Fill board randomly
+      function init() {
+        for (let i = 0; i < columns; i++) {
+          for (let j = 0; j < rows; j++) {
+            // Lining the edges with 0s
+            if (i == 0 || j == 0 || i == columns - 1 || j == rows - 1)
+              board[i][j] = 0;
+            // Filling the rest randomly
+            else board[i][j] = floor(random(2));
+            next[i][j] = 0;
+          }
+        }
+      }
+
+      // The process of creating the new generation
+      function generate() {
+        // Loop through every spot in our 2D array and check spots neighbors
+        for (let x = 1; x < columns - 1; x++) {
+          for (let y = 1; y < rows - 1; y++) {
+            // Add up all the states in a 3x3 surrounding grid
+            let neighbors = 0;
+            for (let i = -1; i <= 1; i++) {
+              for (let j = -1; j <= 1; j++) {
+                neighbors += board[x + i][y + j];
+              }
+            }
+
+            // A little trick to subtract the current cell's state since
+            // we added it in the above loop
+            neighbors -= board[x][y];
+            // Rules of Life
+            if (board[x][y] == 1 && neighbors < 2) next[x][y] = 0;
+            // Loneliness
+            else if (board[x][y] == 1 && neighbors > 3) next[x][y] = 0;
+            // Overpopulation
+            else if (board[x][y] == 0 && neighbors == 3) next[x][y] = 1;
+            // Reproduction
+            else next[x][y] = board[x][y]; // Stasis
+          }
+        }
+
+        // Swap!
+        let temp = board;
+        board = next;
+        next = temp;
+      }
+    </script>
+  </body>
+</html>

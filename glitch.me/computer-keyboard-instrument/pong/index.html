@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <script type="text/javascript" src="pong/Paddle.js"></script>
+    <script type="text/javascript" src="pong/Ball.js"></script>
+    <script type="text/javascript" src="pong/Puck.js"></script>
+    <script type="text/javascript" src="pong/Boat.js"></script>
+    <script>
+      // based on port of Daniel Shiffman's Pong coding challenge // by madacoo
+
+      let leftscore = 0;
+      let rightscore = 0;
+      let debug = true;
+      function preload() {
+        ding = loadSound(
+          "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/ding.mp3?v=1690262075013"
+        );
+      }
+      function setup() {
+        createCanvas(600, 720);
+        left = new Paddle(true);
+        right = new Paddle(false);
+
+        puck = new Puck(12, "It hurts!");
+        boat = new Boat(30, 0.2, "green", "yellow", "Ouch!");
+      }
+
+      function draw() {
+        background("DeepSkyBlue");
+
+        left.show();
+        right.show();
+        left.update();
+        right.update();
+
+        actions(puck);
+        actions(boat);
+
+        drawScores();
+        drawInstructions();
+      }
+      function drawScores() {
+        fill(255);
+        textSize(32);
+        text(leftscore, 32, 40);
+        text(rightscore, width - 64, 40);
+      }
+
+      function drawInstructions() {
+        fill(255);
+        textSize(32);
+        text("🆆 🆂", 32, 70);
+        text("↑ ↓", width - 64, 70);
+      }
+      function actions(ball) {
+        ball.checkPaddleRight(right);
+        ball.checkPaddleLeft(left);
+        ball.update();
+        ball.edges();
+        ball.show();
+      }
+
+      function keyReleased() {
+        left.move(0);
+        right.move(0);
+      }
+
+      function keyPressed() {
+        if (key == "w") {
+          left.move(-10);
+        } else if (key == "s") {
+          left.move(10);
+        }
+
+        if (keyCode == UP_ARROW) {
+          right.move(-10);
+        } else if (keyCode == DOWN_ARROW) {
+          right.move(10);
+        }
+      }
+    </script>
+  </body>
+</html>

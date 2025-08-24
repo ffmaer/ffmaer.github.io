@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>An AFRAME Project</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <script>
+      AFRAME.registerComponent("hit_target", {
+        init: function() {
+          this.el.addEventListener("hit", e => {
+            console.log(e);
+            // this.el.remove(); // This is the Target
+          });
+        }
+      });
+    </script>
+    <a-scene background="color: #000000">
+      <a-entity id="rig" position="25 10 0">
+        <a-entity id="camera" camera look-controls
+          ><a-cursor material="color: yellow; shader: flat"></a-cursor
+        ></a-entity>
+      </a-entity>
+    </a-scene>
+    <script>
+      // Bullet
+      var elbullet = document.createElement("a-sphere");
+      elbullet.setAttribute("scale", "0.5 0.5 0.5");
+      elbullet.setAttribute("opacity", "1");
+      elbullet.setAttribute("color", "#ff3333");
+      elbullet.setAttribute("position", "25 30 -30");
+      elbullet.setAttribute(
+        "collision-filter",
+        "group: bullet; collidesWith: target"
+      );
+      elbullet.setAttribute("dynamic-body", "shape: sphere; sphereRadius:0.5;");
+      elbullet.setAttribute("sphere-collider", "");
+      document.querySelector("a-scene").appendChild(elbullet);
+
+      // Target
+      var eltarget = document.createElement("a-box");
+      eltarget.setAttribute("scale", "1 1 1");
+      eltarget.setAttribute("opacity", "1");
+      eltarget.setAttribute("color", "#3333ff");
+      eltarget.setAttribute("position", "50 30 -30");
+      eltarget.setAttribute("collision-filter", "group: target;");
+      eltarget.setAttribute("hit_target", "");
+      document.querySelector("a-scene").appendChild(eltarget);
+    </script>
+  </body>
+</html>

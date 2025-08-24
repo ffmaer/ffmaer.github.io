@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.js img.get + mic</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let img;
+      let mic;
+
+      function preload() {
+        img = loadImage(
+          "https://cdn.glitch.com/3d77c509-9dad-499f-bcee-ba63ae386bdf%2Ftiny.jpg?v=1628163668520"
+        );
+        // https://cdn.glitch.com/3d77c509-9dad-499f-bcee-ba63ae386bdf%2Ftiny.jpg?v=1628163668520
+        // https://cdn.glitch.com/3d77c509-9dad-499f-bcee-ba63ae386bdf%2Fmedium.jpg?v=1628164191056
+      }
+
+      function setup() {
+        let cnv = createCanvas(img.width, img.height);
+        cnv.mousePressed(userStartAudio);
+        mic = new p5.AudioIn();
+        mic.start();
+      }
+
+      function draw() {
+        image(img, 0, 0);
+        for (let col = 0; col < img.width; col++) {
+          for (let row = 0; row < img.height; row++) {
+            let c = img.get(col, row);
+            stroke(c);
+            point(
+              col + random(-1, 1) * mic.getLevel() * 50,
+              row + random(-1, 1) * mic.getLevel() * 50
+            );
+          }
+        }
+
+        fill("white");
+        textAlign(CENTER);
+        text("tap to start", width / 2, 20);
+      }
+    </script>
+  </body>
+</html>

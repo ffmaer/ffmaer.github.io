@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>text random walk 4</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let x;
+      let y;
+      let jiao;
+      let end_y;
+      let ends = [];
+      function setup() {
+        createCanvas(400, 400);
+        angleMode(DEGREES);
+        background("black");
+        x = random(width);
+        y = 0;
+        jiao = random(360);
+        end_y = random(height);
+      }
+
+      function draw() {
+        background("black");
+        let i = 0;
+        while (i < ends.length) {
+          push();
+          translate(ends[i][0], ends[i][1]);
+          rotate(ends[i][2]);
+          text("文字", 0, 0);
+          pop();
+
+          i++;
+        }
+        fill("white");
+        x = x + random(-5, 5);
+        y = y + random(5, 10);
+        jiao = jiao + random(-10, 10);
+        push();
+        translate(x, y);
+        rotate(jiao);
+        text("文字", 0, 0);
+        pop();
+        if (y > end_y) {
+          ends.push([x, y, jiao]);
+          y = 0;
+          x = random(width);
+          jiao = random(360);
+          end_y = random(height);
+        }
+      }
+    </script>
+  </body>
+</html>

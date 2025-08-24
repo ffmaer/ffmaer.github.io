@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>p5.js Play Video Fullscreen</title>
+    <style>
+      canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: none;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <video
+      id="video"
+      src="https://cdn.glitch.com/edf81bae-bc65-4a10-b8e1-2466f2b8b20b%2Fwaterfall.mp4?v=1593681548049"
+      controls="false"
+      autoplay
+      loop
+      playsinline
+    ></video>
+    <canvas id="canvas"></canvas>
+    <script>
+      const canvas = document.querySelector("canvas");
+
+      const ctx = canvas.getContext("2d");
+      const video = document.querySelector("video");
+
+      video.addEventListener("play", () => {
+        video.setAttribute("style", "display:none");
+        canvas.setAttribute("width", document.body.clientWidth);
+        canvas.setAttribute("height", document.body.clientHeight);
+        canvas.setAttribute("style", "display:block");
+        function step() {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    </script>
+  </body>
+</html>

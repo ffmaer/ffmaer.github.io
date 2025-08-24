@@ -1,0 +1,2 @@
+2020.11.8
+今天一早起来开发。heroku cli因为proxy问题无法使用。通过npm run build成功把前后端合二为一。powershell和command line设置environemnt variable的方法是不一样的。

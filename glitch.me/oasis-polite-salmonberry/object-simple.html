@@ -1,0 +1,236 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Object Orientation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    function setup() {
+      createCanvas(600, 600);
+      boat1 = new Boat(random(width), random(height)); //tc
+      cat1 = new cat(random(0,300), random(300,600)); //nightray
+      beachball1 = new Beachball(); //Doris
+      house1 = new House(); //anora
+      bird1 = new Bird(50, 300); //eaden
+      coconuttree1 = new CoconutTree(); //elaine
+      shark1 = new shark(500,400); //Jiarui
+      Poodle = new poodle(); //Allen
+      Dog1 = new dog(); //younghyun
+      cloud = new cloud(); // Stella
+      planet1 = new planet(); //mia
+      pyramid1 = new Pyramid(100, 100); //christy
+      myTerrorist = new Terrorist(0,400); //Zhiyi
+      bear1 = new Bear(random(width), random(height)); //Una
+      Car = new Car(); //jason
+      cat2 = new Cat2(); // Mj
+      frog = new frog(); // Irene
+    }
+
+    function draw() {
+      boat1.move();
+      boat1.draw(); //tc
+
+      cat1.move();
+      cat1.draw(); //nightray
+
+      beachball1.draw(); //Doris
+
+      bird1.move();
+      bird1.draw(); //eaden
+
+      house1.draw(); //anora
+
+      //Zhiyi
+      myTerrorist.move();
+      myTerrorist.draw();
+
+      pyramid1.draw(); //christy
+      Dog1.draw(); //younghyun
+      cloud.draw(); // Stella
+      Car.draw(); //Jason
+      shark1.draw(); //Jiarui
+      cat2.draw(); // Mj
+
+      bear1.move(); //Una
+      bear1.draw();
+
+      Poodle.draw(); //Allen
+      Poodle.move(); //Allen
+      planet1.draw(); //mia
+      coconuttree1.draw(); //elaine
+    }
+
+    class Boat {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      move() {
+        this.x = this.x + 2;
+      }
+      draw() {
+        circle(this.x, this.y, 20);
+      }
+    } //tc
+
+    class cat {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      move() {
+        this.x = this.x + 5;
+      }
+      draw() {
+        circle(this.x, this.y, 50);
+      }
+    } //nightray
+
+    class dog {
+      //younghyun
+      draw() {}
+    }
+
+    class cloud {
+      // Stella
+      draw() {}
+    }
+    
+    class frog {
+      // Irene
+      draw() {}
+    }
+
+    class House {
+      draw() {}
+    } //anora
+
+    class Beachball {
+      //Doris
+      draw() {}
+    }
+
+    class Bird {
+      constructor(x1, y1) {
+        this.x = x1;
+        this.y = y1;
+      }
+      move() {
+        this.x = this.x + 3;
+      }
+      draw() {
+        circle(this.x, this.y, 15);
+      }
+    } //Eaden
+
+    class CoconutTree {
+      draw() {}
+    } //elaine
+
+    class poodle {
+      constructer(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      move() {
+        this.x = this.x + 10;
+      }
+      draw() {
+        circle(this.x, this.y, 30);
+      }
+    } //Allen
+
+    class Bear {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      move() {
+        this.x++;
+      }
+      draw() {
+        circle(this.x, this.y, 60);
+      }
+    } //Una
+
+    class Terrorist {
+      //Zhiyi
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      move() {
+        this.x = this.x + 2;
+      }
+      draw() {
+        circle(this.x, this.y, 50);
+      }
+    }
+
+    class shark {
+      constructior(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      draw() {
+        circle(this.x, this.y, 10);
+      }
+    } //Jiarui
+
+    class Pyramid {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+
+      move() {
+        this.x = this.x + 2;
+      }
+
+      draw() {
+        circle(this.x, this.y, 10);
+      }
+    } //christy
+
+    class planet {
+      draw() {
+        //      push();
+        //   translate(x,50+y);
+        // rotate(sin(frameCount*5)*15);
+        //   scale(0.5);
+        //   fill(c1);
+        //   noStroke();
+        //   ellipse(x, y, 200);
+        //   beginShape();
+        //   translate(x, y);
+        //   noFill();
+        //   strokeWeight(10);
+        //   stroke(c2);
+        //   vertex(-120, 0);
+        //   bezierVertex(-30+300, y+100, 50, 100, 120, 0);
+        //   endShape();
+        //   pop();
+      }
+    } //mia
+
+    class Car {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      move() {
+        this.x = this.x + 2;
+      }
+      draw() {
+        circle(this.x, this.y, 10);
+      }
+    } //Jason
+
+    class Cat2 {
+      draw() {}
+    } // Mj
+  </script>
+
+  <body></body>
+</html>

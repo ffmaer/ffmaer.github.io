@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mask</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
+  </head>
+  <style>
+    body {
+      background-color: black;
+    }
+  </style>
+
+  <script>
+    // https://www.artic.edu/collection?is_public_domain=1
+    // https://www.artic.edu/artworks/43714/e-10-english-dining-room-of-the-georgian-period-1770-90
+    // https://github.com/processing/p5.js/wiki/Positioning-your-canvas
+    function preload() {
+      room = loadImage(
+        "https://cdn.glitch.global/4af0062b-f4f2-4f2c-bf34-f79422fe1239/1941.1195%20-%20E-10_%20English%20Dining%20Room%20of%20the%20Georgian%20Period%2C....jpg?v=1690904496978"
+      );
+    }
+    function setup() {
+      cnv = createCanvas(400, 300);
+      mask_layer = createGraphics(width, height);
+    }
+    function draw() {
+      mask_layer.circle(width/2, height/2, 200);
+      room.mask(mask_layer);
+      image(room, 0, 0, width, height);
+    }
+  </script>
+
+  <body></body>
+</html>

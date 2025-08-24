@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>ml5 feature extractor</title>
+    <script src="https://cdn.jsdelivr.net/npm/ml5@0.5.0/dist/ml5.min.js"></script>
+  </head>
+  <body>
+    <img id="img" />
+    <p>
+      <a
+        href="https://commons.wikimedia.org/wiki/File:Red_billed_gull-02.jpg"
+        title="via Wikimedia Commons"
+        >I, Tony Wills</a
+      >
+      / <a href="https://creativecommons.org/licenses/by/2.5">CC BY</a>
+    </p>
+
+    <button id="train">
+      train
+    </button>
+    <script>
+      let fe = ml5.featureExtractor("MobileNet", modelLoaded);
+
+      function modelLoaded() {
+        console.log("model loaded");
+        let classifier = fe.classification();
+        let img = document.querySelector("#img");
+        img.addEventListener("load", function() {
+          classifier.addImage(img, "gull1");
+          classifier.addImage(img, "gull1");
+          classifier.addImage(img, "gull3");
+        });
+        img.src = "gull.jpg";
+        let train = document.querySelector("#train");
+        train.onclick = function() {
+          console.log("train");
+          classifier.train(lossValue => {
+            console.log("Loss is", lossValue);
+          });
+        };
+      }
+    </script>
+  </body>
+</html>

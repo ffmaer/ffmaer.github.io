@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.js curve experiments</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let control_p1_x;
+      let control_p1_y;
+      let control_p2_x;
+      let control_p2_y;
+
+      function setup() {
+        createCanvas(400, 400);
+        createP("control point 1 x");
+        control_p1_x = createSlider(0, width, 100);
+        createP("control point 1 y");
+        control_p1_y = createSlider(0, width, 100);
+        createP("control point 2 x");
+        control_p2_x = createSlider(0, width, 300);
+        createP("control point 2 y");
+        control_p2_y = createSlider(0, width, 300);
+      }
+      function draw() {
+        background("lightblue");
+
+        let c1x = control_p1_x.value();
+        let c1y = control_p1_y.value();
+        let c2x = control_p2_x.value();
+        let c2y = control_p2_y.value();
+
+        strokeWeight(1);
+        noFill();
+        curve(c1x, c1y, 100, 100, 300, 300, c2x, c2y);
+
+        strokeWeight(3);
+        point(c1x, c1y);
+        point(c2x, c2y);
+        fill("black");
+        text(" c.p.1", c1x, c1y);
+        text(" c.p.2", c2x, c2y);
+      }
+    </script>
+  </body>
+</html>

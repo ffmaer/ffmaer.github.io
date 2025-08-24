@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Barcode</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+    
+    barcode = [1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1,0,0,0,1,1,0,1];
+
+    function setup() {
+      createCanvas(400, 120);
+      background("yellow");
+      translate(10,0)
+      for (let i = 0; i < barcode.length; i++) {
+        if (barcode[i] == 0) {
+          fill("white");
+          rect(20 * i, 10, 15, 100);
+        } else if (barcode[i] == 1) {
+          fill("black");
+          rect(20 * i, 10, 15, 100);
+        }
+      }
+    }
+    
+  </script>
+
+  <body></body>
+</html>

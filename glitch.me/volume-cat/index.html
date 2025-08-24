@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.play getLevel animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="./p5.play.js"></script>
+    <script src="./p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let gif;
+      let gif_ss;
+      let gif_animate;
+      let frames = 17;
+      function preload() {
+        gif_ss = loadSpriteSheet(
+          "https://cdn.glitch.com/1cdc7510-64ff-4c97-92ee-f314c5b98ddf%2Fezgif.com-gif-maker%20(1).png?v=1629278803473",
+          254,
+          480,
+          frames
+        );
+      }
+      function setup() {
+        cnv = createCanvas(400, 400);
+        cnv.mousePressed(userStartAudio);
+        mic = new p5.AudioIn();
+        mic.start();
+        gif_animate = loadAnimation(gif_ss);
+        gif = createSprite(width / 2, height / 2, 50, 50);
+        gif.draw = function() {
+          animation(gif_animate, 0, 0);
+        };
+      }
+
+      function draw() {
+        background("Lavender");
+        level = mic.getLevel() * 100;
+
+        if (level > frames) {
+          level = frames;
+        }
+        gif_animate.goToFrame(level);
+        drawSprites();
+        fill("white");
+        text(level, width / 2, height / 2);
+      }
+    </script>
+    <pre>
+      https://ezgif.com/gif-to-sprite
+    </pre>
+  </body>
+</html>

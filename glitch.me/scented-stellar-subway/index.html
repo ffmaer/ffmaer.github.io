@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let z_limit = 1000;
+      let strs = "How are you doing ?".split(" ");
+      console.log("How are you?")
+      let words;
+
+      function preload() {
+        Roboto = loadFont(
+          "https://cdn.glitch.com/bc7d84a0-712c-4a4b-ad30-bf3112c208a3%2FRoboto-Regular.ttf?v=1630091313386"
+        );
+      }
+      function setup() {
+        createCanvas(windowWidth, windowHeight, WEBGL);
+        words = [];
+
+        for (let i = 0; i < 500; i++) {
+          let str = strs[i % strs.length];
+          let x = random(-width / 2, width / 2);
+          let y = random(-height / 2, height / 2);
+          let z = random(-z_limit, 0);
+          let w = new Word(str, x, y, z);
+          words.push(w);
+        }
+        frameRate(30
+                 )
+      }
+
+      function draw() {
+        console.log(frameRate())
+        orbitControl();
+        background("black");
+        for (let i = 0; i < words.length; i++) {
+          words[i].update();
+          words[i].draw();
+        }
+      }
+
+      class Word {
+        constructor(str, x, y, z) {
+          this.str = str;
+          this.x = x;
+          this.y = y;
+          this.z = z;
+        }
+        update() {
+          this.z += 10;
+          if (this.z > z_limit) this.z = random(-z_limit, 0);
+        }
+        draw() {
+          push();
+          textAlign(CENTER, CENTER);
+          textFont(Roboto);
+          textSize(100);
+          fill("white");
+          translate(this.x, this.y, this.z);
+          text(this.str, 0, 0);
+          pop();
+        }
+      }
+    </script>
+  </body>
+</html>

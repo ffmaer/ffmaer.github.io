@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>interactive aaaaaaaaaah</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let mic;
+      let diameter = 10;
+      function setup() {
+        let cnv = createCanvas(500, 500);
+        background("darkorange");
+
+        cnv.mousePressed(userStartAudio);
+        mic = new p5.AudioIn();
+        mic.start();
+      }
+
+      function draw() {
+        fill("red");
+        textAlign(CENTER);
+        text("发声练习，tap to start, say aaaaaaaaaah", width / 2, 20);
+        noStroke();
+        let level = mic.getLevel();
+        if (level > 0.5) {
+          console.log(level);
+          diameter = diameter + level;
+        }
+        circle(width / 2, height / 2, diameter);
+      }
+    </script>
+  </body>
+</html>

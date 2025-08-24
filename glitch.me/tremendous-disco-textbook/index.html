@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Keyboard Instrument</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+    <script src="https://p5play.org/v3/planck.min.js"></script>
+    <script src="https://p5play.org/v3/p5play.js"></script>
+  </head>
+
+  <script>
+    function setup() {
+      createCanvas(500, 500);
+      background("yellow");
+      name = "";
+    }
+    function draw() {
+      drawName();
+    }
+
+    function keyPressed() {
+      if (key == "a") {
+        name = "tc";
+        tc = createImg(
+          "https://cdn.glitch.global/b0bbd36a-7479-473e-89c1-97d619ee1b43/balloons.gif?v=1688666726681"
+        );
+        tc.position(random(height), random(width));
+      }
+    }
+
+    function drawName() {
+      textAlign(LEFT, TOP);
+      textSize(50);
+      rect(50, 50, textWidth(name), 50);
+      text(name, 50, 50);
+    }
+  </script>
+
+  <body></body>
+</html>

@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chain Functions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+
+  <script>
+      // Chain functions (the input should be a number; the output should also be a number)
+
+    function setup() {
+      createCanvas(200, 200);
+      print(
+        MJ(Irene(
+          stella(
+            Bigallen(
+              younghyun(
+                Jiarui(
+                  Leila(
+                    Eaden(
+                      Jason(
+                        christy(
+                          mia(Doris(zhiyi(Una(elaine(Nightray(anora(tc(255))))))))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      ));
+    }
+
+    function draw() {
+      background("lightblue");
+    }
+
+    function tc(input) {
+      output = input % 9;
+      print("tc: "+output);
+      return output;
+    }
+
+    function stella(input) {
+      output = input % 27;
+      print("stella"+output);
+      return output;
+    } //stella
+
+    function anora(input) {
+      output = input * 0.001;
+      print("anora"+output);
+      return output;
+    } //anora
+
+    function Nightray(input) {
+      output = input * 20;
+      print("nightray"+output);
+      return output;
+    } //Nightray
+
+    function younghyun(input) {
+      output = input * 5;
+      print("younghyun: "+output);
+      return output;
+    } //younghyun
+
+    function christy(input) {
+      output = input * 4;
+      print("christy: " + output);
+      return output;
+    }
+
+    function zhiyi(input) {
+      output = pow(input, 2);
+      print("zhiyi: "+output);
+      return output;
+    }
+
+    function Una(input) {
+      output = input - 2;
+      print("Una:" + output);
+      return output;
+    }
+    function Irene(input) {
+      output = input * 3;
+      print("Irene: "+output);
+      return output;
+    }
+
+    function Doris(input) {
+      output = input * 11;
+      print("Doris: "+ output);
+      return output;
+    } //Doris
+
+    function mia(input) {
+      output = input * 6;
+      print("mia:"+output);
+      return output;
+    }
+    function Jason(input) {
+      output = input % 20000000000;
+      print("jason:" + output);
+      return output;
+    }
+    function Bigallen(input) {
+      output = sqrt(input) * PI;
+      print("Big allen never gonna give u up:"+output);
+      return output;
+    }
+    function Jiarui(input) {
+      output = input + 10;
+      print("jiarui: "+output);
+      return output;
+    }
+
+    function elaine(input) {
+      output = input * 12;
+      print("elaine: " + output);
+      return output;
+    }
+
+    function Leila(input) {
+      output = input % 20000000000000000000000000;
+      print("Leila:"+output);
+      return output;
+    }
+    function Eaden(input) {
+      output = input % 8000;
+      print("Eaden: "+ output);
+      return output;
+    } //Eaden
+    
+    function MJ(input) {
+      output = input % 8000;
+      print("MJ: "+ output);
+      return output;
+    } //Eaden
+  </script>
+
+  <body></body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
+    <script src="./p5.speech.js"></script>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <p>说：圆形、三角形、正方形</p>
+    <p>
+      https://idmnyu.github.io/p5.js-speech/
+    </p>
+    <script>
+      let myRec = new p5.SpeechRec("zh-CN");
+      myRec.continuous = true;
+      let word = "";
+      let history_div;
+
+      function setup() {
+
+        createCanvas(400, 400);
+        background("springgreen");
+        noLoop();
+        myRec.onEnd = () => {
+          myRec.start();
+        };
+        myRec.onResult = parseResult;
+        myRec.start();
+        history_div = createDiv("");
+      }
+
+      function draw() {
+        fill(random(["deeppink", "orangered", "yellow"]));
+        noStroke();
+        if (word == "圆形") {
+          circle(random(width), random(width), random(20, 80));
+        } else if (word == "三角形") {
+          triangle(
+            random(width),
+            random(width),
+            random(width),
+            random(width),
+            random(width),
+            random(width)
+          );
+        } else if (word == "正方形") {
+          square(random(width), random(width), random(20, 80));
+        }
+      }
+
+      function parseResult() {
+        word = myRec.resultString;
+        if (word != "") {
+          history_div.html(`${history_div.html()}<br>${word}`);
+        }
+        redraw();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p5.play move a huolong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="./p5.play.js"></script>
+  </head>
+  <body>
+    <script>
+      let you;
+      let huolong;
+      let basi;
+      let shangbian;
+      let xiabian;
+      let zuobian;
+      let youbian;
+      let sibian;
+      let zhongbian;
+      function setup() {
+        createCanvas(800, 800);
+        you = createSprite(360, 300, 100, 100);
+        you.debug = true;
+        you.setCollider("rectangle",0,50,20,20)
+        huolong = createSprite(100, 50, 50, 50);
+        huolong.debug = true;
+        huolong.setCollider("rectangle", 0, 100, 50,50);
+        basi = createSprite(200, 300, 50, 50);
+        basi.debug = true;
+        basi.setCollider("rectangle", 10, -50, 25,25);
+        shangbian = createSprite(400, 0, 800, 20);
+        xiabian = createSprite(400, 800, 800, 20);
+        zuobian = createSprite(0, 400, 20, 800);
+        youbian = createSprite(800, 400, 20, 800);
+        zhongbian = createSprite(400, 200, 300, 30);
+        zhongbian.debug = true;
+        zhongbian.draw=function(){
+          circle(0,0,100)
+        }
+        sibian = Group();
+        sibian.add(shangbian);
+        sibian.add(xiabian);
+        sibian.add(zuobian);
+        sibian.add(youbian);
+        sibian.add(zhongbian);a
+        you.draw = function() {
+          strokeWeight(5);
+          stroke("red");
+          fill("black");
+          circle(0, 0, 50);
+          image(img_you, 0, 0);
+        };
+        huolong.draw = function() {
+          // strokeWeight(5)
+          // stroke("yellow");
+          // fill("blue");
+          // circle(0,0,50)
+          image(img_huolong, 0, 0);
+          basi.draw = function() {
+            image(img_basi, 0, 0);
+          };
+        };
+      }
+      let img_huolong;
+      let img_you;
+      function preload() {
+        img_huolong = loadImage(
+          "https://cdn.glitch.com/2c4d23a2-dbc4-43d0-ab50-208d9c93cba5%2F%E6%9C%AA%E5%91%BD%E5%90%8D%E4%BD%9C%E5%93%81_%E5%89%AF%E6%9C%AC.png?v=1628563548035"
+        );
+        img_you = loadImage(
+          "https://cdn.glitch.com/2c4d23a2-dbc4-43d0-ab50-208d9c93cba5%2F%E6%9C%AA%E5%91%BD%E5%90%8D%E4%BD%9C%E5%93%81%202.png?v=1628563871474"
+        );
+        img_basi = loadImage(
+          "https://cdn.glitch.com/2c4d23a2-dbc4-43d0-ab50-208d9c93cba5%2F%E6%9C%AA%E5%91%BD%E5%90%8D%E4%BD%9C%E5%93%81%203.png?v=1628564497487"
+        );
+      }
+
+      function draw() {
+        background("violet");
+        //         fill("white");
+        //         text("Use asdw or arrow keys to navigate.", 20, 680);
+        if (keyDown(RIGHT_ARROW)) {
+          huolong.position.x = huolong.position.x + 5;
+        }
+        if (keyDown(LEFT_ARROW)) {
+          huolong.position.x = huolong.position.x - 5;
+        }
+        if (keyDown(UP_ARROW)) {
+          huolong.position.y = huolong.position.y - 5;
+        }
+        if (keyDown(DOWN_ARROW)) {
+          huolong.position.y = huolong.position.y + 5;
+        }
+        if (keyDown(68)) {
+          you.position.x = you.position.x + 5;
+        }
+        if (keyDown(65)) {
+          you.position.x = you.position.x - 5;
+        }
+        if (keyDown(87)) {
+          you.position.y = you.position.y - 5;
+        }
+        if (keyDown(83)) {
+          you.position.y = you.position.y + 5;
+        }
+        if (keyDown(84)) {
+          basi.position.y = basi.position.y + 5;
+        }
+        if (keyDown(71)) {
+          basi.position.y = basi.position.y - 5;
+        }
+        if (keyDown(70)) {
+          basi.position.x = basi.position.x - 5;
+        }
+        if (keyDown(72)) {
+          basi.position.x = basi.position.x + 5;
+        }
+        //         if (keyDown(68) || keyDown(RIGHT_ARROW)) {
+        //           you.position.x += 3;
+        //         }
+        //         if (keyDown(65) || keyDown(LEFT_ARROW)) {
+        //           you.position.x -= 3;
+        //         }
+        //         if (keyDown(83) || keyDown(DOWN_ARROW)) {
+        //           you.position.y += 3;
+        //         }
+        //         if (keyDown(87) || keyDown(UP_ARROW)) {
+        //           you.position.y -= 3;
+        //         }
+        huolong.collide(sibian, function() {
+          console.log("撞到墙了！");
+        });
+        you.collide(sibian, function() {
+          console.log("撞到墙了！");
+        });
+        basi.collide(sibian, function() {
+          console.log("撞到墙了！");
+        });
+        you.collide(sibian, function() {});
+
+        drawSprites();
+      }
+    </script>
+  </body>
+</html>

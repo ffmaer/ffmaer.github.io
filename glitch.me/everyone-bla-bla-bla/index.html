@@ -1,0 +1,349 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Many Brushes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+  </head>
+
+  <script>
+    // https://p5js.org/reference/#/p5.AudioIn
+
+    function setup() {
+      sidelen = 100;
+      let cnv = createCanvas(sidelen * 6, sidelen * 3);
+      textAlign(LEFT, TOP);
+      mic = new p5.AudioIn();
+      mic.start();
+      cnv.mousePressed(userStartAudio);
+    }
+
+    function draw() {
+      for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 3; j++) {
+          
+          fill("lawngreen")
+          
+          square(i * sidelen, j * sidelen, sidelen);
+        }
+      }
+      fill("black");
+      text("tap to start", 25, 5);
+      micLevel = mic.getLevel();
+
+      push();
+      translate(sidelen * 0, sidelen * 0);
+      
+      c1 = color("pink");
+      c2 = color("red");
+      c_mid = lerpColor(c1, c2, micLevel);
+      fill(c_mid); // gradually changing the color from yellow to red
+      rectMode(CENTER)
+      push()
+      translate(50,50)
+      angleMode(DEGREES)
+      rotate(frameCount)
+      square(0, 0, 50,10);
+      rotate(30)
+      square(0, 0, 50,10);
+      rotate(30)
+      square(0, 0, 50,10);
+      pop()
+      fill("black");
+      text("tc", 5, 5);
+      square(sidelen / 2 - 10, sidelen / 2 - 10, 5); // left eye
+      square(sidelen / 2 + 10, sidelen / 2 - 10, 5); // right eye
+      circle(sidelen / 2, sidelen / 2 + 10, 40 * micLevel, 30 * micLevel); // mouth
+      pop();
+
+      push();
+      translate(sidelen * 1, sidelen * 1);
+      c1 = color("pink");
+      c2 = color("black");
+      c_mid = lerpColor(c1, c2, micLevel);
+      fill(c_mid);
+      circle(50, 50, 50);
+      fill("black");
+      text("mj", 5, 5);
+      circle(sidelen / 2 - 10, sidelen / 2 - 15, 5);
+      circle(sidelen / 2 + 10, sidelen / 2 - 15, 5);
+      ellipse(sidelen / 2, sidelen / 2 + 10, 60 * micLevel, 30 * micLevel);
+      pop();
+
+      push();
+      translate(sidelen * 1, sidelen * 0);
+      fill("black");
+      text("Jiarui", 28, 5);
+      fill("hotpink");
+      stroke("black");
+      ellipse(sidelen / 2 - 15, sidelen / 2 + 25, 15, 20);
+      ellipse(sidelen / 2 + 15, sidelen / 2 + 25, 15, 20);
+      c1 = color("pink");
+      c2 = color("red");
+      c_mid = lerpColor(c1, c2, micLevel);
+      fill(c_mid);
+      circle(50, 50, 50);
+      fill("black");
+      ellipse(sidelen / 2 - 10, sidelen / 2 - 10, 3, micLevel * 18 + 6);
+      ellipse(sidelen / 2 + 10, sidelen / 2 - 10, 3, micLevel * 18 + 6);
+      fill("firebrick");
+      ellipse(
+        sidelen / 2,
+        sidelen / 2 + 10,
+        60 * micLevel + 10,
+        30 * micLevel + 5
+      );
+      fill("hotpink");
+      noStroke();
+      ellipse(sidelen / 2 - 15, sidelen / 2, 8, 5);
+      ellipse(sidelen / 2 + 15, sidelen / 2, 8, 5);
+
+      pop();
+
+      push(); //1
+      translate(sidelen * 2, sidelen * 0); //2
+      c1 = color("black");
+      c2 = color("black");
+      c_mid = lerpColor(c1, c2, micLevel); //渐变函数，从第一种颜色到第二种颜色 与第三个变量关联
+      fill(c_mid);
+      circle(50, 50, 50);
+      text("NIGHTRAY", sidelen / 5, sidelen / 1.2); //sidelen每个边框的间距
+      noStroke();
+      fill("green");
+      circle(sidelen / 2 - 10, sidelen / 2 - 0, 15);
+      circle(sidelen / 2 + 10, sidelen / 2 - 0, 15);
+      fill("black");
+      circle(sidelen / 2 - 10, sidelen / 2 - 0, 7);
+      circle(sidelen / 2 + 10, sidelen / 2 - 0, 7);
+      triangle(26, 48, 20, 12, 42, 26); //zuoer
+      triangle(74, 48, 80, 12, 56, 25); //youer
+      
+      
+      fill("white");
+      circle(sidelen / 2 - 8, sidelen / 2 - 5, 3);
+      circle(sidelen / 2 + 12, sidelen / 2 - 5, 3);
+      fill("pink");
+      ellipse(sidelen / 2, sidelen / 2 + 10, 8, 4);
+      //ellipse(sidelen / 2, sidelen / 2 + 15, 30 * micLevel, 20 * micLevel);//mouth
+      triangle(
+        47 - 10 * micLevel,
+        68 + 10 * micLevel,
+        sidelen / 2,
+        sidelen / 2 + 12,
+        52 + 10 * micLevel,
+        68 + 10 * micLevel
+      );
+      pop();
+
+      push();
+      translate(sidelen * 3, sidelen * 0);
+      fill("black");
+      text("Christy", sidelen / 2, sidelen / 2 + 20);
+      noFill();
+      circle(50, 50, 430 * micLevel);
+      pop();
+
+      //Una
+      push();
+      translate(sidelen * 4, sidelen * 0);
+      fill("black");
+      text("Una", sidelen / 2 - 45, sidelen / 2 - 50);
+
+      fill("white");
+      noStroke();
+      circle(50, 50, 50);
+
+      fill("pink");
+      noStroke();
+      circle(35, 30, 12 + 70 * micLevel);
+      circle(65, 30, 12 + 70 * micLevel);
+
+      fill("black");
+      circle(40, 50, 10 + 50 * micLevel);
+      circle(60, 50, 10 + 50 * micLevel);
+
+      fill("white");
+      circle(40.5, 47.5, 3.3 + 50 * micLevel);
+      circle(38, 52, 3.3 + 50 * micLevel);
+      circle(42, 52, 3.3 + 50 * micLevel);
+      circle(60.5, 47.5, 3.3 + 50 * micLevel);
+      circle(58, 52, 3.3 + 50 * micLevel);
+      circle(62, 52, 3.3 + 50 * micLevel);
+
+      fill("magenta");
+      circle(50, 62, 10 + 100 * micLevel);
+
+      fill("brown");
+      circle(50, 56, 5 + 20 * micLevel - 10);
+
+      pop();
+
+      //mia
+      push();
+      translate(sidelen * 5, sidelen * 0);
+      fill("black");
+      text("mia", sidelen / 2 - 50, sidelen / 2 + 25);
+      fill("lightblue");
+      circle(50, 50, 65);
+      fill("black");
+      circle(30, 20, 10);
+      circle(70, 20, 10);
+      noFill(0);
+      circle(50, 60 * micLevel, 20);
+
+      pop();
+
+      push();
+      translate(sidelen * 5, sidelen * 2);
+      c1 = color("red");
+      c2 = color("blue");
+      c_mid = lerpColor(c1, c2, micLevel);
+      fill(c_mid);
+      circle(50, 50, 50);
+      fill("black");
+      text("Allen", sidelen / 2, sidelen / 2 - 40);
+      circle(sidelen / 2 - 10, sidelen / 2 - 10, 5);
+      circle(sidelen / 2 + 10, sidelen / 2 - 10, 5);
+      ellipse(sidelen / 2, sidelen / 2 + 10, 40 * micLevel, 30 * micLevel);
+      pop();
+
+      push();
+      translate(sidelen * 0, sidelen * 1);
+      fill("black");
+      noFill();
+      circle(50, 50, 50);
+      fill("black");
+      circle(50, 70, 40 * micLevel);
+      text("Jason", sidelen / 2, sidelen / 2);
+      pop();
+
+
+      push();
+      translate(sidelen * 2, sidelen * 1);
+      d1 = color("green");
+      d2 = color("red");
+      c_mid = lerpColor(c1, c2, micLevel);
+      fill(c_mid);
+      circle(50, 50, 50);
+      circle(sidelen / 2 - 10, sidelen / 2 - 10, 5);
+      circle(sidelen / 2 + 10, sidelen / 2 - 10, 5);
+      rect(sidelen / 2, sidelen / 2 + 10, 80 * micLevel, 80 * micLevel);
+
+      fill("black");
+      text("Anora", sidelen / 18, sidelen / 18);
+      pop();
+
+      push();
+      translate(sidelen * 3, sidelen * 1);
+      c1 = color("blue");
+      c2 = color("pink");
+      c_mid = lerpColor(c1, c2, 10 * micLevel);
+      fill(c_mid);
+      circle(50, 50, 50);
+      fill("white");
+      circle(sidelen / 2 - 10, sidelen / 2 - 20, 10 + 70 * micLevel);
+      circle(sidelen / 2 + 10, sidelen / 2 - 20, 10 + 70 * micLevel);
+      ellipse(sidelen / 2, sidelen / 2 + 10, 80 * micLevel, 80 * micLevel);
+      text("Dorischen", sidelen / 2, sidelen / 2);
+      pop();
+
+      push();
+      translate(sidelen * 4, sidelen * 1);
+      fill("black");
+      text("Zhiyi", sidelen / 2, sidelen / 2);
+      c1 = color("green");
+      c2 = color("blue");
+      c_mid = lerpColor(c1, c2, micLevel);
+      fill(c_mid);
+      circle(50, 50, 50);
+      fill("black");
+      text("Zhiyi", 5, 5);
+      circle(sidelen / 2 - 10, sidelen / 2 - 10, 5 + 200 * micLevel);
+      circle(sidelen / 2 + 10, sidelen / 2 - 10, 5 + 200 * micLevel);
+      ellipse(sidelen / 2, sidelen / 2 + 10, 250 * micLevel, 175 * micLevel);
+      pop();
+
+      push();
+      translate(sidelen * 5, sidelen * 1);
+      fill("red");
+      ellipse(50, 50, 50);
+      fill("orange");
+      ellipse(sidelen / 2, sidelen / 2 + 10, 40 * micLevel);
+      fill("black");
+      text("Eaden", sidelen / 2, sidelen / 2);
+      pop();
+
+      push();
+      translate(sidelen * 0, sidelen * 2);
+      fill("black");
+      text("elaine", sidelen / 2, sidelen / 2);
+      circle(sidelen / 2 - 10, sidelen / 2 - 10, 5);
+      circle(sidelen / 2 + 10, sidelen / 2 + 10, 5);
+      fill("blue");
+      circle(50, 50, 100 * micLevel);
+      pop();
+
+      push();
+      translate(sidelen * 1, sidelen * 2);
+      fill("black");
+      text("Name", sidelen / 2, sidelen / 2);
+      pop();
+
+      push();
+      translate(sidelen * 2, sidelen * 2);
+      fill("black");
+      text("Name", sidelen / 2, sidelen / 2);
+      pop();
+
+      push();
+      translate(sidelen * 3, sidelen * 2);
+      text("younghyun", sidelen / 10, sidelen / 20);
+      noStroke();
+      c1 = color("#b18036");
+      c2 = color("white");
+      c3 = color("#f1b990");
+      c_mid = lerpColor(c1, c2, 10 * micLevel);
+      fill(c_mid);
+      circle(30, 35, 20); //귀 l
+      fill(c3);
+      circle(30, 35, 10);
+      fill(c_mid);
+      circle(70, 35, 20); //귀 r
+      fill(c3);
+      circle(70, 35, 10);
+      fill(c_mid);
+      circle(50, 50, 50);
+      fill("black");
+      circle();
+      circle(sidelen / 2 - 10, sidelen / 2 - 5, 7);
+      circle(sidelen / 2 + 10, sidelen / 2 - 5, 7);
+      ellipse(sidelen / 2, sidelen / 2 + 10, 250 * micLevel, 170 * micLevel);
+      pop();
+
+      push();
+      translate(sidelen * 4, sidelen * 2);
+      fill("green");
+      noStroke();
+      text("Irene", sidelen / 2 - 45, sidelen / 2 - 45);
+      translate(sidelen * 0, sidelen * 0);
+      c1 = color("#A6CB68");
+      c2 = color("red");
+      c3 = color("#412234");
+      c_mid = lerpColor(c1, c2, micLevel);
+      fill(c_mid);
+      circle(50, 50, 50);
+
+      circle(sidelen / 2 - 15, sidelen / 2 - 25, 15);
+      circle(sidelen / 2 + 15, sidelen / 2 - 25, 15);
+
+      fill(c3);
+
+      circle(sidelen / 2 - 15, sidelen / 2 - 25, 7);
+      circle(sidelen / 2 + 15, sidelen / 2 - 25, 7);
+      ellipse(sidelen / 2, sidelen / 2, 40 * micLevel, 30 * micLevel);
+      pop();
+    }
+  </script>
+
+  <body></body>
+</html>
