@@ -10,10 +10,10 @@ function createItem(item) {
     s.type = item.type
     item.sprite = s
     item.created = true
-    if (item.type == "💀") {
+    if (item.type == "🏊") {
         item.person = nextPersonDiedOfAIDS()
     }
-    if (item.type == "💡") {
+    if (item.type == "🪔") {
         item.person = nextAIDSActivist()
     }
     if (love.includes(item.type)) {
@@ -84,7 +84,7 @@ function createItem(item) {
             textSize(sprite_size)
             text("💉", 0, 0)
             if (active_protection.includes(item.type)) {
-                text("✔️", 0, 0)
+                text("🩹", 0, 0)
             } else {
                 textSize(15)
                 textAlign(LEFT)
@@ -136,7 +136,7 @@ function createItem(item) {
             noStroke()
             text(item.type, 0, 0)
 
-        } else if (item.type == "💀") {
+        } else if (item.type == "🏊") {
             textSize(sprite_size)
             text(item.type, 0, 0)
             textSize(15)
@@ -145,12 +145,12 @@ function createItem(item) {
             let p = item.person
             text(p[0], 18, -g)
             text(`${p[1]} - ${p[2]}`, 18, g)
-        }else if (item.type == "💡") {
+        }else if (item.type == "🪔") {
             textSize(sprite_size)
             text(item.type, 0, 0)
             textSize(15)
             textAlign(LEFT)
-            text(item.person, 18, 0)
+            text(item.person, 20, 0)
         }
         else if(love.includes(item.type)){
             textSize(sprite_size)

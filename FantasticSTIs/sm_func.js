@@ -11,16 +11,16 @@ class Item {
 }
 
 function nextPersonDiedOfAIDS() {
-    person = people_died_of_AIDS[person_died_of_AIDS_index]
-    person_died_of_AIDS_index++
-    person_died_of_AIDS_index = person_died_of_AIDS_index % people_died_of_AIDS.length
+    person = HIV_pos_celebrity[HIV_pos_celebrity_index]
+    HIV_pos_celebrity_index++
+    HIV_pos_celebrity_index = HIV_pos_celebrity_index % HIV_pos_celebrity.length
     return person
 }
 
 function nextAIDSActivist() {
-    person = AIDS_activists[AIDS_activist_index]
-    AIDS_activist_index++
-    AIDS_activist_index = AIDS_activist_index % AIDS_activists.length
+    person = HIV_AIDS_activism[HIV_AIDS_activism_index]
+    HIV_AIDS_activism_index++
+    HIV_AIDS_activism_index = HIV_AIDS_activism_index % HIV_AIDS_activism.length
     return person
 }
 
@@ -70,7 +70,7 @@ function displayInfection() {
 }
 
 function lonelyText(i) {
-    if (i == 99) return "圆寂 PASSED AWAY"
+    if (i == 99) return "圆寂 THE END OF LONELINESS"
     return i % 2 == 0 ? "LONELY" : "寂寞"
 }
 

@@ -2,11 +2,12 @@ function draw() {
     background("white")
     clock()
     drawMovingBG()
-    collideItems();
+    collideItems()
     moveYou()
-    drawSprites();
-    updateAndDrawStats();
+    drawSprites()
+    updateAndDrawStats()
     drawAgeAndProtection()
+    drawKeyboardControls()
     drawHIVCountDown()
     drawTooInfected()
 }
@@ -48,7 +49,7 @@ function updateAndDrawStats() {
 
     if (loneliness > 100) {
         loneliness = 100
-        noLoop() // passed away
+        noLoop()
     }
     push()
     fill("red")
@@ -88,24 +89,40 @@ function updateAndDrawStats() {
 
 function moveYou() {
 
-    if(keyDown('s') || keyDown('w') ||keyDown('a') ||keyDown('d') ){
+    document.addEventListener("keydown", function(event) {
         if(!kandinsky.isPlaying()){
             kandinsky.loop()
         }
-    }
+    });
+
+    document.addEventListener("click", function(event) {
+        if(!kandinsky.isPlaying()){
+            kandinsky.loop()
+        }
+    });
     
-    if (keyDown('s')) {
-        you.position.y += you_speed
+    if (keyDown('s') || keyDown('S') || keyDown('Down')) {
+        if(you.position.y<h) you.position.y += you_speed
     }
-    if (keyDown('w')) {
-        you.position.y -= you_speed
+    if (keyDown('w') || keyDown('W') || keyDown('Up')) {
+        if(you.position.y>0) you.position.y -= you_speed
     }
-    if (keyDown('a')) {
-        you.position.x -= you_speed
+    if (keyDown('a') || keyDown('A') || keyDown('Left')) {
+        if(you.position.x>0) you.position.x -= you_speed
     }
-    if (keyDown('d')) {
-        you.position.x += you_speed
+    if (keyDown('d') || keyDown('D') || keyDown('Right')) {
+        if(you.position.x<w) you.position.x += you_speed
     }
+}
+
+function drawKeyboardControls(){
+    push()
+    fill("black")
+    textSize(16)
+    textAlign(CENTER, CENTER)
+    text(`   [W]   \n[A][S][D]`, w - 190, h - 30)
+    text(`[R]`, w - 140, h - 20)
+    pop()
 }
 
 function drawAgeAndProtection() {
@@ -149,8 +166,8 @@ function drawTooInfected() {
         push()
         textSize(90)
         fill("black")
-        text("☠️ TOO INFECTED ☠️", w / 2, h / 2)
+        text("👻 TOO INFECTED 👻", w / 2, h / 2)
         pop()
-        noLoop() //passed away
+        noLoop()
     }
 }

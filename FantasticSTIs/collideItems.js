@@ -27,7 +27,7 @@ function collideItems() {
         if (bacteria.includes(type) || virus.includes(type)) {
             infect(type)
             sprite_item.remove()
-            ouch.play()
+            a.play()
         }
         if (love.includes(type)) {
             //less lonely
@@ -51,7 +51,7 @@ function collideItems() {
         if (type == "ceftriaxone") {
             if (removeInfection("Gonorrhea")) {
                 sprite_item.remove()
-                a.play()
+                ouch.play()
             }
         }
         if (type == "doxycycline") {
@@ -63,7 +63,7 @@ function collideItems() {
         if (type == "Benzathine penicillin G") {
             if (removeInfection("Syphilis")) {
                 sprite_item.remove()
-                a.play()
+                ouch.play()
             }
         }
         if (type == "PrEP") {
@@ -89,7 +89,7 @@ function collideItems() {
             if (!active_protection.includes(type)) {
                 active_protection.push(type)
                 sprite_item.remove()
-                a.play()
+                ouch.play()
             }
         }
         if (type == "ART") {

@@ -16,7 +16,7 @@ function setup() {
     hiv_infect_timeout = null
     years = 81 - 18 + 1
 
-    people_died_of_AIDS = [
+    HIV_pos_celebrity = [
         ["Keith Haring", 1958, 1990],
         ["Freddie Mercury", 1946, 1991],
         ["Michel Foucault", 1926, 1984],
@@ -24,12 +24,15 @@ function setup() {
         ["Paul Monette", 1945, 1995],
         ["Larry Kramer", 1935, 2020],
         ["Rudolf Nureyev", 1938, 1993],
+        ["Bill Sherwood", 1952, 1990],
+        ["David Wojnarowicz", 1954, 1992],
+        ["Peter Hujar", 1934, 1987]
     ]
 
-    AIDS_activists = ["Magic Johnson", "ACT UP", "Gay Men's Health Crisis", "International AIDS Society", "Through Positive Eyes", "World AIDS Day", "AIDS Walk", "UNAIDS", "Larry Kramer"]
+    HIV_AIDS_activism = ["Magic Johnson", "ACT UP", "Gay Men's Health Crisis", "International AIDS Society", "Through Positive Eyes", "World AIDS Day", "AIDS Walk", "UNAIDS", "Larry Kramer", "Mark Doty"]
 
-    person_died_of_AIDS_index = 0
-    AIDS_activist_index = 0
+    HIV_pos_celebrity_index = 0
+    HIV_AIDS_activism_index = 0
     talkative = false
 
     //background movement
@@ -54,10 +57,9 @@ function setup() {
     angleMode(DEGREES)
 
     cnv = createCanvas(w, h);
-    cnv.position((windowWidth - w) / 2, (windowHeight - h) / 2);
 
     for (let i = 0; i < years * 20; i++) {
-        items.push(new Item(random(m, w / 2 * years), random(m, h - m), random([...bacteria, ...virus,...love, ...vaccine, ...prevention, ...cure, "💀", "💡", "HIV", "HIV", "ART" ])))
+        items.push(new Item(random(m, w / 2 * years), random(m, h - m), random([...bacteria, ...virus, ...love, ...vaccine, ...prevention, ...cure, "🏊", "🪔", "HIV", "HIV", "ART"])))
     }
 
     you = createSprite(w / 2, h / 2, sprite_size, sprite_size)
@@ -70,9 +72,9 @@ function setup() {
             vertex(random(-20, 20), random(-20, 20));
         }
         endShape(CLOSE);
-        if (frameCount < frameRate() * 10){
+        if (frameCount < frameRate() * 10) {
             textSize(12)
-            text("🎯Live & LOVE 81 Years", 0,30)
+            text("🎯Live & LOVE 81 Years", 0, 30)
         }
         if (talkative) {
             textSize(15)
@@ -83,5 +85,5 @@ function setup() {
         pop()
     }
     setupSounds()
-    
+
 }
