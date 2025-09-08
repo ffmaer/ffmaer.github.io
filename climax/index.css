@@ -1,0 +1,175 @@
+@font-face {
+  font-family: 'Caveat';
+  src: url('fonts/Caveat/Caveat-VariableFont_wght.ttf');
+}
+body{
+  background: blueviolet;
+  color: aliceblue;
+  font-size: 36px;
+}
+#defaultCanvas0{
+  position: fixed;
+  z-index: -2;
+  left: 50%;
+  top:0;
+}
+#instruction{
+  font-size: 60px;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  margin: 50 0 40 0px;
+}
+#instruction .firstline{
+  font-size: 100px;
+}
+#winning-condition{
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 30px;
+}
+table{
+  color: aliceblue;
+  font-size: 36px;
+  display: block;
+}
+table#bottom{
+  margin-top: 40px;
+}
+td{
+  vertical-align: top;
+}
+.titlediv{
+  font-family: 'Caveat', cursive;
+  font-size: 56px;
+}
+
+#cashchart div, #timechart div{
+  font-size: 24px;
+  font-family: 'Caveat', cursive;
+  display: inline-flex;
+  opacity: 0.9;
+}
+
+
+
+td#timetext p, td#cashtext p, button{
+  font-family: 'Caveat', cursive;
+
+}
+
+.adjust{
+  display: inline-block;
+}
+
+button.number, button.decrease, button.increase{
+  display: inline-block;
+  font-size: 36px;
+  color:white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+button.increase, button.decrease{
+  user-select: none;
+}
+
+button.decrease:hover, button.increase:hover {
+  cursor: pointer;
+}
+
+.dependent{
+  background: none;
+  display: inline-block;
+  font-size: 36px;
+  color:white;
+  border: none;
+}
+
+button.toggle, button.music{
+  display: inline-block;
+  font-size: 36px;
+  color:white;
+  border-radius: 50%;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+#footer{
+  font-size: 16px;
+  text-align: center;
+  margin: 20 0 10 0px;
+  font-family: 'Caveat', cursive;
+  /* font-family: "Microsoft YaHei", "微软雅黑", "Heiti SC", "STHeiti", "PingFang SC", "SimSun", "Songti SC", sans-serif; */
+}
+.hidden{
+  opacity: 100;
+}
+
+.hidden_pattern{
+  display: none;
+}
+
+.quote{
+  font-size: 16px;
+}
+
+.winning_text, .winning_message_button{
+ font-size: 36px;
+ font-family: 'Caveat', cursive;
+ color: blueviolet;
+  text-shadow:
+    3px 3px 0 #fff,
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+.winning_message_button{
+    display: inline-block;
+    border-radius: 50%;
+    background: none;
+    border: 2px solid white;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+}
+
+.seal{
+  font-size: 1500px;
+  position: fixed;
+  left:-500px;
+  top:-500px;
+  opacity: 0.04;
+  z-index: -1;
+}
+
+div.music{
+  display: flex;
+  justify-content: center;
+}
+
+div.center{
+  display: flex;
+  justify-content: center;
+}
+
+td div{
+  border-radius: 50%;
+}
