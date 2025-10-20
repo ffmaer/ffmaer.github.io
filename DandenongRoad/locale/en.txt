@@ -1,0 +1,27 @@
+#: locale=en
+
+## Media
+
+### 360 Video
+
+### Title
+media_F0941B14_FF67_B994_41E0_74171F71B2A6.label = DandenongRoad
+
+### Video
+videores_F0CD3276_FF6A_8B94_41A0_A49B41F5B197.url = media/media_F0941B14_FF67_B994_41E0_74171F71B2A6_en.mp4
+videores_F0CD3276_FF6A_8B94_41A0_A49B41F5B197.posterURL = media/media_F0941B14_FF67_B994_41E0_74171F71B2A6_poster_en.jpg
+
+### Video Subtitles
+
+## Skin
+
+### Tooltip
+IconButton_138AC8EB_1C81_A718_41B9_C0E861AF42F4.toolTip = Fullscreen
+IconButton_138AC8EB_1C81_A718_41B9_C0E861AF42F4_mobile.toolTip = Fullscreen
+
+## Tour
+
+### Description
+
+### Title
+tour.name = DandenongRoad
