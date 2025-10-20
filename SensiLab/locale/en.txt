@@ -1,0 +1,27 @@
+#: locale=en
+
+## Media
+
+### 360 Video
+
+### Title
+media_F30C39BD_FF26_9894_41C5_A1F41784D49C.label = VID_20251020_114833_00_004
+
+### Video
+videores_F2DB534D_FF26_89F4_41A2_6CE52F1A359E.url = media/media_F30C39BD_FF26_9894_41C5_A1F41784D49C_en.mp4
+videores_F2DB534D_FF26_89F4_41A2_6CE52F1A359E.posterURL = media/media_F30C39BD_FF26_9894_41C5_A1F41784D49C_poster_en.jpg
+
+### Video Subtitles
+
+## Skin
+
+### Tooltip
+IconButton_138AC8EB_1C81_A718_41B9_C0E861AF42F4.toolTip = Fullscreen
+IconButton_138AC8EB_1C81_A718_41B9_C0E861AF42F4_mobile.toolTip = Fullscreen
+
+## Tour
+
+### Description
+
+### Title
+tour.name = Untitled 2
