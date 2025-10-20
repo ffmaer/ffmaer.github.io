@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tomb of Wenzi ♡ Zhongxian</title>
+    <style>
+        @media screen and (max-width: 1024px) {
+            body {
+                transform: scale(0.5);
+            }
+            p.note{
+                visibility: hidden;
+            }
+        }
+
+        @font-face {
+            font-family: 'CommonPillowTree';
+            src: url('./Commonpillowtree-Regular.otf')
+        }
+
+        body {
+            background-color: black;
+            font-family: 'CommonPillowTree';
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        canvas {
+            border: solid 10pt rgba(0, 255, 0, 0);
+            border-radius: 1000px;
+        }
+
+        #content {
+            width: 720px;
+        }
+
+
+        p.note{
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 0px;
+            margin-top: 5px;
+        }
+    </style>
+    <script src="p5.min.js"></script>
+    <script src="p5.play.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <script src="preload.js"></script>
+    <script src="setup.js"></script>
+    <script src="sketch.js"></script>
+    <script src="lsys.js"></script>
+    <script src="meet.js"></script>
+    <script src="tears.js"></script>
+    <script src="generateTexts.js"></script>
+    <script src="CanvasXY.js"></script>
+    <script src="evolution.js"></script>
+    <script src="lcsubstr.js"></script>
+    <script src="tomb.js"></script>
+    <script src="sound.js"></script>
+</head>
+
+<body>
+    <center>
+        <div id="content">
+            <div id="canvas"></div>
+            <p class="note">Every tree is unique. Snap a shot before one is gone forever.</p>
+        </div>
+    </center>
+</body>
+
+</html>
