@@ -15,7 +15,7 @@
     "body-parser": "^1.17.2",
     "pug": "~2.0.0-beta11",
     "sqlite3": "^3.1.8",
-    "sequelize": "^4.3.2"
+    "sequelize": "^6.37.7"
   },
   "engines": {
     "node": "8.1.x"
